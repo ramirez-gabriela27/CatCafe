@@ -21,7 +21,8 @@ public class CatCafe_App extends Application {
         //makes it so it's a single size
         stage.setResizable(false);
         //and removes the title bar we can have our own
-        stage.initStyle(StageStyle.UNDECORATED);
+            // TODO: make the window draggable, make buttons close, max, and min the screen
+        //stage.initStyle(StageStyle.UNDECORATED);
 
         stage.setScene(scene);
         stage.show();
