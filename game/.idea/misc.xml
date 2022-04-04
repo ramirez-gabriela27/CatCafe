@@ -7,7 +7,11 @@
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="openjdk-17" project-jdk-type="JavaSDK">
+  <component name="ProjectResources">
+    <resource url="http://javafx.com/fxml/1" location="$PROJECT_DIR$/target/classes/com/catcafe/game/catcafe-view.fxml" />
+    <resource url="http://javafx.com/javafx/17" location="$PROJECT_DIR$/target/classes/com/catcafe/game/catcafe-view.fxml" />
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" default="true" project-jdk-name="openjdk-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
