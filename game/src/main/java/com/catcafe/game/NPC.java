@@ -1,5 +1,7 @@
 package com.catcafe.game;
 
+import java.time.Instant;
+
 public abstract class NPC implements Patience{
     private Request request;
     private double patienceLevel; // between 0 and 1
@@ -7,8 +9,12 @@ public abstract class NPC implements Patience{
     private long nextDecrementTime; //Unix timestamp of when to decrement patience next
     private int objectID;
 
-    public NPC(){
+    public NPC(long patienceThreshold){
+        this.patienceThreshold = patienceThreshold;
+        patienceLevel = 1;
+        nextDecrementTime = Instant.now().getEpochSecond() + patienceThreshold;
 
+        //Figure out how objetID is going to work
     }
 
     @Override
@@ -51,6 +57,12 @@ public abstract class NPC implements Patience{
 }
 
 class Cat extends NPC{
+
+    public Cat(){
+        super();
+        //Cats start off with no request
+        request = null;
+    }
     /**
      *
      * @param item Item that is being presented to the cat to attempt to fulfill the request (It doesn't have to be a cat
@@ -64,4 +76,8 @@ class Cat extends NPC{
 }
 
 class Customer extends NPC{
+    public Customer(){
+        super();
+        //On creation create a new random request
+    }
 }

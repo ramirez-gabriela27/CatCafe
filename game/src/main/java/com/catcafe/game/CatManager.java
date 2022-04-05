@@ -9,6 +9,9 @@ public class CatManager {
     private ArrayList<Cat> requestingCats;
     private CatRequestGenerator catRequestGenerator;
 
+    public CatManager(int nCats){
+        //make nCats
+    }
     /**
      *
      * @param cat Cat object to be added to all cats
