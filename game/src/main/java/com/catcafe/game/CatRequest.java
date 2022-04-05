@@ -1,4 +1,4 @@
-package com.catcafe.main;
+package com.catcafe.game;
 import java.util.ArrayList;
 public class CatRequest extends Request{
     //private ArrayList<CatItem> availableCatRequests;
