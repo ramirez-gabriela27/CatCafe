@@ -48,9 +48,9 @@ public class CatManager {
 
     /**
      *
-     * @return a random cat that has a current request
+     * @return a random cat
      */
-    public Cat getRandomRequestingCat(){
+    public Cat getRandomCat(){
 
     }
 

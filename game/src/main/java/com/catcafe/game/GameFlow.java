@@ -1,6 +1,5 @@
 package com.catcafe.game;
 
-import javax.management.ConstructorParameters;
 
 public class GameFlow {
     //All of these times will be Unix Timestamps (seconds since 1970) which is a long.
@@ -14,6 +13,7 @@ public class GameFlow {
     private Invoker invoker;
     private double avgCatRequestRate;
     private double avgCustomerSpawnRate;
+    private Account account;
 
     /**
      * @param avgCatRequestRate This is the average time between cat requests spawning
@@ -21,9 +21,10 @@ public class GameFlow {
      * @param invoker This is the invoker that is a part of the in game command pattern
      * @param gameLength This is how long the game should last in seconds
      * **/
-    public GameFlow(double avgCatRequestRate, double avgCustomerSpawnRate, long gameLength, Invoker invoker){
-        this.customerManager = new CustomerManager();
-        this.catManager = new CatManager();
+    public GameFlow(double avgCatRequestRate, double avgCustomerSpawnRate, long gameLength, Invoker invoker, int nCats){
+        this.catManager = new CatManager(nCats);
+        account = Account.getInstance();
+        this.customerManager = new CustomerManager(catManager,account);
         this.invoker = invoker;
         this.avgCatRequestRate = avgCatRequestRate;
         this.avgCustomerSpawnRate = avgCustomerSpawnRate;
