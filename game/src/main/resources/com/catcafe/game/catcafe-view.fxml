@@ -68,6 +68,38 @@
                </children>
             </Pane>
          </top>
+         <bottom>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane layoutX="300.0" layoutY="66.0" prefHeight="48.0" prefWidth="88.0">
+                     <children>
+                        <ImageView fitHeight="82.0" fitWidth="160.0" layoutX="2.0" layoutY="1.0">
+                           <image>
+                              <Image url="@../../../assets/buttons/PlayButton.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="PlayButton" layoutY="2.0" mnemonicParsing="false" onAction="#handlePlayAction" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: transparent;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="750.0" layoutY="66.0" prefHeight="48.0" prefWidth="88.0">
+                     <children>
+                        <ImageView fitHeight="82.0" fitWidth="160.0" layoutY="1.0">
+                           <image>
+                              <Image url="@../../../assets/buttons/QuitButton.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="QuitButton" layoutX="-1.0" layoutY="3.0" mnemonicParsing="false" onAction="#handleQuitAction" prefHeight="80.0" prefWidth="160.0" style="-fx-background-color: transparent;">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </bottom>
       </BorderPane>
    </children>
 </AnchorPane>
