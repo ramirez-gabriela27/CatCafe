@@ -2,18 +2,14 @@ package com.catcafe.game;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.IOException;
-
-public class CatCafe_Controller {
+public class GamePlay_Controller {
+    // Handles TitleBar (minimize and close window)
     double x,y;
 
     @FXML
@@ -53,25 +49,5 @@ public class CatCafe_Controller {
         stage.setY(event.getScreenY()-y);
     }
 
-    @FXML
-    private Button QuitButton;
-    @FXML //close window with Quit Button
-    protected void handleQuitAction(ActionEvent event){
-        System.out.println("Closing window");
-        Stage stage = (Stage) QuitButton.getScene().getWindow();
-        stage.close();
-    }
-
-    @FXML
-    private Button PlayButton;
-    @FXML //move on to the gameplay view
-    protected void handlePlayAction(ActionEvent event) throws IOException {
-        System.out.println("Moving on to gameplay");
-        Parent gameplay_parent = FXMLLoader.load(getClass().getResource("gameplay-view.fxml"));
-        Scene gameplay_scene = new Scene(gameplay_parent);
-        Stage stage = (Stage) PlayButton.getScene().getWindow();
-        stage.setScene(gameplay_scene);
-        stage.show();
-    }
-
+    //gameplay controls start here
 }
