@@ -1,6 +1,8 @@
 **/.DS_Store
-*/.idea/**
+**/.idea/
 **/*.iml
 **/out/
 **/*.class
-*/target/**
+**/target/
+**/logs
+**/*.log
