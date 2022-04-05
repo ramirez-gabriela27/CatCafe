@@ -1,4 +1,4 @@
-package com.catcafe.main;
+package com.catcafe.game;
 public class Driver {
     //private Player player;
     //^^not made yet
