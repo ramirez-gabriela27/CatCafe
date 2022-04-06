@@ -1,4 +1,4 @@
-package com.catcafe.main;
+package com.catcafe.game;
 public class GetCatFoodCommand extends InGameCommand{
     @Override
     void execute() {

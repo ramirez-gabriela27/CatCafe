@@ -1,6 +1,6 @@
-package com.catcafe.main;
-//public class Beverage extends Item{
-abstract class Beverage{//when Item added, replace with above
+package com.catcafe.game;
+
+public class Beverage extends Item{
     private Double cost;
     public Double getCost(){
         return cost;

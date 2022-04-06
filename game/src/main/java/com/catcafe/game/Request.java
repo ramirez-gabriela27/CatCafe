@@ -1,4 +1,4 @@
-package com.catcafe.main;
+package com.catcafe.game;
 abstract class Request{
     private Long requestStartTime;
     //private Item requestedItem;

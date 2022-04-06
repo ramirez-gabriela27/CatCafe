@@ -1,3 +1,3 @@
-package com.catcafe.main;
+package com.catcafe.game;
 public class Coffee extends Beverage{
 }
