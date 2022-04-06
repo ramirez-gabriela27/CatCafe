@@ -17,4 +17,7 @@ public interface Patience {
     Double getPatienceLevel();
 
     long getNextDecrementTime();
+
+    //Returns if patience is below some threshold meaning it is at "lowest level"
+    Boolean isLostPatience();
 }
