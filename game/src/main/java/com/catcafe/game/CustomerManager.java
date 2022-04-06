@@ -1,10 +1,12 @@
 package com.catcafe.game;
 
+import java.time.Instant;
 import java.util.ArrayList;
 
 public class CustomerManager {
     private ArrayList<Customer> customers;
     private CatCustomerInteraction catInteraction;
+    private int customerPatienceThreshold = 10;
 
     public CustomerManager(CatManager catManager, Account account){
         customers = new ArrayList<Customer>();
@@ -15,7 +17,8 @@ public class CustomerManager {
      * A new customer spawns
      */
     public void spawn(){
-
+        Customer newCustomer = new Customer(customerPatienceThreshold);
+        customers.add(newCustomer);
     }
 
     /**
@@ -26,7 +29,8 @@ public class CustomerManager {
      * first and then actually get rid of the customer
      */
     public void remove(Customer customer){
-
+        //TODO: Cat interaction
+        customers.remove(customer);
     }
 
     /**
@@ -34,13 +38,19 @@ public class CustomerManager {
      * @return returns next customer in line
      */
     public Customer nextCustomer(){
-        return null;
+        return customers.get(0);
     }
 
     /**
      * Goes through cats with current requests and checks if it is time to decrement their patience
      */
     public void patienceRoutine(){
+        for(Customer customer: customers){
+            if(Instant.now().getEpochSecond() > customer.getNextDecrementTime()){
+                customer.decreasePatience();
+                customer.setNextDecrementTime();
+            }
+        }
 
     }
 }
