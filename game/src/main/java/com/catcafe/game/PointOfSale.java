@@ -2,7 +2,7 @@ package com.catcafe.game;
 
 public class PointOfSale {
     private Account account;
-   // private CustomerManager customerManager;
+    private CustomerManager customerManager;
 
     public PointOfSale(){
 
