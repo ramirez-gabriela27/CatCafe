@@ -50,7 +50,7 @@ public class CatManager {
      * @return a random cat
      */
     public Cat getRandomCat(){
-
+        return null;
     }
 
     /**

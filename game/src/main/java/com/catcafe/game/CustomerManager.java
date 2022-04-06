@@ -20,7 +20,7 @@ public class CustomerManager {
 
     /**
      *
-     * @param customer custoer to be removed
+     * @param customer customer to be removed
      *
      * Customers are removed when their request is fulfilled so this method will call the cat interaction
      * first and then actually get rid of the customer
@@ -34,7 +34,7 @@ public class CustomerManager {
      * @return returns next customer in line
      */
     public Customer nextCustomer(){
-
+        return null;
     }
 
     /**
