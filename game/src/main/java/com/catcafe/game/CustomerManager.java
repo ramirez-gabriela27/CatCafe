@@ -34,7 +34,7 @@ public class CustomerManager {
      * @return returns next customer in line
      */
     public Customer nextCustomer(){
-
+        return null;
     }
 
     /**
