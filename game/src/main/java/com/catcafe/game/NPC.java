@@ -58,8 +58,8 @@ public abstract class NPC implements Patience{
 
 class Cat extends NPC{
 
-    public Cat(){
-        super();
+    public Cat(long patienceThreshold){
+        super(patienceThreshold);
         //Cats start off with no request
         request = null;
     }
@@ -76,8 +76,8 @@ class Cat extends NPC{
 }
 
 class Customer extends NPC{
-    public Customer(){
-        super();
+    public Customer(long patienceThreshold){
+        super(patienceThreshold);
         //On creation create a new random request
     }
 }
