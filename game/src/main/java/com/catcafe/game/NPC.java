@@ -3,7 +3,7 @@ package com.catcafe.game;
 import java.time.Instant;
 
 public abstract class NPC implements Patience{
-    private Request request;
+    protected Request request;
     private double patienceLevel; // between 0 and 1
     private long patienceThreshold; //Seconds between patience level decrements
     private long nextDecrementTime; //Unix timestamp of when to decrement patience next
