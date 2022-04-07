@@ -9,14 +9,14 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.catcafe.game.CatCafe_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.catcafe.game.CatCafe_Controller">
     <children>
       <ImageView fitHeight="48.0" fitWidth="1280.0">
          <image>
             <Image url="@../../../assets/TitleBar.png" />
          </image>
       </ImageView>
-        <BorderPane layoutX="7.0" layoutY="5.0" prefHeight="755.0" prefWidth="1270.0">
+        <BorderPane layoutX="7.0" layoutY="5.0" prefHeight="41.0" prefWidth="1270.0">
             <top>
                 <Pane fx:id="top_pane" onMouseDragged="#handleDragAction" onMousePressed="#handleClickAction" prefHeight="39.0" prefWidth="1270.0" BorderPane.alignment="CENTER_RIGHT">
                     <children>
@@ -69,5 +69,6 @@
                 </Pane>
             </top>
         </BorderPane>
+      <AnchorPane layoutY="48.0" prefHeight="716.0" prefWidth="1280.0" />
     </children>
 </AnchorPane>
