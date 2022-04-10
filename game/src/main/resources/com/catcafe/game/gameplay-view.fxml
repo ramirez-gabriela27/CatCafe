@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.catcafe.game.CatCafe_Controller">
     <children>
-      <ImageView fitHeight="48.0" fitWidth="1280.0">
+      <ImageView fitHeight="760.0" fitWidth="1280.0">
          <image>
-            <Image url="@../../../assets/TitleBar.png" />
+            <Image url="@../../../assets/background_test.gif" />
          </image>
       </ImageView>
         <BorderPane layoutX="7.0" layoutY="5.0" prefHeight="755.0" prefWidth="1270.0">
