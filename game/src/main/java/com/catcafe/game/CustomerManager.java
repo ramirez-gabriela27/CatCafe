@@ -7,6 +7,7 @@ public class CustomerManager {
     private ArrayList<Customer> customers;
     private CatCustomerInteraction catInteraction;
     private int customerPatienceThreshold = 10;
+    private final int MAX_CUSTOMERS = 4;
 
     public CustomerManager(CatManager catManager, Account account){
         customers = new ArrayList<Customer>();
@@ -17,8 +18,15 @@ public class CustomerManager {
      * A new customer spawns
      */
     public void spawn(){
-        Customer newCustomer = new Customer(customerPatienceThreshold);
-        customers.add(newCustomer);
+        //If there are already MAX CUSTOMERS dont spawn
+        if(customers.size() >= MAX_CUSTOMERS){
+            return;
+        }
+        else {
+            Customer newCustomer = new Customer(customerPatienceThreshold);
+            customers.add(newCustomer);
+            //TODO: Put the customer in line and have the graphics appear
+        }
     }
 
     /**
@@ -31,6 +39,7 @@ public class CustomerManager {
     public void remove(Customer customer){
         //TODO: Cat interaction
         customers.remove(customer);
+        //TODO: Move the other customers up in line in the view
     }
 
     /**
