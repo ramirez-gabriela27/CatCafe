@@ -31,6 +31,7 @@ public class CustomerManager {
     public void remove(Customer customer){
         //TODO: Cat interaction
         customers.remove(customer);
+        //TODO: remove customer from screen
     }
 
     /**

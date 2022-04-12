@@ -6,7 +6,7 @@ public class Account {
     private static Account account = new Account();
 
     private Account(){
-
+        amount = 0.0;
     }
 
     public static Account getInstance(){
@@ -14,10 +14,10 @@ public class Account {
     }
 
     public void addMoney(Double amountToAdd){
-
+        amount += amountToAdd;
     }
 
     public void removeMoney(Double amountToRemove){
-
+        amount -= amountToRemove;
     }
 }

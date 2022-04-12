@@ -79,5 +79,8 @@ class Customer extends NPC{
     public Customer(long patienceThreshold){
         super(patienceThreshold);
         //On creation create a new random request
+        request = null;
     }
+
+
 }
