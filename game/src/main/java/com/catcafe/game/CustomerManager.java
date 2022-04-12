@@ -39,6 +39,7 @@ public class CustomerManager {
      */
     public Customer nextCustomer(){
         return customers.get(0);
+
     }
 
     /**
