@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.catcafe.game.CatCafe_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.catcafe.game.CatCafe_Controller">
     <children>
       <ImageView fitHeight="760.0" fitWidth="1280.0">
          <image>
@@ -69,6 +69,73 @@
                 </Pane>
             </top>
         </BorderPane>
-      <AnchorPane layoutY="48.0" prefHeight="716.0" prefWidth="1280.0" />
+      <AnchorPane layoutY="48.0" prefHeight="716.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="123.0" fitWidth="488.0" layoutX="-60.0" layoutY="201.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/back_counter.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="167.0" fitWidth="106.0" layoutX="135.0" layoutY="290.0">
+               <image>
+                  <Image url="@../../../assets/characters/EmmaChar/Emma.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="96.0" fitWidth="98.0" layoutX="310.0" layoutY="334.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/cash_register.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="96.0" fitWidth="77.0" layoutX="22.0" layoutY="132.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/coffeeMaker.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="96.0" fitWidth="33.0" layoutX="184.0" layoutY="132.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/lavender_syrup.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="96.0" fitWidth="88.0" layoutX="278.0" layoutY="132.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/milk_steamer.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="178.0" fitWidth="114.0" layoutX="649.0" layoutY="279.0">
+               <image>
+                  <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="178.0" fitWidth="122.0" layoutX="837.0" layoutY="269.0">
+               <image>
+                  <Image url="@../../../assets/characters/KatyChar/Katy.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="178.0" fitWidth="122.0" layoutX="1006.0" layoutY="269.0">
+               <image>
+                  <Image url="@../../../assets/characters/GabyChar/Gaby.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="227.0" fitWidth="367.0" layoutX="492.0" layoutY="255.0">
+               <image>
+                  <Image url="@../../../assets/beverages/coffee.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="245.0" fitWidth="421.0" layoutX="739.0" layoutY="290.0">
+               <image>
+                  <Image url="@../../../assets/beverages/coffee2.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="227.0" fitWidth="329.0" layoutX="867.0" layoutY="245.0">
+               <image>
+                  <Image url="@../../../assets/beverages/lavenderCoffee.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
     </children>
 </AnchorPane>
