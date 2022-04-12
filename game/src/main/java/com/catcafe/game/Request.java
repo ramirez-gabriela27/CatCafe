@@ -1,8 +1,7 @@
 package com.catcafe.game;
 abstract class Request{
     private Long requestStartTime;
-    //private Item requestedItem;
-    //^uncomment when Item class made
+    private Item requestedItem;
     public Long getRequestStartTime() {
         return requestStartTime;
     }
