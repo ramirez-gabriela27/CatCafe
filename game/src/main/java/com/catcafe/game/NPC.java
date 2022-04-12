@@ -86,8 +86,15 @@ class Cat extends NPC{
 class Customer extends NPC{
     public Customer(long patienceThreshold){
         super(patienceThreshold);
+
     }
     public Customer(){
         super();
+
+        //On creation create a new random request
+        request = null;
+
     }
+
+
 }
