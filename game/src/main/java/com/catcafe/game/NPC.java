@@ -4,10 +4,10 @@ import java.time.Instant;
 
 public abstract class NPC implements Patience{
     protected Request request;
-    private double patienceLevel; // between 0 and 1
-    private long patienceThreshold; //Seconds between patience level decrements
-    private long nextDecrementTime; //Unix timestamp of when to decrement patience next
-    private int objectID;
+    protected double patienceLevel; // between 0 and 1
+    protected long patienceThreshold; //Seconds between patience level decrements
+    protected long nextDecrementTime; //Unix timestamp of when to decrement patience next
+    protected int objectID;
 
     public NPC(long patienceThreshold){
         this.patienceThreshold = patienceThreshold;

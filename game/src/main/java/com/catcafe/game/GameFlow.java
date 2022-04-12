@@ -1,5 +1,8 @@
 package com.catcafe.game;
 
+import org.apache.commons.math3.distribution.ExponentialDistribution;
+
+import java.time.Instant;
 
 public class GameFlow {
     //All of these times will be Unix Timestamps (seconds since 1970) which is a long.
@@ -11,8 +14,8 @@ public class GameFlow {
     private CustomerManager customerManager;
     private CatManager catManager;
     private Invoker invoker;
-    private double avgCatRequestRate;
-    private double avgCustomerSpawnRate;
+    private ExponentialDistribution catRequestTimeDist;
+    private ExponentialDistribution customerSpawnTimeDist;
     private Account account;
 
     /**
@@ -23,11 +26,12 @@ public class GameFlow {
      * **/
     public GameFlow(double avgCatRequestRate, double avgCustomerSpawnRate, long gameLength, Invoker invoker, int nCats){
         this.catManager = new CatManager(nCats);
+        this.gameLength = gameLength;
         account = Account.getInstance();
         this.customerManager = new CustomerManager(catManager,account);
         this.invoker = invoker;
-        this.avgCatRequestRate = avgCatRequestRate;
-        this.avgCustomerSpawnRate = avgCustomerSpawnRate;
+        catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
+        customerSpawnTimeDist = new ExponentialDistribution(avgCustomerSpawnRate);
     }
 
     //This will start a loop that runs until endime is reached
@@ -35,22 +39,42 @@ public class GameFlow {
     // This method will spawn customers and cat requests at the correct times
     //Every loop will tell the cat/customer managers to check if it's time to decrement patience
     public void startGame(){
-
+        endTime = Instant.now().getEpochSecond() + gameLength;
+        while(Instant.now().getEpochSecond() < endTime){
+            invoker.doNextCommand();
+            customerCheck();
+            catCheck();
+            customerManager.patienceRoutine();
+            catManager.patienceRoutine();
+        }
     }
 
     /**
      * @param endTime Unix timestamp for when the game should end
      */
     public void setEndTime(long endTime){
+        this.endTime = endTime;
 
     }
     //Helper method which checks if its time for a new customer. If so, tells customer manager to spawn new customer
     private void customerCheck(){
-
+        if(Instant.now().getEpochSecond() >= nextCustomerTime){
+            customerManager.spawn();
+            calcNextCustomerTime();
+        }
     }
     //Helper method which checks if its time for a new cat request. If so, tells cat manager to add a new request(if possible)
     private void catCheck(){
-
+        if(Instant.now().getEpochSecond() >= nextCatRequestTime){
+            catManager.spawnRequest();
+            calcNextCatTime();
+        }
+    }
+    private void calcNextCustomerTime(){
+        nextCustomerTime = Instant.now().getEpochSecond() + Math.round(customerSpawnTimeDist.sample());
+    }
+    private void calcNextCatTime(){
+        nextCatRequestTime = Instant.now().getEpochSecond() + Math.round(catRequestTimeDist.sample());
     }
 
 
