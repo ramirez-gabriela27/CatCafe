@@ -96,5 +96,7 @@ class Customer extends NPC{
 
     }
 
-
+    public Request getCustomerRequest(){
+        return request;
+    }
 }
