@@ -20,7 +20,7 @@ public class GameFlow {
 
     /**
      * @param avgCatRequestRate This is the average time between cat requests spawning
-     * @param  avgCustomerSpawnRate This is the average time between customers spawning
+     * @param avgCustomerSpawnRate This is the average time between customers spawning
      * @param invoker This is the invoker that is a part of the in game command pattern
      * @param gameLength This is how long the game should last in seconds
      * **/
@@ -28,7 +28,7 @@ public class GameFlow {
         this.catManager = new CatManager(nCats);
         this.gameLength = gameLength;
         account = Account.getInstance();
-        this.customerManager = new CustomerManager(catManager,account);
+        this.customerManager = CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance());
         this.invoker = invoker;
         catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
         customerSpawnTimeDist = new ExponentialDistribution(avgCustomerSpawnRate);

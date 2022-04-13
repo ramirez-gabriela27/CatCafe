@@ -9,6 +9,6 @@ public class CoffeeShop {
         coffeeMaker = new CoffeeMaker(0);
         milkSteamer = new MilkSteamer(0);
         syrupStation = new SyrupStation(0);
-        pointOfSale = new PointOfSale();
+        pointOfSale = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
     }
 }

@@ -7,9 +7,14 @@ public class CatManager {
     private ArrayList<Cat> cats;
     //Contains cats with active requests
     private ArrayList<Cat> requestingCats;
+    private static CatManager catManager = new CatManager(0);
 
     public CatManager(int nCats){
         //make nCats
+    }
+
+    public static CatManager getInstance(){
+        return catManager;
     }
     /**
      *

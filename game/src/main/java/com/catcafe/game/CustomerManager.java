@@ -8,10 +8,18 @@ public class CustomerManager {
     private CatCustomerInteraction catInteraction;
     private int customerPatienceThreshold = 10;
     private final int MAX_CUSTOMERS = 4;
+    private static CustomerManager customerManager;
 
-    public CustomerManager(CatManager catManager, Account account){
+    private CustomerManager(Account account, CatManager catManager){
         customers = new ArrayList<Customer>();
         catInteraction = new CatCustomerInteraction(catManager, account);
+    }
+
+    public static synchronized CustomerManager getInstance(Account account, CatManager catManager){
+        if (customerManager == null){
+            customerManager = new CustomerManager(account, catManager);
+        }
+        return customerManager;
     }
 
     /**
