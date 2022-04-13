@@ -30,3 +30,20 @@ class ThrowAwayCommand extends InGameCommand{
     void execute() {
     }
 }
+
+//TODO: Cat commands for next sprint
+class ServeCatCommand extends InGameCommand{
+    @Override
+    void execute() {
+    }
+}
+class GetCatWaterCommand extends InGameCommand{
+    @Override
+    void execute() {
+    }
+}
+class GetCatFoodCommand extends InGameCommand{
+    @Override
+    void execute() {
+    }
+}
