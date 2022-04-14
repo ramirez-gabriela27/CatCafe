@@ -123,10 +123,11 @@ public class Model {
         human.get(id).put(Attribute.REQUEST, hasRequest);
         updateLocationStatus(location, id);
         //TODO: Alert view that item with id has been created
+        // view.alertChange(id)
         return id;
     }
 
-    public HashMap<Attribute, Object> getAllDataHuman(int id){
+    public HashMap<Attribute, Object> getAllData(int id){
         return human.get(id);
     }
     public Object getData(int id, Attribute attribute){
