@@ -19,4 +19,4 @@ frameworks, libraries, or utilities for your project as long as the project demo
 
 ### Deliverables
 Thorougly described in [the PDF](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj6%20Deliverables/OOAD%20Project%206.pdf) provided by professor Bruce Montgomery.
-Submission and details of project can be found at [the PDF](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj6%20Deliverables/Proj6_CatCafe_Update.pdf)
+Submission and details of project can be found in the [Project 6 update](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj6%20Deliverables/Proj6_CatCafe_Update.pdf)
