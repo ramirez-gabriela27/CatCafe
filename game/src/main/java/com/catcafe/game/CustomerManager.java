@@ -31,9 +31,8 @@ public class CustomerManager {
             return;
         }
         else {
-            Customer newCustomer = new Customer(customerPatienceThreshold);
+            Customer newCustomer = new Customer();
             customers.add(newCustomer);
-            //TODO: Put the customer in line and have the graphics appear
         }
     }
 
@@ -47,11 +46,6 @@ public class CustomerManager {
     public void remove(Customer customer){
         //TODO: Cat interaction
         customers.remove(customer);
-
-        //TODO: Move the other customers up in line in the view
-
-        //TODO: remove customer from screen
-
     }
 
     /**
