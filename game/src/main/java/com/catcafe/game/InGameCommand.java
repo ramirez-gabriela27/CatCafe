@@ -10,6 +10,8 @@ class OrderUpCommand extends InGameCommand{
     @Override
     void execute() {
         Model.getInstance().modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
+        receiver.stopCarryingItem();
+
     }
 }
 

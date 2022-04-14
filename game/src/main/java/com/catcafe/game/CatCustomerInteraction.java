@@ -1,5 +1,8 @@
 package com.catcafe.game;
 
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN NEWEST CLASS DIAGRAM
+ */
 public class CatCustomerInteraction {
     private CatManager catManager;
     private Account account;

@@ -19,4 +19,9 @@ public class PlayableCharacter {
         Model.getInstance().modifyData(id, Attribute.DRINK, Drink.NONE);
 
     }
+    public void setCarryingItem(Item item){
+        carryingItem = item;
+        //TODO: find a way to translate drink object into ENUM name
+        //Model.getInstance().modifyData(id, Attribute.DRINK, );
+    }
 }

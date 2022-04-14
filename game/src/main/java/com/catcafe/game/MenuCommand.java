@@ -1,4 +1,7 @@
 package com.catcafe.game;
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
 public class MenuCommand extends Command{
     private Driver receiver;
     //^^commented out because Driver not made yet
