@@ -28,13 +28,9 @@ public class PointOfSale {
      */
     public void orderUp(Beverage bev){
         Customer c = customerManager.nextCustomer();
-        Request r = c.getCustomerRequest();
-        //call beverage compare method
-        //boolean drinkMatch = bev.compareTo(r)
-        //if true (correct drink) -> can do customer manager. remove or tell it that request is complete?
-        //if (drinkMatch){
-        // }
-        //temp for first sprint
-        //bev.getDescription == r.getDescription()
+        Request r = c.getRequest();
+        if(r.getRequestedItem().compare(bev)){
+            customerManager.remove(c);
+        }
     }
 }

@@ -5,6 +5,10 @@ public class PlayableCharacter {
     //private CoffeeShop shop;
     private int id;
 
+    public int getId() {
+        return id;
+    }
+
     public PlayableCharacter(){
         //Adds graphic info to the view
        id = Model.getInstance().addData(Character.EMMA, Location.REGISTER, Drink.NONE, false);

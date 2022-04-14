@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
     double x,y;
+    InGameInteractiveUser user = new InGameInteractiveUser();
 
     @FXML
     private Button close_button;
@@ -57,6 +58,10 @@ public class GamePlay_Controller {
     private void handleCoffeeAction(ActionEvent event){
         System.out.println("coffee machine activate");
         // TODO: make a simple coffee functionality
+        Command coffeeCommand = user.commandOptions.get(0);
+        user.invoker.addCommand(coffeeCommand);//adding make coffee command to queue
+        //time step in Katy's GameFlow class will trigger command to be made
+
     }
 
     @FXML

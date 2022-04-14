@@ -26,6 +26,9 @@ public abstract class NPC implements Patience{
         Model.getInstance().modifyData(objectID, Attribute.DRINK, Drink.NONE);
         Model.getInstance().modifyData(objectID, Attribute.REQUEST, false);
     }
+    public Request getRequest(){
+        return request;
+    }
     public abstract void destroy();
 
 
