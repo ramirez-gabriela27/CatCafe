@@ -12,6 +12,7 @@ public class PlayableCharacter {
     public PlayableCharacter(){
         //Adds graphic info to the view
        id = Model.getInstance().addData(Character.EMMA, Location.REGISTER, Drink.NONE, false);
+       carryingItem = null;
     }
     //Empties the character's hands
     public void stopCarryingItem(){
@@ -21,7 +22,8 @@ public class PlayableCharacter {
     }
     public void setCarryingItem(Item item){
         carryingItem = item;
-        //TODO: find a way to translate drink object into ENUM name
-        //Model.getInstance().modifyData(id, Attribute.DRINK, );
+        Model.getInstance().modifyData(id, Attribute.DRINK,item.getGraphicName());
+        Model.getInstance().modifyData(id, Attribute.REQUEST,false);
+
     }
 }

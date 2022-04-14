@@ -2,12 +2,10 @@ package com.catcafe.game;
 
 public class Beverage extends Item{
     protected Double cost;
-    protected Drink graphicName;
     public Double getCost(){
         return cost;
     }
     public String getDescription(){return description;}
-    public Drink getGraphicName(){return graphicName;}
 }
 
 class Coffee extends Beverage{
