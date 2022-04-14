@@ -16,7 +16,7 @@ class Coffee extends Beverage{
     }
 
     public Double getCost(){
-        return 1.99;
+        return 3.00;
     }
 }
 
