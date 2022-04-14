@@ -18,5 +18,5 @@ Create a non-trivial set of classes and services that make use of some of the de
 frameworks, libraries, or utilities for your project as long as the project demonstrates object-oriented design.
 
 ### Deliverables
-Thorougly described in [the PDF](https://github.com/kalu6090/CatCafe/blob/main/Proj5%20Deliverables/OOAD%20Project%205.pdf) provided by professor Bruce Montgomery.
-Submission and details of project can be found at [the PDF](https://github.com/kalu6090/CatCafe/blob/main/Proj5%20Deliverables/Proj5_CatCafe.pdf)
+Thorougly described in [the PDF](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj5%20Deliverables/OOAD%20Project%205.pdf) provided by professor Bruce Montgomery.
+Submission and details of project can be found at [Project 5 Submission](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj5%20Deliverables/Proj5_CatCafe.pdf)
