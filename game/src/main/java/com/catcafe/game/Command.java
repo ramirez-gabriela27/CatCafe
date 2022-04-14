@@ -4,4 +4,8 @@ package com.catcafe.game;
  */
 abstract class Command{
     void execute(){}
+    String description;
+    String getDescription(){
+        return description;
+    }
 }

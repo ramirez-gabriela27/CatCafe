@@ -1,18 +1,26 @@
 package com.catcafe.game;
 public class InGameCommand extends Command{
-    private PlayableCharacter receiver;
+    protected PlayableCharacter receiver;
     private Model model;
+
 }
 
 class OrderUpCommand extends InGameCommand{
+    public OrderUpCommand(){ description = "Order Up Command"; }
     @Override
     void execute() {
+        Model.getInstance().modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
     }
 }
 
 class MakeCoffeeCommand extends InGameCommand{
+    public MakeCoffeeCommand(){ description = "Make Coffee Command"; }
     @Override
     void execute() {
+        Model.getInstance().modifyData(receiver.getId(), Attribute.LOCATION, Location.COFFEE_MACHINE);
+        Coffee coffee = new Coffee();
+        System.out.println("coffee made");
+        //somehow cause a coffee to pop up on screen
     }
 }
 class SteamMilkCommand extends InGameCommand{
