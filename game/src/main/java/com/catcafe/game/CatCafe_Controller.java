@@ -73,5 +73,4 @@ public class CatCafe_Controller {
         stage.setScene(gameplay_scene);
         stage.show();
     }
-
 }

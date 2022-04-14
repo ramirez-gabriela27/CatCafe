@@ -50,4 +50,36 @@ public class GamePlay_Controller {
     }
 
     //gameplay controls start here
+
+    @FXML
+    private Button coffee_button;
+    @FXML
+    private void handleCoffeeAction(ActionEvent event){
+        System.out.println("coffee machine activate");
+        // TODO: make a simple coffee functionality
+    }
+
+    @FXML
+    private Button milk_button;
+    @FXML
+    private void handleMilkAction(ActionEvent event){
+        System.out.println("milk activate");
+        // TODO: make a latte functionality
+    }
+
+    @FXML
+    private Button syrup_button;
+    @FXML //close window with custom button
+    protected void handleSyrupAction(ActionEvent event){
+        System.out.println("lavender syrup activate");
+        // TODO: add lavender syrup functionality
+    }
+
+    @FXML
+    private Button cash_button;
+    @FXML
+    protected void handleCashAction(ActionEvent event){
+        System.out.println("cash activate");
+        // TODO: cashier check functionality
+    }
 }
