@@ -36,8 +36,8 @@ public class PointOfSale {
         // }
         //temp for first sprint
         //bev.getDescription == r.getDescription()
-        //if(r.){
-        //    customerManager.remove(c);
-        //}
+        if(r.){
+            customerManager.remove(c);
+        }
     }
 }
