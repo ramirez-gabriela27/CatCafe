@@ -107,6 +107,7 @@ class Customer extends NPC{
     @Override
     public void destroy() {
         Model.getInstance().removeData(objectID);
+
     }
 
 
