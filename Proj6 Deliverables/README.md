@@ -1,5 +1,5 @@
 # CU Boulder - CSCI 4448 - Spring 2022
-## OOAD - Project 5: Semester Project – Design Phase
+## OOAD - Project 6: Semester Project – First Development Pass, Interim Report
 Cat Cafe Team
 
 ### Introduction
@@ -18,5 +18,5 @@ Create a non-trivial set of classes and services that make use of some of the de
 frameworks, libraries, or utilities for your project as long as the project demonstrates object-oriented design.
 
 ### Deliverables
-Thorougly described in [the PDF](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj5%20Deliverables/OOAD%20Project%205.pdf) provided by professor Bruce Montgomery.
-Submission and details of project can be found at [Project 5 Submission](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj5%20Deliverables/Proj5_CatCafe.pdf)
+Thorougly described in [the PDF](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj6%20Deliverables/OOAD%20Project%206.pdf) provided by professor Bruce Montgomery.
+Submission and details of project can be found in the [Project 6 update](https://github.com/ramirez-gabriela27/CatCafe/blob/master/Proj6%20Deliverables/Proj6_CatCafe_Update.pdf)
