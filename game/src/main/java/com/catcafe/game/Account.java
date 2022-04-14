@@ -20,4 +20,5 @@ public class Account {
     public void removeMoney(Double amountToRemove){
         amount -= amountToRemove;
     }
+    public double getAmount(){return amount;}
 }
