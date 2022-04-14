@@ -1,8 +1,7 @@
 package com.catcafe.game;
 
 public class Beverage extends Item{
-    private Double cost;
-    private String description;
+    protected Double cost;
     public Double getCost(){
         return cost;
     }
@@ -10,18 +9,15 @@ public class Beverage extends Item{
 }
 
 class Coffee extends Beverage{
-    private String description; //possible -> make Beverage desc protected and remove this line
     public Coffee(){
         this.description = "Coffee"; //if "possible" stuff done, delete this. from this line
     }
-
     public Double getCost(){
         return 3.00;
     }
 }
 
 class BeverageDecorator extends Beverage{
-    String description;
     public String getDescription(){
         return description;
     }

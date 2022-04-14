@@ -1,6 +1,7 @@
 package com.catcafe.game;
 abstract class Item{
-    private String description;
+    protected String description;
+    //Something here to be connect these with the correct Enum for the image
     public boolean compare(Item item){
         return true;//just place holder until we code actual method to avoid error
     }

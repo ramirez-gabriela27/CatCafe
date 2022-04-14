@@ -24,7 +24,9 @@ class CustomerRequest extends Request{
     private void setRandomRequest(){}
 }
 
-
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
 class CatRequest extends Request{
     public CatRequest(){
 

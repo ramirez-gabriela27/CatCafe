@@ -71,7 +71,9 @@ public abstract class NPC implements Patience{
         patienceLevel = 0;
     }
 }
-
+/**
+ * CAT NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
 class Cat extends NPC{
 
     public Cat(long patienceThreshold){
