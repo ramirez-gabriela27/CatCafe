@@ -1,13 +1,21 @@
 Work Done: Written description of the work done in the first week of your project and (in the case of multi-person teams) the breakdown of work across team members
-We first divided up the classes from our entire project 5 UML (not just the parts we would implement for project 6) between Anjala, Katy, and Emma. Each made outlines/skeletons of the chunks of classes so we could see the system all mapped out. 
-Gaby set up the JavaFx project and the connection to Scenebuilder. Then we divided up the graphical components of our GUI to each team member (characters, beverages, background etc). 
+We first divided up the classes from our entire project 5 UML (not just the parts we would implement for project 6) between Anjala, Katy, and Emma. Each made 
+outlines/skeletons of the chunks of classes so we could see the system all mapped out. 
+Gaby set up the JavaFx project and the connection to Scenebuilder. Then we divided up the graphical components of our GUI to each team member (characters, beverages, 
+background etc). 
 We each drew our assigned graphics on Aseprite and added them into the GUI. Gaby then added buttons to the components so the user could click on them. 
+
 Changes or Issues Encountered:
-Our original plan was to use the framework LibGDX for our graphics, but after setting up the project with some beginning test files we found that the team members with Macs were getting errors and running into obstacles. On top of this, we discovered there was very limited help and resources for LibGDX beyond its official documentation online. This prompted a dive into alternative options, and we decided to use JavaFx and Aseprite with SceneBuilder instead, which already works much smoother. 
-Patterns: Now that you have more of your system implemented, please describe the use of design patterns so far in your prototype and how they are helping you or your design.
-We originally planned to have one Singleton, however after we started implementing, we realized that it would be more useful to have multiple Singleton classes. We have many classes that only need to be instantiated once, so making them Singletons was an easy way to ensure that. It also helped us avoid a God class that has to instantiate every class.
+Our original plan was to use the framework LibGDX for our graphics, but after setting up the project with some beginning test files we found that the team members with 
+Macs were getting errors and running into obstacles. On top of this, we discovered there was very limited help and resources for LibGDX beyond its official 
+documentation online. This prompted a dive into alternative options, and we decided to use JavaFx and Aseprite with SceneBuilder instead, which already works much 
+smoother. 
 
-
+Patterns: Now that you have more of your system implemented, please describe the use of design patterns so far in your prototype and how they are helping you or your 
+design.
+We originally planned to have one Singleton, however after we started implementing, we realized that it would be more useful to have multiple Singleton classes. We 
+have many classes that only need to be instantiated once, so making them Singletons was an easy way to ensure that. It also helped us avoid a God class that has to 
+instantiate every class.
 
 Plan for Project 7:
 Provide an estimate of how much more work needs to be done for your team to have 
@@ -16,8 +24,12 @@ implemented the design that you presented in Project 5 (with any design changes 
 delivery?  What do you plan to have done by 12/8 when the project is due?
 
 
-The project setup was more complicated than any of us anticipated. We had to switch frameworks, so we lost some development time that we had planned for. Now that we have it figured out, the rest of our development will be much quicker. To get to our Project 5 design, we have to implement the cat feature in the game. This will be similar to the customer feature we have, so we just need to add more complexity and connect the two. We still plan to complete our Project 5 goals to the best of our ability. Our main goal is to have a functioning game, so we started with a simple implementation. This has allowed us to get more comfortable with the framework of our project instead of trying to create it at full complexity at once. We will build upon the first iteration slowly and with testing to ensure that the game stays functioning throughout development. First we will fully implement all the cafe elements of level 1, then the cat elements of level 1, and then add on level 2 and 3 after that. We will need to complete the graphics for the cat elements as well. 
+The project setup was more complicated than any of us anticipated. We had to switch frameworks, so we lost some development time that we had planned for. Now that we 
+have it figured out, the rest of our development will be much quicker. To get to our Project 5 design, we have to implement the cat feature in the game. This will be 
+similar to the customer feature we have, so we just need to add more complexity and connect the two. We still plan to complete our Project 5 goals to the best of our 
+ability. Our main goal is to have a functioning game, so we started with a simple implementation. This has allowed us to get more comfortable with the framework of our 
+project instead of trying to create it at full complexity at once. We will build upon the first iteration slowly and with testing to ensure that the game stays 
+functioning throughout development. First we will fully implement all the cafe elements of level 1, then the cat elements of level 1, and then add on level 2 and 3 
+after that. We will need to complete the graphics for the cat elements as well. 
 
-Class Diagram of Classes implemented so far:
-Link to class diagram:
 
