@@ -2,6 +2,9 @@ package com.catcafe.game;
 
 import java.util.ArrayList;
 
+/**
+ * Possible requests could be an object pool
+ */
 abstract class Request{
     protected Long requestStartTime;
     protected Item requestedItem;
