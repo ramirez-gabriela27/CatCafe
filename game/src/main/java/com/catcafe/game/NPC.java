@@ -15,14 +15,19 @@ public abstract class NPC implements Patience{
         this.patienceThreshold = patienceThreshold;
         patienceLevel = 1;
         setNextDecrementTime();
-
-        //Figure out how objetID is going to work
     }
     public NPC(){
         this.patienceThreshold = 5;
         patienceLevel = 1;
         setNextDecrementTime();
     }
+    public void removeRequest(){
+        request = null;
+        Model.getInstance().modifyData(objectID, Attribute.DRINK, Drink.NONE);
+        Model.getInstance().modifyData(objectID, Attribute.REQUEST, false);
+    }
+    public abstract void destroy();
+
 
     @Override
     public void decreasePatience() {
@@ -71,12 +76,19 @@ class Cat extends NPC{
         //Cats start off with no request
         request = null;
     }
+
+    @Override
+    public void destroy() {
+
+    }
+
     /**
      *
      * @param item Item that is being presented to the cat to attempt to fulfill the request (It doesn't have to be a cat
      *             item however, giving a cat a beverage will not ever fulfill their request)
      * @return a boolean of whether or not the request was fulfilled.
      */
+
     public Boolean attemptFulfillRequest(Item item){
         return false;
     }
@@ -86,8 +98,14 @@ class Cat extends NPC{
 class Customer extends NPC{
     public Customer(long patienceThreshold){
         super(patienceThreshold);
+        Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(),Drink.NONE, false);
     }
     public Customer(){
         super();
+        Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Drink.NONE, false);
+    }
+    @Override
+    public void destroy() {
+        Model.getInstance().removeData(objectID);
     }
 }
