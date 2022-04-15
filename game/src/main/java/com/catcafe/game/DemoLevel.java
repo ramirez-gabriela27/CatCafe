@@ -10,10 +10,10 @@ public class DemoLevel implements Runnable {
     private View view;
     private InGameInteractiveUser controller;
 
-    public DemoLevel(){
+    public DemoLevel(InGameInteractiveUser user){
         moneyGoal = 5.00;
         invoker = new Invoker();
-        gameFlow = new GameFlow(1, 3, 12, invoker, 0);
+        gameFlow = new GameFlow(1, 3, 12, user.getInvoker(), 0);
         model = Model.getInstance();
         playableCharacter = new PlayableCharacter();
         view = new View();
