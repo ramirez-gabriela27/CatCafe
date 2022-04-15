@@ -1,5 +1,6 @@
 package com.catcafe.game;
-
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import java.util.SplittableRandom;
 
 public class InGameCommand extends Command{
@@ -30,6 +31,8 @@ class MakeCoffeeCommand extends InGameCommand{
         //System.out.println("coffee made");
         Coffee coffee = new Coffee();
         receiver.setCarryingItem(coffee);
+//        Image img = new Image("/resources/assets/beverages/coffee2.png");
+//        ImageView imageView = new ImageView(img);
         //somehow cause a coffee to pop up on screen
     }
 }
