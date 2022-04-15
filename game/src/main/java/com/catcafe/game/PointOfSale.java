@@ -31,6 +31,9 @@ public class PointOfSale {
         if(bev instanceof Beverage){
             Customer c = customerManager.nextCustomer();
             Request r = c.getRequest();
+
+            //TODO: make sure that compare still works if the beverage was made in a different order
+            // for example a coffee with milk with syrup is the same as a coffee with syrup with milk
             if(r.getRequestedItem().compare(bev)) {
                 account.addMoney(((Beverage) bev).getCost());
                 customerManager.remove(c);
