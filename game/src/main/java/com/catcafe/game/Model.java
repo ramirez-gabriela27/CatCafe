@@ -67,6 +67,7 @@ public class Model {
     private int getNextId(){
         int thisId = nextId;
         nextId +=1;
+        System.out.println("ID"+thisId);
         return thisId;
     }
     public Location getNextCustomerLocation(){

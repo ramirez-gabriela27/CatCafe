@@ -30,8 +30,10 @@ public class GameFlow {
         account = Account.getInstance();
         this.customerManager = CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance());
         this.invoker = invoker;
-        catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
+        //catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
         customerSpawnTimeDist = new ExponentialDistribution(avgCustomerSpawnRate);
+        //calcNextCatTime();
+        calcNextCustomerTime();
     }
 
     //This will start a loop that runs until endime is reached
@@ -43,9 +45,9 @@ public class GameFlow {
         while(Instant.now().getEpochSecond() < endTime){
             invoker.doNextCommand();
             customerCheck();
-            catCheck();
+            //catCheck();
             customerManager.patienceRoutine();
-            catManager.patienceRoutine();
+            //catManager.patienceRoutine();
         }
         return account.getAmount();
     }

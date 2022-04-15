@@ -74,5 +74,6 @@ public class CatCafe_Controller {
         stage.show();
         //start game logic
         DemoLevel test = new DemoLevel();
+        test.go();
     }
 }
