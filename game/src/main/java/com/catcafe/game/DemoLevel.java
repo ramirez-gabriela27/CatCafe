@@ -1,6 +1,7 @@
 package com.catcafe.game;
 
-public class DemoLevel {
+//https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
+public class DemoLevel implements Runnable {
     private Double moneyGoal;
     private Invoker invoker;
     private GameFlow gameFlow;
@@ -12,14 +13,14 @@ public class DemoLevel {
     public DemoLevel(){
         moneyGoal = 5.00;
         invoker = new Invoker();
-        gameFlow = new GameFlow(1, 30, 12, invoker, 0);
+        gameFlow = new GameFlow(1, 3, 12, invoker, 0);
         model = Model.getInstance();
         playableCharacter = new PlayableCharacter();
         view = new View();
         controller = new InGameInteractiveUser();
 
     }
-    public void go(){
+    public void run(){
         double endMoney = gameFlow.startGame();
         if(endMoney >= moneyGoal){
             System.out.println("You Won!!!");

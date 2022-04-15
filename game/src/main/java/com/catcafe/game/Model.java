@@ -62,12 +62,16 @@ public class Model {
             put(Location.LINE_3, -1);
         }};
     }
-    public static Model getInstance(){return theModel;}
+    public static synchronized Model getInstance(){
+        if(theModel == null){
+            theModel = new Model();
+        }
+        return theModel;
+    }
 
     private int getNextId(){
         int thisId = nextId;
         nextId +=1;
-        System.out.println("ID"+thisId);
         return thisId;
     }
     public Location getNextCustomerLocation(){

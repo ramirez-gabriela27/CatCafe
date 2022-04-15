@@ -45,14 +45,12 @@ public class GameFlow {
     public double startGame(){
         endTime = Instant.now().getEpochSecond() + gameLength;
         while(Instant.now().getEpochSecond() < endTime){
-
-            //invoker.doNextCommand();
-            //customerCheck();
+            invoker.doNextCommand();
+            customerCheck();
             //catCheck();
-            //customerManager.patienceRoutine();
+            customerManager.patienceRoutine();
             //catManager.patienceRoutine();
         }
-        System.out.println("hi");
         return account.getAmount();
     }
 
