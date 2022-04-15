@@ -31,6 +31,7 @@ class MakeCoffeeCommand extends InGameCommand{
         //System.out.println("coffee made");
         Coffee coffee = new Coffee();
         receiver.setCarryingItem(coffee);
+        System.out.println("Made some delicious coffee!");
 //        Image img = new Image("/resources/assets/beverages/coffee2.png");
 //        ImageView imageView = new ImageView(img);
         //somehow cause a coffee to pop up on screen
@@ -54,6 +55,7 @@ class SteamMilkCommand extends InGameCommand{
             Beverage latte = new Milk(coffee);
             receiver.setCarryingItem(latte);
             System.out.println("milk added to coffee, made latte");
+            return;
         }
         else if(receiver.getCarryingItem().graphicName == Drink.SYRUP_COFFEE){
             Beverage coffee = new Coffee();
@@ -61,6 +63,7 @@ class SteamMilkCommand extends InGameCommand{
             Beverage lavLatte = new Milk(syrupCofee);
             receiver.setCarryingItem(lavLatte);
             System.out.println("milk added to lavender coffee, made lavender latte");
+            return;
         }
     }
 }
@@ -81,6 +84,7 @@ class AddSyrupCommand extends InGameCommand{
             Beverage syrupCoffee = new Syrup(coffee);
             receiver.setCarryingItem(syrupCoffee);
             System.out.println("syrup added to coffee, made lavender coffee");
+            return;
         }
         else if(receiver.getCarryingItem().graphicName == Drink.LATTE){
             Beverage coffee = new Coffee();
@@ -88,6 +92,7 @@ class AddSyrupCommand extends InGameCommand{
             Beverage lavLatte = new Syrup(latte);
             receiver.setCarryingItem(lavLatte);
             System.out.println("syrup added to latte, made lavender latte");
+            return;
         }
 
 
