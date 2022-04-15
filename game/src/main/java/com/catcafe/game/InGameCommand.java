@@ -45,6 +45,10 @@ class SteamMilkCommand extends InGameCommand{
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.MILK_STEAMER);
         //receiver.useKitchenTool(Tool.MILK_STEAMER);
         System.out.println("milk steamed");
+        if(receiver.getCarryingItem() == null){
+            System.out.println("You need to click coffee first");
+            return;
+        }
         if(receiver.getCarryingItem().graphicName == Drink.COFFEE){
             Beverage coffee = new Coffee();
             Beverage latte = new Milk(coffee);
@@ -68,6 +72,10 @@ class AddSyrupCommand extends InGameCommand{
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.SYRUPS);
         //receiver.useKitchenTool(Tool.SYRUP_STATION);
+        if(receiver.getCarryingItem() == null){
+            System.out.println("You need to click coffee first");
+            return;
+        }
         if(receiver.getCarryingItem().graphicName == Drink.COFFEE){
             Beverage coffee = new Coffee();
             Beverage syrupCoffee = new Syrup(coffee);
@@ -81,6 +89,7 @@ class AddSyrupCommand extends InGameCommand{
             receiver.setCarryingItem(lavLatte);
             System.out.println("syrup added to latte, made lavender latte");
         }
+
 
     }
 }
