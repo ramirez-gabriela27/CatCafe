@@ -9,7 +9,7 @@ class OrderUpCommand extends InGameCommand{
     public OrderUpCommand(){ description = "Order Up Command"; }
     @Override
     void execute() {
-        model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
+        //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
         //receiver.useKitchenTool(Tool.POINT_OF_SALE);
         System.out.println(description);
     }
