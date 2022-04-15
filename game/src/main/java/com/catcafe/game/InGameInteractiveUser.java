@@ -6,23 +6,23 @@ import java.util.ArrayList;
  * COMMAND Pattern
  */
 public class InGameInteractiveUser extends InteractiveUser{
-    ArrayList<Command> commandOptions;
+    ArrayList<InGameCommand> commandOptions;
     private Invoker invoker;
     //assuming this will just use the super for commandClicked(), can be overrided if not
-    public InGameInteractiveUser(){
+    public InGameInteractiveUser(PlayableCharacter receiver){
         commandOptions = new ArrayList<>();
-        Command coffeeCommand = new MakeCoffeeCommand();
+        InGameCommand coffeeCommand = new MakeCoffeeCommand(receiver);
         addCommand(coffeeCommand);
-        Command syrupCommand = new AddSyrupCommand();
+        InGameCommand syrupCommand = new AddSyrupCommand(receiver);
         addCommand(syrupCommand);
-        Command steamMilkCommand = new SteamMilkCommand();
+        InGameCommand steamMilkCommand = new SteamMilkCommand(receiver);
         addCommand(steamMilkCommand);
-        Command orderUpCommand = new OrderUpCommand();
+        InGameCommand orderUpCommand = new OrderUpCommand(receiver);
         addCommand(orderUpCommand);
 
         invoker = new Invoker();
     }
-    public void addCommand(Command command){
+    public void addCommand(InGameCommand command){
         commandOptions.add(command);
     }
 

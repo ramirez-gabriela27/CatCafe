@@ -17,11 +17,13 @@ import java.nio.file.Path;
 public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
     double x,y;
+    PlayableCharacter playableCharacter;
     InGameInteractiveUser user;
     double baristaX = 360.0;
     double baristaY = 360.0;
     public GamePlay_Controller(){
-        user = new InGameInteractiveUser();
+        playableCharacter = new PlayableCharacter();
+        user = new InGameInteractiveUser(playableCharacter);
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
         //interactive
@@ -94,7 +96,7 @@ public class GamePlay_Controller {
         baristaY = 260.0;
 
         // TODO: make a simple coffee functionality
-        Command coffeeCommand = user.commandOptions.get(0);
+        InGameCommand coffeeCommand = user.commandOptions.get(0);
         user.getInvoker().addCommand(coffeeCommand);//adding make coffee command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
 
@@ -122,7 +124,7 @@ public class GamePlay_Controller {
 
 
         // TODO: make a latte functionality
-        Command milkCommand = user.commandOptions.get(2);
+        InGameCommand milkCommand = user.commandOptions.get(2);
         user.getInvoker().addCommand(milkCommand);//adding milk command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
 
@@ -150,7 +152,7 @@ public class GamePlay_Controller {
 
 
         // TODO: add lavender syrup functionality
-        Command syrupCommand = user.commandOptions.get(1);
+        InGameCommand syrupCommand = user.commandOptions.get(1);
         user.getInvoker().addCommand(syrupCommand);//adding syrup command to queue
 
     }
