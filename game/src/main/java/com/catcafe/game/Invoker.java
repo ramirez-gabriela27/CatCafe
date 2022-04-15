@@ -11,8 +11,8 @@ public class Invoker {
     void doNextCommand(){
         if(commandQueue.size() >0) {
             Command currentCommand = commandQueue.get(0);
-            currentCommand.execute();
             System.out.println("executing " + currentCommand.getDescription());
+            currentCommand.execute();
             commandQueue.remove(0);
         }
     }
