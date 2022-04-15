@@ -72,5 +72,7 @@ public class CatCafe_Controller {
         Stage stage = (Stage) PlayButton.getScene().getWindow();
         stage.setScene(gameplay_scene);
         stage.show();
+        //start game logic
+        
     }
 }
