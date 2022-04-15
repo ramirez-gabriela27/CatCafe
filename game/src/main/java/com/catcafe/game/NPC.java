@@ -22,9 +22,20 @@ public abstract class NPC implements Patience{
         setNextDecrementTime();
     }
     public void removeRequest(){
+        System.out.println("NPC id " + objectID + " no longer has a request");
         request = null;
+
         Model.getInstance().modifyData(objectID, Attribute.DRINK, Drink.NONE);
         Model.getInstance().modifyData(objectID, Attribute.REQUEST, false);
+    }
+    public void addRequest(Request request){
+        if(this.request != null){
+            throw new RuntimeException("Cannot add new request when NPC already has a request.");
+        }
+        System.out.println("NPC id " + objectID + " has a request for " + request.toString());
+        this.request = request;
+        Model.getInstance().modifyData(objectID, Attribute.DRINK, request.getRequestedItem().getGraphicName());
+        Model.getInstance().modifyData(objectID, Attribute.REQUEST, true);
     }
     public Request getRequest(){
         return request;
@@ -107,10 +118,12 @@ class Customer extends NPC{
     }
     public Customer(){
         super();
+        System.out.println("A customer has spawned! Id = " + objectID);
         objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Drink.NONE, false);
     }
     @Override
     public void destroy() {
+        System.out.println("Customer " + objectID + " is now gone.");
         Model.getInstance().removeData(objectID);
 
     }

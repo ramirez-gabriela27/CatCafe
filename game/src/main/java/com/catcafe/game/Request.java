@@ -2,6 +2,9 @@ package com.catcafe.game;
 
 import java.util.ArrayList;
 
+/**
+ * Possible requests could be an object pool
+ */
 abstract class Request{
     protected Long requestStartTime;
     protected Item requestedItem;
@@ -17,7 +20,7 @@ abstract class Request{
 
 class CustomerRequest extends Request{
     public CustomerRequest(){
-        //TEMMPORARY will be changed -> param of item (constructor called from customer manager which generated requests)
+        //TEMMORARY will be changed -> param of item (constructor called from customer manager which generated requests)
         requestedItem = new Coffee();
     }
     private ArrayList<KitchenTool> availableKitchenTools;
