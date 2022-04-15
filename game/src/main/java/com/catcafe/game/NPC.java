@@ -118,8 +118,9 @@ class Customer extends NPC{
     }
     public Customer(){
         super();
-        System.out.println("A customer has spawned! Id = " + objectID);
         objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Drink.NONE, false);
+        System.out.println("A customer has spawned! Id = " + objectID);
+
     }
     @Override
     public void destroy() {

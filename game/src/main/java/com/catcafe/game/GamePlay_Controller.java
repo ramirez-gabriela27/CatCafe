@@ -21,6 +21,7 @@ public class GamePlay_Controller {
     double baristaX = 360.0;
     double baristaY = 360.0;
 
+
     @FXML
     private Button close_button;
     @FXML //close window with custom button

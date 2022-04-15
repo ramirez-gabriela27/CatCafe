@@ -4,6 +4,8 @@ import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 import java.time.Instant;
 
+import static java.lang.Thread.sleep;
+
 public class GameFlow {
     //All of these times will be Unix Timestamps (seconds since 1970) which is a long.
     //https://attacomsian.com/blog/java-get-unix-timestamp
@@ -30,8 +32,10 @@ public class GameFlow {
         account = Account.getInstance();
         this.customerManager = CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance());
         this.invoker = invoker;
-        catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
+        //catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
         customerSpawnTimeDist = new ExponentialDistribution(avgCustomerSpawnRate);
+        //calcNextCatTime();
+        calcNextCustomerTime();
     }
 
     //This will start a loop that runs until endime is reached
@@ -43,9 +47,9 @@ public class GameFlow {
         while(Instant.now().getEpochSecond() < endTime){
             invoker.doNextCommand();
             customerCheck();
-            catCheck();
+            //catCheck();
             customerManager.patienceRoutine();
-            catManager.patienceRoutine();
+            //catManager.patienceRoutine();
         }
         return account.getAmount();
     }
