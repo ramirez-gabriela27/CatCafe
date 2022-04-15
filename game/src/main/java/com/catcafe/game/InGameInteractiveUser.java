@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class InGameInteractiveUser extends InteractiveUser{
     ArrayList<Command> commandOptions;
-    Invoker invoker;
+    private Invoker invoker;
     //assuming this will just use the super for commandClicked(), can be overrided if not
     public InGameInteractiveUser(){
         commandOptions = new ArrayList<>();
@@ -19,5 +19,8 @@ public class InGameInteractiveUser extends InteractiveUser{
         commandOptions.add(command);
     }
 
+    public Invoker getInvoker() {
+        return invoker;
+    }
     //TODO: Implement a method that can be called by the view on button click to "press the button" for a command
 }

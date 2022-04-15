@@ -17,11 +17,18 @@ import java.nio.file.Path;
 public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
     double x,y;
-    InGameInteractiveUser user = new InGameInteractiveUser();
+    InGameInteractiveUser user;
     double baristaX = 360.0;
     double baristaY = 360.0;
-
-
+    public GamePlay_Controller(){
+        user = new InGameInteractiveUser();
+        //start game logic
+        //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
+        //interactive
+        DemoLevel test = new DemoLevel(user);
+        Thread t = new Thread(test);
+        t.start();
+    }
     @FXML
     private Button close_button;
     @FXML //close window with custom button
@@ -88,7 +95,7 @@ public class GamePlay_Controller {
 
         // TODO: make a simple coffee functionality
         Command coffeeCommand = user.commandOptions.get(0);
-        user.invoker.addCommand(coffeeCommand);//adding make coffee command to queue
+        user.getInvoker().addCommand(coffeeCommand);//adding make coffee command to queue
         //time step in Katy's GameFlow class will trigger command to be made
 
     }

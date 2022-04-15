@@ -72,11 +72,12 @@ public class CatCafe_Controller {
         Stage stage = (Stage) PlayButton.getScene().getWindow();
         stage.setScene(gameplay_scene);
         stage.show();
-        //start game logic
-        //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
-        DemoLevel test = new DemoLevel();
-        Thread t = new Thread(test);
-        t.start();
+//        //start game logic
+//        //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
+//        //interactive
+//        DemoLevel test = new DemoLevel();
+//        Thread t = new Thread(test);
+//        t.start();
 
     }
 }
