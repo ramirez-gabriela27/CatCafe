@@ -76,11 +76,6 @@
                   <Image url="@../../../assets/KitchenToolPNGs/back_counter.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0">
-               <image>
-                  <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
-               </image>
-            </ImageView>
             <AnchorPane layoutX="184.0" layoutY="132.0">
                <children>
                   <ImageView fitHeight="96.0" fitWidth="33.0">
@@ -92,6 +87,20 @@
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor></Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="22.0" layoutY="132.0">
+               <children>
+                  <ImageView fitHeight="96.0" fitWidth="77.0">
+                     <image>
+                        <Image url="@../../../assets/KitchenToolPNGs/coffeeMaker.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="coffee_button" mnemonicParsing="false" onAction="#handleCoffeeAction" prefHeight="96.0" prefWidth="77.0" style="-fx-background-color: transparent;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
             <AnchorPane layoutX="278.0" layoutY="132.0">
@@ -108,6 +117,21 @@
                   </Button>
                </children>
             </AnchorPane>
+            <ImageView fx:id="barista" fitHeight="180.0" fitWidth="118.0" layoutY="8.0" preserveRatio="true" x="300.0" y="260.0">
+               <image>
+                  <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="customer" fitHeight="180.0" fitWidth="118.0" layoutX="300.0" layoutY="494.0">
+               <image>
+                  <Image url="@../../../assets/characters/KatyChar/KatySideCarry.png" />
+               </image>
+            </ImageView>
             <AnchorPane layoutX="310.0" layoutY="334.0">
                <children>
                   <ImageView fitHeight="96.0" fitWidth="98.0">
@@ -116,20 +140,6 @@
                      </image>
                   </ImageView>
                   <Button fx:id="cash_button" mnemonicParsing="false" onAction="#handleCashAction" prefHeight="96.0" prefWidth="98.0" style="-fx-background-color: transparent;">
-                     <cursor>
-                        <Cursor fx:constant="OPEN_HAND" />
-                     </cursor>
-                  </Button>
-               </children>
-            </AnchorPane>
-            <AnchorPane layoutX="22.0" layoutY="132.0">
-               <children>
-                  <ImageView fitHeight="96.0" fitWidth="77.0">
-                     <image>
-                        <Image url="@../../../assets/KitchenToolPNGs/coffeeMaker.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="coffee_button" mnemonicParsing="false" onAction="#handleCoffeeAction" prefHeight="96.0" prefWidth="77.0" style="-fx-background-color: transparent;">
                      <cursor>
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
