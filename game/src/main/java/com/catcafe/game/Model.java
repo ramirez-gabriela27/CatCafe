@@ -20,7 +20,8 @@ enum Location{
     REGISTER,
     COFFEE_MACHINE,
     MILK_STEAMER,
-    SYRUPS
+    SYRUPS,
+    TRASH
 }
 enum Character{
     ANJALA,
