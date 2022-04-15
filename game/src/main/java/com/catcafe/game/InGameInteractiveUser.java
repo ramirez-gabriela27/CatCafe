@@ -13,6 +13,13 @@ public class InGameInteractiveUser extends InteractiveUser{
         commandOptions = new ArrayList<>();
         Command coffeeCommand = new MakeCoffeeCommand();
         addCommand(coffeeCommand);
+        Command syrupCommand = new AddSyrupCommand();
+        addCommand(syrupCommand);
+        Command steamMilkCommand = new SteamMilkCommand();
+        addCommand(steamMilkCommand);
+        Command orderUpCommand = new OrderUpCommand();
+        addCommand(orderUpCommand);
+
         invoker = new Invoker();
     }
     public void addCommand(Command command){

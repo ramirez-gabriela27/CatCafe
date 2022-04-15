@@ -34,6 +34,7 @@ class SteamMilkCommand extends InGameCommand{
     }
 }
 class AddSyrupCommand extends InGameCommand{
+    public AddSyrupCommand(){description = "Add Syrup Command";}
     @Override
     void execute() {
         //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.SYRUPS);
@@ -42,6 +43,7 @@ class AddSyrupCommand extends InGameCommand{
     }
 }
 class ThrowAwayCommand extends InGameCommand{
+    public ThrowAwayCommand(){description = "Throw Away Command";}
     @Override
     void execute() {
         //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.TRASH);
