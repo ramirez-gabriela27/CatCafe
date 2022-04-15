@@ -33,8 +33,13 @@ public class PlayableCharacter {
             carryingItem = ((KitchenTool) myTool).applyTool((Beverage) carryingItem);
             Model.getInstance().modifyData(id, Attribute.DRINK, carryingItem.getGraphicName());
         }
+        //point of sale
         else {
-            throw new RuntimeException("Cannot useKitchenTool on non Kitchen Tool. Tool tried to use:" + tool);
+            PointOfSale pos = (PointOfSale) shop.getTool(Tool.POINT_OF_SALE);
+            Boolean isSuccess = pos.orderUp((Beverage) carryingItem);
+            if(isSuccess){
+                stopCarryingItem();
+            }
         }
     }
 
