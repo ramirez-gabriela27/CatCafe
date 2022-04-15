@@ -20,12 +20,13 @@ class MakeCoffeeCommand extends InGameCommand{
     @Override
     void execute() {
         //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.COFFEE_MACHINE);
-        //receiver.useKitchenTool(Tool.COFFEE_MAKER);
+        //receiver.useKitchenTool(Tool.COFFEE_MAKER);g
         System.out.println("coffee made");
         //somehow cause a coffee to pop up on screen
     }
 }
 class SteamMilkCommand extends InGameCommand{
+    public SteamMilkCommand(){ description = "Steam Milk Command"; }
     @Override
     void execute() {
         //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.MILK_STEAMER);

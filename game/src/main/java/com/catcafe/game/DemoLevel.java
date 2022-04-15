@@ -17,7 +17,7 @@ public class DemoLevel implements Runnable {
         model = Model.getInstance();
         playableCharacter = new PlayableCharacter();
         view = new View();
-        controller = new InGameInteractiveUser();
+        //controller = new InGameInteractiveUser();
 
     }
     public void run(){
