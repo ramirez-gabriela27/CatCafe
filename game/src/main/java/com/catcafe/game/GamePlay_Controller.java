@@ -70,7 +70,6 @@ public class GamePlay_Controller {
     @FXML
     private void handleCoffeeAction(ActionEvent event) {
         System.out.println("coffee machine activate...heading to it");
-
         //path from location, to coffee machine
         Polyline pathToCoffee = new Polyline();
         pathToCoffee.getPoints().addAll(new Double[]{
@@ -98,8 +97,7 @@ public class GamePlay_Controller {
     @FXML
     private void handleMilkAction(ActionEvent event){
         System.out.println("milk activate...heading over");
-
-        //path from location, to lavender
+        //path from location, to milk
         Polyline pathToCoffee = new Polyline();
         pathToCoffee.getPoints().addAll(new Double[]{
                 baristaX, baristaY,
@@ -110,9 +108,10 @@ public class GamePlay_Controller {
         baristaPath.setPath(pathToCoffee);
         baristaPath.setDuration(Duration.seconds(3));
         baristaPath.play();
-        //new position at coffee machine
+        //new position at milk
         baristaX = 350.0;
         baristaY = 260.0;
+
 
         // TODO: make a latte functionality
     }
@@ -122,7 +121,6 @@ public class GamePlay_Controller {
     @FXML //close window with custom button
     protected void handleSyrupAction(ActionEvent event){
         System.out.println("lavender syrup activate...heading to it");
-
         //path from location, to lavender
         Polyline pathToCoffee = new Polyline();
         pathToCoffee.getPoints().addAll(new Double[]{
@@ -137,6 +135,7 @@ public class GamePlay_Controller {
         //new position at coffee machine
         baristaX = 250.0;
         baristaY = 260.0;
+
 
         // TODO: add lavender syrup functionality
     }
@@ -158,7 +157,7 @@ public class GamePlay_Controller {
         baristaPath.setPath(pathToCoffee);
         baristaPath.setDuration(Duration.seconds(3));
         baristaPath.play();
-        //new position at coffee machine
+        //new position at register
         baristaX = 360.0;
         baristaY = 360.0;
 
