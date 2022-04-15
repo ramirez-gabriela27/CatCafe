@@ -1,4 +1,7 @@
 package com.catcafe.game;
+
+import java.util.SplittableRandom;
+
 public class InGameCommand extends Command{
     protected PlayableCharacter receiver;
     protected Model model = Model.getInstance();
@@ -39,6 +42,19 @@ class SteamMilkCommand extends InGameCommand{
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.MILK_STEAMER);
         //receiver.useKitchenTool(Tool.MILK_STEAMER);
         System.out.println("milk steamed");
+        if(receiver.getCarryingItem().graphicName == Drink.COFFEE){
+            Beverage coffee = new Coffee();
+            Beverage latte = new Milk(coffee);
+            receiver.setCarryingItem(latte);
+            System.out.println("milk added to coffee, made latte");
+        }
+        else if(receiver.getCarryingItem().graphicName == Drink.SYRUP_COFFEE){
+            Beverage coffee = new Coffee();
+            Beverage syrupCofee = new Syrup(coffee);
+            Beverage lavLatte = new Milk(syrupCofee);
+            receiver.setCarryingItem(lavLatte);
+            System.out.println("milk added to lavender coffee, made lavender latte");
+        }
     }
 }
 class AddSyrupCommand extends InGameCommand{
@@ -49,7 +65,20 @@ class AddSyrupCommand extends InGameCommand{
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.SYRUPS);
         //receiver.useKitchenTool(Tool.SYRUP_STATION);
-        System.out.println("syrup added");
+        if(receiver.getCarryingItem().graphicName == Drink.COFFEE){
+            Beverage coffee = new Coffee();
+            Beverage syrupCoffee = new Syrup(coffee);
+            receiver.setCarryingItem(syrupCoffee);
+            System.out.println("syrup added to coffee, made lavender coffee");
+        }
+        else if(receiver.getCarryingItem().graphicName == Drink.LATTE){
+            Beverage coffee = new Coffee();
+            Beverage latte = new Milk(coffee);
+            Beverage lavLatte = new Syrup(latte);
+            receiver.setCarryingItem(lavLatte);
+            System.out.println("syrup added to latte, made lavender latte");
+        }
+
     }
 }
 class ThrowAwayCommand extends InGameCommand{
