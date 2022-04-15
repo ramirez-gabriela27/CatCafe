@@ -12,6 +12,8 @@ public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
     double x,y;
     InGameInteractiveUser user = new InGameInteractiveUser();
+    //start game logic
+    DemoLevel test = new DemoLevel();
 
     @FXML
     private Button close_button;
@@ -85,6 +87,8 @@ public class GamePlay_Controller {
     @FXML
     protected void handleCashAction(ActionEvent event){
         System.out.println("cash activate");
+        //start game logic
+        test.go();
         // TODO: cashier check functionality
     }
 }

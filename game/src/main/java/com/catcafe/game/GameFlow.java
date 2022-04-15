@@ -4,6 +4,8 @@ import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 import java.time.Instant;
 
+import static java.lang.Thread.sleep;
+
 public class GameFlow {
     //All of these times will be Unix Timestamps (seconds since 1970) which is a long.
     //https://attacomsian.com/blog/java-get-unix-timestamp
@@ -43,12 +45,14 @@ public class GameFlow {
     public double startGame(){
         endTime = Instant.now().getEpochSecond() + gameLength;
         while(Instant.now().getEpochSecond() < endTime){
-            invoker.doNextCommand();
-            customerCheck();
+
+            //invoker.doNextCommand();
+            //customerCheck();
             //catCheck();
-            customerManager.patienceRoutine();
+            //customerManager.patienceRoutine();
             //catManager.patienceRoutine();
         }
+        System.out.println("hi");
         return account.getAmount();
     }
 
