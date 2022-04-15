@@ -77,5 +77,6 @@ public class CatCafe_Controller {
         DemoLevel test = new DemoLevel();
         Thread t = new Thread(test);
         t.start();
+
     }
 }
