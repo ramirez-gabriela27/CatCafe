@@ -20,7 +20,8 @@ enum Location{
     REGISTER,
     COFFEE_MACHINE,
     MILK_STEAMER,
-    SYRUPS
+    SYRUPS,
+    TRASH
 }
 enum Character{
     ANJALA,
@@ -62,7 +63,12 @@ public class Model {
             put(Location.LINE_3, -1);
         }};
     }
-    public static Model getInstance(){return theModel;}
+    public static synchronized Model getInstance(){
+        if(theModel == null){
+            theModel = new Model();
+        }
+        return theModel;
+    }
 
     private int getNextId(){
         int thisId = nextId;

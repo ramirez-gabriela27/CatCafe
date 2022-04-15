@@ -1,8 +1,7 @@
 package com.catcafe.game;
 
 public class Beverage extends Item{
-    private Double cost;
-    private String description;
+    protected Double cost;
     public Double getCost(){
         return cost;
     }
@@ -10,18 +9,16 @@ public class Beverage extends Item{
 }
 
 class Coffee extends Beverage{
-    private String description; //possible -> make Beverage desc protected and remove this line
     public Coffee(){
+        graphicName = Drink.COFFEE;
         this.description = "Coffee"; //if "possible" stuff done, delete this. from this line
     }
-
     public Double getCost(){
         return 3.00;
     }
 }
 
 class BeverageDecorator extends Beverage{
-    String description;
     public String getDescription(){
         return description;
     }
@@ -29,6 +26,12 @@ class BeverageDecorator extends Beverage{
 class Milk extends BeverageDecorator{
     Beverage beverage;
     public Milk(Beverage bev){
+        if(bev.getGraphicName() == Drink.SYRUP_COFFEE || bev.getGraphicName() == Drink.SYRUP_LATTE){
+            graphicName = Drink.SYRUP_LATTE;
+        }
+        else{
+            graphicName = Drink.LATTE;
+        }
         this.beverage = bev;
     }
     public String getDescription(){
@@ -41,6 +44,12 @@ class Milk extends BeverageDecorator{
 class Syrup extends BeverageDecorator{
     Beverage beverage;
     public Syrup(Beverage bev){
+        if(bev.getGraphicName() == Drink.SYRUP_LATTE || bev.getGraphicName() == Drink.LATTE){
+            graphicName = Drink.SYRUP_LATTE;
+        }
+        else{
+            graphicName = Drink.SYRUP_COFFEE;
+        }
         this.beverage = bev;
     }
     public String getDescription(){

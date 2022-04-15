@@ -24,13 +24,27 @@ public class PointOfSale {
     }
 
     /*
-     Compare the customer request and created beverage and see if they are the same
+     Compare the customer request and created beverage and see if they are the same. Returns true if success.
      */
-    public void orderUp(Beverage bev){
-        Customer c = customerManager.nextCustomer();
-        Request r = c.getRequest();
-        if(r.getRequestedItem().compare(bev)){
-            customerManager.remove(c);
+
+    public Boolean orderUp(Item bev){
+        if(bev instanceof Beverage){
+            Customer c = customerManager.nextCustomer();
+            Request r = c.getRequest();
+
+            //TODO: make sure that compare still works if the beverage was made in a different order
+            // for example a coffee with milk with syrup is the same as a coffee with syrup with milk
+            if(r.getRequestedItem().compare(bev)) {
+                account.addMoney(((Beverage) bev).getCost());
+                customerManager.remove(c);
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else{
+            return false;
         }
     }
 }

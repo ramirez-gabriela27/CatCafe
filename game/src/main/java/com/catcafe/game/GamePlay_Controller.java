@@ -1,17 +1,26 @@
 package com.catcafe.game;
 
+import javafx.animation.PathTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Polyline;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+
+import java.nio.file.Path;
 
 public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
     double x,y;
     InGameInteractiveUser user = new InGameInteractiveUser();
+    double baristaX = 360.0;
+    double baristaY = 360.0;
+
 
     @FXML
     private Button close_button;
@@ -53,10 +62,30 @@ public class GamePlay_Controller {
     //gameplay controls start here
 
     @FXML
+    private ImageView barista;
+    @FXML
+    private ImageView customer;
+
+    @FXML
     private Button coffee_button;
     @FXML
-    private void handleCoffeeAction(ActionEvent event){
-        System.out.println("coffee machine activate");
+    private void handleCoffeeAction(ActionEvent event) {
+        System.out.println("coffee machine activate...heading to it");
+        //path from location, to coffee machine
+        Polyline pathToCoffee = new Polyline();
+        pathToCoffee.getPoints().addAll(new Double[]{
+                baristaX, baristaY,
+                100.0, 260.0
+        });
+        PathTransition baristaPath = new PathTransition();
+        baristaPath.setNode(barista);
+        baristaPath.setPath(pathToCoffee);
+        baristaPath.setDuration(Duration.seconds(3));
+        baristaPath.play();
+        //new position at coffee machine
+        baristaX = 100.0;
+        baristaY = 260.0;
+
         // TODO: make a simple coffee functionality
         Command coffeeCommand = user.commandOptions.get(0);
         user.invoker.addCommand(coffeeCommand);//adding make coffee command to queue
@@ -68,7 +97,23 @@ public class GamePlay_Controller {
     private Button milk_button;
     @FXML
     private void handleMilkAction(ActionEvent event){
-        System.out.println("milk activate");
+        System.out.println("milk activate...heading over");
+        //path from location, to milk
+        Polyline pathToCoffee = new Polyline();
+        pathToCoffee.getPoints().addAll(new Double[]{
+                baristaX, baristaY,
+                350.0, 260.0
+        });
+        PathTransition baristaPath = new PathTransition();
+        baristaPath.setNode(barista);
+        baristaPath.setPath(pathToCoffee);
+        baristaPath.setDuration(Duration.seconds(3));
+        baristaPath.play();
+        //new position at milk
+        baristaX = 350.0;
+        baristaY = 260.0;
+
+
         // TODO: make a latte functionality
     }
 
@@ -76,7 +121,23 @@ public class GamePlay_Controller {
     private Button syrup_button;
     @FXML //close window with custom button
     protected void handleSyrupAction(ActionEvent event){
-        System.out.println("lavender syrup activate");
+        System.out.println("lavender syrup activate...heading to it");
+        //path from location, to lavender
+        Polyline pathToCoffee = new Polyline();
+        pathToCoffee.getPoints().addAll(new Double[]{
+                baristaX, baristaY,
+                250.0, 260.0
+        });
+        PathTransition baristaPath = new PathTransition();
+        baristaPath.setNode(barista);
+        baristaPath.setPath(pathToCoffee);
+        baristaPath.setDuration(Duration.seconds(3));
+        baristaPath.play();
+        //new position at coffee machine
+        baristaX = 250.0;
+        baristaY = 260.0;
+
+
         // TODO: add lavender syrup functionality
     }
 
@@ -84,7 +145,23 @@ public class GamePlay_Controller {
     private Button cash_button;
     @FXML
     protected void handleCashAction(ActionEvent event){
-        System.out.println("cash activate");
+        System.out.println("cash activate...heading to register");
+
+        //path from location to register
+        Polyline pathToCoffee = new Polyline();
+        pathToCoffee.getPoints().addAll(new Double[]{
+                baristaX, baristaY,
+                360.0,360.0
+        });
+        PathTransition baristaPath = new PathTransition();
+        baristaPath.setNode(barista);
+        baristaPath.setPath(pathToCoffee);
+        baristaPath.setDuration(Duration.seconds(3));
+        baristaPath.play();
+        //new position at register
+        baristaX = 360.0;
+        baristaY = 360.0;
+
         // TODO: cashier check functionality
     }
 }

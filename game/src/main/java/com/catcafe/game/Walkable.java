@@ -1,3 +1,7 @@
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
+
 package com.catcafe.game;
 /*
 * Needs to be updated based on how we can make the objects move

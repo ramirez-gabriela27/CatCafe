@@ -18,4 +18,6 @@ public class InGameInteractiveUser extends InteractiveUser{
     public void addCommand(Command command){
         commandOptions.add(command);
     }
+
+    //TODO: Implement a method that can be called by the view on button click to "press the button" for a command
 }

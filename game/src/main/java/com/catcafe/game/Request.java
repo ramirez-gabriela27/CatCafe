@@ -1,7 +1,12 @@
 package com.catcafe.game;
 
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Random;
 
+/**
+ * Possible requests could be an object pool
+ */
 abstract class Request{
     protected Long requestStartTime;
     protected Item requestedItem;
@@ -16,15 +21,24 @@ abstract class Request{
 }
 
 class CustomerRequest extends Request{
+    private ArrayList<Beverage> possibleRequests= new ArrayList<Beverage>(){{
+        add(new Coffee());
+        add(new Milk(new Coffee()));
+        add(new Syrup(new Coffee()));
+        add(new Milk(new Syrup(new Coffee())));
+    }};
     public CustomerRequest(){
-        //TEMMPORARY will be changed -> param of item (constructor called from customer manager which generated requests)
-        requestedItem = new Coffee();
+        requestedItem = getRandomRequest();
+        requestStartTime = Instant.now().getEpochSecond();
     }
-    private ArrayList<KitchenTool> availableKitchenTools;
-    private void setRandomRequest(){}
+    private Beverage getRandomRequest(){
+        return(possibleRequests.get(new Random().nextInt(possibleRequests.size())));
+    }
 }
 
-
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
 class CatRequest extends Request{
     public CatRequest(){
 

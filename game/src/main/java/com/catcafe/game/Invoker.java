@@ -9,10 +9,12 @@ public class Invoker {
         commandQueue = new ArrayList<>();
     }
     void doNextCommand(){
-        Command currentCommand = commandQueue.get(0);
-        currentCommand.execute();
-        System.out.println("executing "+currentCommand.getDescription());
-        commandQueue.remove(0);
+        if(commandQueue.size() >0) {
+            Command currentCommand = commandQueue.get(0);
+            currentCommand.execute();
+            System.out.println("executing " + currentCommand.getDescription());
+            commandQueue.remove(0);
+        }
     }
     void addCommand(Command command){
         System.out.println("adding "+command.getDescription()+ " to command queue");
