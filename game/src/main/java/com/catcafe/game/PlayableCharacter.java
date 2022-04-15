@@ -21,12 +21,17 @@ public class PlayableCharacter {
         Model.getInstance().modifyData(id, Attribute.DRINK, Drink.NONE);
 
     }
-    private void setCarryingItem(Item item){
+    public void setCarryingItem(Item item){
         carryingItem = item;
         Model.getInstance().modifyData(id, Attribute.DRINK,item.getGraphicName());
         Model.getInstance().modifyData(id, Attribute.REQUEST,false);
 
     }
+
+    public Item getCarryingItem() {
+        return carryingItem;
+    }
+
     public void useKitchenTool(Tool tool){
         Object myTool = shop.getTool(tool);
         if(myTool instanceof KitchenTool){

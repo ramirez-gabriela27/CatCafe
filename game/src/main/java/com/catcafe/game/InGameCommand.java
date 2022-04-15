@@ -2,53 +2,64 @@ package com.catcafe.game;
 public class InGameCommand extends Command{
     protected PlayableCharacter receiver;
     protected Model model = Model.getInstance();
-
 }
 
 class OrderUpCommand extends InGameCommand{
-    public OrderUpCommand(){ description = "Order Up Command"; }
+    public OrderUpCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Order Up Command"; }
     @Override
     void execute() {
-        //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
+        model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
         //receiver.useKitchenTool(Tool.POINT_OF_SALE);
         System.out.println(description);
     }
 }
 
 class MakeCoffeeCommand extends InGameCommand{
-    public MakeCoffeeCommand(){ description = "Make Coffee Command"; }
+    public MakeCoffeeCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Make Coffee Command"; }
     @Override
     void execute() {
-        //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.COFFEE_MACHINE);
+        model.modifyData(receiver.getId(), Attribute.LOCATION, Location.COFFEE_MACHINE);
         //receiver.useKitchenTool(Tool.COFFEE_MAKER);g
-        System.out.println("coffee made");
+        //System.out.println("coffee made");
+        Coffee coffee = new Coffee();
+        receiver.setCarryingItem(coffee);
         //somehow cause a coffee to pop up on screen
     }
 }
 class SteamMilkCommand extends InGameCommand{
-    public SteamMilkCommand(){ description = "Steam Milk Command"; }
+    public SteamMilkCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Steam Milk Command"; }
     @Override
     void execute() {
-        //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.MILK_STEAMER);
+        model.modifyData(receiver.getId(), Attribute.LOCATION, Location.MILK_STEAMER);
         //receiver.useKitchenTool(Tool.MILK_STEAMER);
         System.out.println("milk steamed");
     }
 }
 class AddSyrupCommand extends InGameCommand{
-    public AddSyrupCommand(){description = "Add Syrup Command";}
+    public AddSyrupCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Add Syrup Command";}
     @Override
     void execute() {
-        //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.SYRUPS);
+        model.modifyData(receiver.getId(), Attribute.LOCATION, Location.SYRUPS);
         //receiver.useKitchenTool(Tool.SYRUP_STATION);
         System.out.println("syrup added");
     }
 }
 class ThrowAwayCommand extends InGameCommand{
-    public ThrowAwayCommand(){description = "Throw Away Command";}
+    public ThrowAwayCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Throw Away Command";}
     @Override
     void execute() {
-        //model.modifyData(receiver.getId(), Attribute.LOCATION, Location.TRASH);
-        //receiver.stopCarryingItem();
+        model.modifyData(receiver.getId(), Attribute.LOCATION, Location.TRASH);
+        receiver.stopCarryingItem();
     }
 }
 
