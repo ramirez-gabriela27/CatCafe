@@ -29,7 +29,7 @@
                             <children>
                                 <ImageView fitHeight="36.0" fitWidth="46.0" layoutX="-2.0">
                                     <image>
-                                        <Image url="@../../../../../../target/classes/assets/buttons/CloseWindow.png" />
+                                        <Image url="@../../../assets/buttons/CloseWindow.png" />
                                     </image>
                                 </ImageView>
                                 <Button fx:id="close_button" layoutY="2.0" mnemonicParsing="false" onAction="#handleCloseAction" prefHeight="33.0" prefWidth="42.0" style="-fx-background-color: transparent;">
@@ -43,7 +43,7 @@
                             <children>
                                 <ImageView disable="true" fitHeight="36.0" fitWidth="42.0">
                                     <image>
-                                        <Image url="@../../../../../../target/classes/assets/buttons/Windows.png" />
+                                        <Image url="@../../../assets/buttons/Windows.png" />
                                     </image>
                                 </ImageView>
                                 <Button fx:id="window_button" mnemonicParsing="false" prefHeight="35.0" prefWidth="42.0" style="-fx-background-color: transparent;">
@@ -60,7 +60,7 @@
                             <children>
                                 <ImageView fitHeight="36.0" fitWidth="42.0">
                                     <image>
-                                        <Image url="@../../../../../../target/classes/assets/buttons/Minimize.png" />
+                                        <Image url="@../../../assets/buttons/Minimize.png" />
                                     </image>
                                 </ImageView>
                                 <Button fx:id="min_button" mnemonicParsing="false" onAction="#handleMinAction" prefHeight="35.0" prefWidth="42.0" style="-fx-background-color: transparent;">
