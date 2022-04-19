@@ -11,7 +11,7 @@ public class Beverage extends Item{
 class Coffee extends Beverage{
     public Coffee(){
         graphicName = Drink.COFFEE;
-        this.description = "Coffee"; //if "possible" stuff done, delete this. from this line
+        this.description = "Coffee";
     }
     public Double getCost(){
         return 3.00;
