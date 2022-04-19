@@ -27,7 +27,7 @@ public class GamePlay_Controller {
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
         //interactive
-        DemoLevel test = new DemoLevel(user);
+        DemoLevel test = new DemoLevel(user, playableCharacter, this);
         Thread t = new Thread(test);
         t.start();
     }
