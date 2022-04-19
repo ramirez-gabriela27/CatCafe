@@ -11,19 +11,31 @@ abstract class Item{
      * @return
      */
     public boolean compare(Item item){
-        if(item.getDescription() == this.getDescription()){
+        String requestedCoffee = this.getDescription();
+        String createdCoffee = item.getDescription();
+        String milkStr = " with milk";
+        String syrupStr = " with syrup";
+        //make sure created Coffee only has one syrup and one milk
+        if(getNumInstances(milkStr,createdCoffee) > 1 || getNumInstances(syrupStr,createdCoffee) > 1){
+            return false;
+        }
+        //check if the descriptions are exactly the same
+        else if(item.getDescription() == this.getDescription()){
             return true;
         }
-        else if(this.getDescription().contains(" with milk") && this.getDescription().contains(" with syrup")){
-            if(item.getDescription().contains(" with milk") && item.getDescription().contains(" with syrup")){
+        //with syrup with milk == with milk with syrup
+        else if(requestedCoffee.contains(" with milk") && requestedCoffee.contains(" with syrup")){
+            if(createdCoffee.contains(" with milk") && createdCoffee.contains(" with syrup")){
                 return true;
             }
-            else if(this.getDescription().contains(" with milk")){
-                if(item.getDescription().contains(" with milk")) {
+            //if request has only milk
+            else if(requestedCoffee.contains(" with milk")){
+                if(createdCoffee.contains(" with milk")) {
                     return true;
                 }
-                else if(this.getDescription().contains(" with syrup")) {
-                    if (item.getDescription().contains(" with syrup")) {
+                //request has only syrup
+                else if(requestedCoffee.contains(" with syrup")) {
+                    if (createdCoffee.contains(" with syrup")) {
                         return true;
                     }
                     else{
@@ -45,5 +57,14 @@ abstract class Item{
     public Drink getGraphicName(){return graphicName;}
     public String getDescription() {
         return description;
+    }
+    public Integer getNumInstances(String substring, String bigString){
+        //https://stackoverflow.com/questions/767759/occurrences-of-substring-in-a-string
+        int index = 0, count = 0, length = substring.length();
+        while( (index = bigString.indexOf(substring, index)) != -1 ) {
+            index += length;
+            count++;
+        }
+        return count;
     }
 }
