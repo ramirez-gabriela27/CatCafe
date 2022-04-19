@@ -67,16 +67,11 @@ public class CatCafe_Controller {
     @FXML //move on to the gameplay view
     protected void handlePlayAction(ActionEvent event) throws IOException {
         System.out.println("Moving on to gameplay");
-        Parent gameplay_parent = FXMLLoader.load(getClass().getResource("gameplay-view.fxml"));
+        Parent gameplay_parent = FXMLLoader.load(getClass().getResource("characterselection-view.fxml"));
         Scene gameplay_scene = new Scene(gameplay_parent);
         Stage stage = (Stage) PlayButton.getScene().getWindow();
         stage.setScene(gameplay_scene);
         stage.show();
-        //start game logic
-        //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
-        DemoLevel test = new DemoLevel();
-        Thread t = new Thread(test);
-        t.start();
 
     }
 }

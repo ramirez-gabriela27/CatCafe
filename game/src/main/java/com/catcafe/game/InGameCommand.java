@@ -1,47 +1,107 @@
 package com.catcafe.game;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.util.SplittableRandom;
+
 public class InGameCommand extends Command{
     protected PlayableCharacter receiver;
     protected Model model = Model.getInstance();
-
 }
 
 class OrderUpCommand extends InGameCommand{
-    public OrderUpCommand(){ description = "Order Up Command"; }
+    public OrderUpCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Order Up Command"; }
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
-        receiver.useKitchenTool(Tool.POINT_OF_SALE);
+        //receiver.useKitchenTool(Tool.POINT_OF_SALE);
         System.out.println(description);
     }
 }
 
 class MakeCoffeeCommand extends InGameCommand{
-    public MakeCoffeeCommand(){ description = "Make Coffee Command"; }
+    public MakeCoffeeCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Make Coffee Command"; }
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.COFFEE_MACHINE);
-        receiver.useKitchenTool(Tool.COFFEE_MAKER);
-        System.out.println("coffee made");
+        //receiver.useKitchenTool(Tool.COFFEE_MAKER);g
+        //System.out.println("coffee made");
+        Coffee coffee = new Coffee();
+        receiver.setCarryingItem(coffee);
+        System.out.println("Made some delicious coffee!");
+//        Image img = new Image("/resources/assets/beverages/coffee2.png");
+//        ImageView imageView = new ImageView(img);
         //somehow cause a coffee to pop up on screen
     }
 }
 class SteamMilkCommand extends InGameCommand{
+    public SteamMilkCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Steam Milk Command"; }
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.MILK_STEAMER);
-        receiver.useKitchenTool(Tool.MILK_STEAMER);
+        //receiver.useKitchenTool(Tool.MILK_STEAMER);
         System.out.println("milk steamed");
+        if(receiver.getCarryingItem() == null){
+            System.out.println("You need to click coffee first");
+            return;
+        }
+        if(receiver.getCarryingItem().graphicName == Drink.COFFEE){
+            Beverage coffee = new Coffee();
+            Beverage latte = new Milk(coffee);
+            receiver.setCarryingItem(latte);
+            System.out.println("milk added to coffee, made latte");
+            return;
+        }
+        else if(receiver.getCarryingItem().graphicName == Drink.SYRUP_COFFEE){
+            Beverage coffee = new Coffee();
+            Beverage syrupCofee = new Syrup(coffee);
+            Beverage lavLatte = new Milk(syrupCofee);
+            receiver.setCarryingItem(lavLatte);
+            System.out.println("milk added to lavender coffee, made lavender latte");
+            return;
+        }
     }
 }
 class AddSyrupCommand extends InGameCommand{
+    public AddSyrupCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Add Syrup Command";}
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.SYRUPS);
-        receiver.useKitchenTool(Tool.SYRUP_STATION);
-        System.out.println("syrup added");
+        //receiver.useKitchenTool(Tool.SYRUP_STATION);
+        if(receiver.getCarryingItem() == null){
+            System.out.println("You need to click coffee first");
+            return;
+        }
+        if(receiver.getCarryingItem().graphicName == Drink.COFFEE){
+            Beverage coffee = new Coffee();
+            Beverage syrupCoffee = new Syrup(coffee);
+            receiver.setCarryingItem(syrupCoffee);
+            System.out.println("syrup added to coffee, made lavender coffee");
+            return;
+        }
+        else if(receiver.getCarryingItem().graphicName == Drink.LATTE){
+            Beverage coffee = new Coffee();
+            Beverage latte = new Milk(coffee);
+            Beverage lavLatte = new Syrup(latte);
+            receiver.setCarryingItem(lavLatte);
+            System.out.println("syrup added to latte, made lavender latte");
+            return;
+        }
+
+
     }
 }
 class ThrowAwayCommand extends InGameCommand{
+    public ThrowAwayCommand(PlayableCharacter receiver){
+        this.receiver = receiver;
+        description = "Throw Away Command";}
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.TRASH);

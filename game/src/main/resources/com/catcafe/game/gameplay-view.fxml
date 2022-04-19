@@ -148,7 +148,7 @@
             </AnchorPane>
             <ImageView fitHeight="131.0" fitWidth="93.0" layoutX="437.0" layoutY="171.0">
                <image>
-                  <Image url="@../../../../../src/main/resources/assets/KitchenToolPNGs/trashcan.png" />
+                  <Image url="@../../../assets/KitchenToolPNGs/trashcan.png" />
                </image>
             </ImageView>
          </children></AnchorPane>
