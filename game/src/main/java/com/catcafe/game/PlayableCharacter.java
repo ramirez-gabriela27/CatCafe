@@ -10,7 +10,7 @@ public class PlayableCharacter {
         return id;
     }
 
-    public PlayableCharacter(){
+    public PlayableCharacter(){ //can take in a player name ex. "EMMA" as param
         //Adds graphic info to the view
        id = Model.getInstance().addData(Character.EMMA, Location.REGISTER, Drink.NONE, false);
        carryingItem = null;

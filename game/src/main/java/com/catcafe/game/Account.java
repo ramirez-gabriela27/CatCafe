@@ -15,10 +15,12 @@ public class Account {
 
     public void addMoney(Double amountToAdd){
         amount += amountToAdd;
+        System.out.println("Adding $" + amountToAdd +". Amount in bank: $" + getAmount());
     }
 
     public void removeMoney(Double amountToRemove){
         amount -= amountToRemove;
+        System.out.println("Adding $" + amountToRemove +". Amount in bank: $" + getAmount());
     }
     public double getAmount(){return amount;}
 }
