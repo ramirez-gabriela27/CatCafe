@@ -156,6 +156,14 @@ public class Model {
         lineMoveUp();
     }
 
+    /**
+     * Deletes all data
+     */
+    public void clearModel(){
+        for(int key: human.keySet()){
+            removeData(key);
+        }
+    }
     private void lineMoveUp(){
         Set<Location> spots = occupiedLocations.keySet();
         if(occupiedLocations.get(Location.LINE_0)==-1){

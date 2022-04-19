@@ -22,7 +22,7 @@ public class GamePlay_Controller {
     double baristaX = 360.0;
     double baristaY = 360.0;
     public GamePlay_Controller(){
-        playableCharacter = new PlayableCharacter();
+        playableCharacter = new PlayableCharacter(Character.ANJALA);
         user = new InGameInteractiveUser(playableCharacter);
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
