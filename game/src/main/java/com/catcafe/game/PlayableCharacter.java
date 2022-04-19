@@ -32,22 +32,5 @@ public class PlayableCharacter {
         return carryingItem;
     }
 
-    /**
-    public void useKitchenTool(Tool tool){
-        Object myTool = shop.getTool(tool);
-        if(myTool instanceof KitchenTool){
-            carryingItem = ((KitchenTool) myTool).applyTool((Beverage) carryingItem);
-            Model.getInstance().modifyData(id, Attribute.DRINK, carryingItem.getGraphicName());
-        }
-        //point of sale
-        else {
-            PointOfSale pos = (PointOfSale) shop.getTool(Tool.POINT_OF_SALE);
-            Boolean isSuccess = pos.orderUp((Beverage) carryingItem);
-            if(isSuccess){
-                stopCarryingItem();
-            }
-        }
-
-    }**/
 
 }
