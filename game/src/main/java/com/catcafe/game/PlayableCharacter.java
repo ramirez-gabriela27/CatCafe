@@ -3,16 +3,16 @@ package com.catcafe.game;
 
 public class PlayableCharacter {
     private Item carryingItem;
-    private CoffeeShop shop;
+    //private CoffeeShop shop;
     private int id;
 
     public int getId() {
         return id;
     }
 
-    public PlayableCharacter(){ //can take in a player name ex. "EMMA" as param
+    public PlayableCharacter(Character selectedCharacter){ //can take in a player name ex. "EMMA" as param
         //Adds graphic info to the view
-       id = Model.getInstance().addData(Character.EMMA, Location.REGISTER, Drink.NONE, false);
+       id = Model.getInstance().addData(selectedCharacter, Location.REGISTER, Drink.NONE, false);
        carryingItem = null;
     }
     //Empties the character's hands
@@ -32,20 +32,5 @@ public class PlayableCharacter {
         return carryingItem;
     }
 
-    public void useKitchenTool(Tool tool){
-        Object myTool = shop.getTool(tool);
-        if(myTool instanceof KitchenTool){
-            carryingItem = ((KitchenTool) myTool).applyTool((Beverage) carryingItem);
-            Model.getInstance().modifyData(id, Attribute.DRINK, carryingItem.getGraphicName());
-        }
-        //point of sale
-        else {
-            PointOfSale pos = (PointOfSale) shop.getTool(Tool.POINT_OF_SALE);
-            Boolean isSuccess = pos.orderUp((Beverage) carryingItem);
-            if(isSuccess){
-                stopCarryingItem();
-            }
-        }
-    }
 
 }

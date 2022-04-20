@@ -27,7 +27,7 @@ public class GameFlow {
      * @param gameLength This is how long the game should last in seconds
      * **/
     public GameFlow(double avgCatRequestRate, double avgCustomerSpawnRate, long gameLength, Invoker invoker, int nCats){
-        this.catManager = new CatManager(nCats);
+        this.catManager = CatManager.getInstance();
         this.gameLength = gameLength;
         account = Account.getInstance();
         this.customerManager = CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance());
@@ -42,7 +42,7 @@ public class GameFlow {
     // This method will tell the invoker to check for new clicks and to execute the next command
     // This method will spawn customers and cat requests at the correct times
     //Every loop will tell the cat/customer managers to check if it's time to decrement patience
-    public double startGame(){
+    public void startGame(){
         endTime = Instant.now().getEpochSecond() + gameLength;
         while(Instant.now().getEpochSecond() < endTime){
             invoker.doNextCommand();
@@ -51,6 +51,8 @@ public class GameFlow {
             customerManager.patienceRoutine();
             //catManager.patienceRoutine();
         }
+    }
+    public double getEndMoney(){
         return account.getAmount();
     }
 

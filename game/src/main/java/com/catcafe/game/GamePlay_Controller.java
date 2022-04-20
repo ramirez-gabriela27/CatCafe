@@ -22,12 +22,12 @@ public class GamePlay_Controller {
     double baristaX = 360.0;
     double baristaY = 360.0;
     public GamePlay_Controller(){
-        playableCharacter = new PlayableCharacter();
+        playableCharacter = new PlayableCharacter(Character.ANJALA);
         user = new InGameInteractiveUser(playableCharacter);
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
         //interactive
-        DemoLevel test = new DemoLevel(user);
+        DemoLevel test = new DemoLevel(user, playableCharacter, this);
         Thread t = new Thread(test);
         t.start();
     }
@@ -179,5 +179,7 @@ public class GamePlay_Controller {
         baristaY = 360.0;
 
         // TODO: cashier check functionality
+        InGameCommand orderCommand = user.commandOptions.get(3);
+        user.getInvoker().addCommand(orderCommand);//adding orderup command to queue
     }
 }

@@ -15,8 +15,9 @@ class OrderUpCommand extends InGameCommand{
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
-        //receiver.useKitchenTool(Tool.POINT_OF_SALE);
         System.out.println(description);
+        PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
+        point.orderUp(receiver.getCarryingItem());
     }
 }
 
@@ -27,7 +28,6 @@ class MakeCoffeeCommand extends InGameCommand{
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.COFFEE_MACHINE);
-        //receiver.useKitchenTool(Tool.COFFEE_MAKER);g
         //System.out.println("coffee made");
         Coffee coffee = new Coffee();
         receiver.setCarryingItem(coffee);
@@ -44,7 +44,6 @@ class SteamMilkCommand extends InGameCommand{
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.MILK_STEAMER);
-        //receiver.useKitchenTool(Tool.MILK_STEAMER);
         System.out.println("milk steamed");
         if(receiver.getCarryingItem() == null){
             System.out.println("You need to click coffee first");
@@ -74,7 +73,6 @@ class AddSyrupCommand extends InGameCommand{
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.SYRUPS);
-        //receiver.useKitchenTool(Tool.SYRUP_STATION);
         if(receiver.getCarryingItem() == null){
             System.out.println("You need to click coffee first");
             return;
