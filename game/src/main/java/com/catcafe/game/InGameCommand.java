@@ -17,8 +17,13 @@ class OrderUpCommand extends InGameCommand{
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
         System.out.println(description);
         PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
-        point.orderUp(receiver.getCarryingItem());
-        receiver.stopCarryingItem();
+        Boolean orderBool = point.orderUp(receiver.getCarryingItem());
+        if(orderBool == true){
+            receiver.stopCarryingItem();
+        }else{
+            System.out.println("Incorrect order, throw away and try again.");
+        }
+
 
     }
 }
