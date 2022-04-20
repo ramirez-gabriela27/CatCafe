@@ -151,6 +151,7 @@ public class Model {
         //TODO: Alert view that item with id has changed
     }
     public void removeData(int id){
+        //make it so nobody is standing there
         updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
         human.remove(id);
         lineMoveUp();

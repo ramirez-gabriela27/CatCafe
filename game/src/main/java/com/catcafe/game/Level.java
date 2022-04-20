@@ -25,6 +25,5 @@ public abstract class Level implements Runnable{
         else{
             System.out.println("You Lost :(");
         }
-        //model.clearModel();
     }
 }

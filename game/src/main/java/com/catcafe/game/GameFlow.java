@@ -51,6 +51,7 @@ public class GameFlow {
             customerManager.patienceRoutine();
             //catManager.patienceRoutine();
         }
+        Model.getInstance().clearModel();
     }
     public double getEndMoney(){
         return account.getAmount();
