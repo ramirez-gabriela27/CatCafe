@@ -28,8 +28,11 @@ public class PointOfSale {
      */
 
     public Boolean orderUp(Item bev){
+        Customer c = customerManager.nextCustomer();
+        if(c == null){
+            return false;
+        }
         if(bev instanceof Beverage){
-            Customer c = customerManager.nextCustomer();
             System.out.println("Serving Customer " + c.objectID);
             Request r = c.getRequest();
             System.out.println("customer wants " + r.getRequestedItem().getDescription());
