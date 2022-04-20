@@ -12,7 +12,7 @@ public class CatManager {
     private ArrayList<Cat> requestingCats;
     private static CatManager catManager = new CatManager(0);
 
-    public CatManager(int nCats){
+    private CatManager(int nCats){
         //make nCats
     }
 

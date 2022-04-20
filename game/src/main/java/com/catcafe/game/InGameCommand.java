@@ -16,6 +16,8 @@ class OrderUpCommand extends InGameCommand{
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
         System.out.println(description);
+        PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
+        point.orderUp(receiver.getCarryingItem());
     }
 }
 
