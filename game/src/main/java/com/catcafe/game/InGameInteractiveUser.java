@@ -19,6 +19,8 @@ public class InGameInteractiveUser extends InteractiveUser{
         addCommand(steamMilkCommand);
         InGameCommand orderUpCommand = new OrderUpCommand(receiver);
         addCommand(orderUpCommand);
+        InGameCommand trashCommand = new ThrowAwayCommand(receiver);
+        addCommand(trashCommand);
 
         invoker = new Invoker();
     }
