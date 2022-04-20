@@ -27,7 +27,7 @@ public class GameFlow {
      * @param gameLength This is how long the game should last in seconds
      * **/
     public GameFlow(double avgCatRequestRate, double avgCustomerSpawnRate, long gameLength, Invoker invoker, int nCats){
-        this.catManager = new CatManager(nCats);
+        this.catManager = CatManager.getInstance();
         this.gameLength = gameLength;
         account = Account.getInstance();
         this.customerManager = CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance());
