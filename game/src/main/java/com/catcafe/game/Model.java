@@ -41,7 +41,8 @@ enum Attribute{
     CHARACTER,
     DRINK,
     LOCATION,
-    REQUEST
+    REQUEST,
+    PATIENCE
 }
 
 
@@ -118,15 +119,17 @@ public class Model {
      * @param drink - If there is a drink associated with this character (either carrying or a request) specify
      *              the type by picking from the Drink enum. If theres no drink associated put Drink.NONE
      * @param hasRequest - If this is a request (from a customer) put true. If they are carrying this item then false
+     * @param patienceLevel - Level of patience that character has. -1 if doesnt have patience (ex. playable character)
      * @return returns the id which will be used to modify this data.
      */
-    public synchronized int addData(Character character, Location location, Drink drink, Boolean hasRequest){
+    public synchronized int addData(Character character, Location location, Drink drink, Boolean hasRequest, double patienceLevel){
         int id = getNextId();
         human.put(id, new HashMap<Attribute,Object>());
         human.get(id).put(Attribute.CHARACTER, character);
         human.get(id).put(Attribute.LOCATION, location);
         human.get(id).put(Attribute.DRINK, drink);
         human.get(id).put(Attribute.REQUEST, hasRequest);
+        human.get(id).put(Attribute.PATIENCE, patienceLevel);
         updateLocationStatus(location, id);
         //TODO: Alert view that item with id has been created
         // view.alertChange(id)
@@ -161,9 +164,18 @@ public class Model {
      * Deletes all data
      */
     public synchronized void clearModel(){
-        for(int key: human.keySet()){
+        /**for(int key: human.keySet()){
             removeData(key);
         }
+         **/
+        human = new HashMap<Integer, HashMap<Attribute,Object>>();
+        occupiedLocations = new HashMap<Location, Integer>()
+        {{
+            put(Location.LINE_0, -1);
+            put(Location.LINE_1, -1);
+            put(Location.LINE_2, -1);
+            put(Location.LINE_3, -1);
+        }};
     }
     private synchronized void lineMoveUp(){
         Set<Location> spots = occupiedLocations.keySet();

@@ -12,7 +12,7 @@ public class PlayableCharacter {
 
     public PlayableCharacter(Character selectedCharacter){ //can take in a player name ex. "EMMA" as param
         //Adds graphic info to the view
-       id = Model.getInstance().addData(selectedCharacter, Location.REGISTER, Drink.NONE, false);
+       id = Model.getInstance().addData(selectedCharacter, Location.REGISTER, Drink.NONE, false, -1);
        carryingItem = null;
     }
     //Empties the character's hands
