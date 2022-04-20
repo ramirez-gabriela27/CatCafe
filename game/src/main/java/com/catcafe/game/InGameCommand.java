@@ -18,6 +18,8 @@ class OrderUpCommand extends InGameCommand{
         System.out.println(description);
         PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
         point.orderUp(receiver.getCarryingItem());
+        receiver.stopCarryingItem();
+
     }
 }
 
@@ -29,9 +31,14 @@ class MakeCoffeeCommand extends InGameCommand{
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.COFFEE_MACHINE);
         //System.out.println("coffee made");
-        Coffee coffee = new Coffee();
-        receiver.setCarryingItem(coffee);
-        System.out.println("Made some delicious coffee!");
+        if(receiver.getCarryingItem() == null)
+        {
+            Coffee coffee = new Coffee();
+            receiver.setCarryingItem(coffee);
+            System.out.println("Made some delicious coffee!");
+        }else{
+            System.out.println("Finish current drink before starting a new one.");
+        }
 //        Image img = new Image("/resources/assets/beverages/coffee2.png");
 //        ImageView imageView = new ImageView(img);
         //somehow cause a coffee to pop up on screen
