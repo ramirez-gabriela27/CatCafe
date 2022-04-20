@@ -120,7 +120,7 @@ public class Model {
      * @param hasRequest - If this is a request (from a customer) put true. If they are carrying this item then false
      * @return returns the id which will be used to modify this data.
      */
-    public int addData(Character character, Location location, Drink drink, Boolean hasRequest){
+    public synchronized int addData(Character character, Location location, Drink drink, Boolean hasRequest){
         int id = getNextId();
         human.put(id, new HashMap<Attribute,Object>());
         human.get(id).put(Attribute.CHARACTER, character);
@@ -139,7 +139,7 @@ public class Model {
     public Object getData(int id, Attribute attribute){
         return human.get(id).get(attribute);
     }
-    public void modifyData(int id, Attribute attribute, Object value){
+    public synchronized void modifyData(int id, Attribute attribute, Object value){
         if(attribute == Attribute.LOCATION){
             //make previous location false
             updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
@@ -150,7 +150,7 @@ public class Model {
 
         //TODO: Alert view that item with id has changed
     }
-    public void removeData(int id){
+    public synchronized void removeData(int id){
         //make it so nobody is standing there
         updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
         human.remove(id);
@@ -160,12 +160,12 @@ public class Model {
     /**
      * Deletes all data
      */
-    public void clearModel(){
+    public synchronized void clearModel(){
         for(int key: human.keySet()){
             removeData(key);
         }
     }
-    private void lineMoveUp(){
+    private synchronized void lineMoveUp(){
         Set<Location> spots = occupiedLocations.keySet();
         if(occupiedLocations.get(Location.LINE_0)==-1){
             //move everyone up
