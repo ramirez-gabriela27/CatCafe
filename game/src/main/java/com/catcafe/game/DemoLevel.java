@@ -5,6 +5,6 @@ public class DemoLevel extends Level{
     public DemoLevel(InGameInteractiveUser user, PlayableCharacter playableCharacter, GamePlay_Controller gameView){
         super(user, playableCharacter, gameView);
         moneyGoal = 5.00;
-        gameFlow = new GameFlow(1, 3, 120, invoker, 0);
+        gameFlow = new GameFlow(1, 10, 300, invoker, 0);
     }
 }

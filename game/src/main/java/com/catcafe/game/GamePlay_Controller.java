@@ -179,5 +179,7 @@ public class GamePlay_Controller {
         baristaY = 360.0;
 
         // TODO: cashier check functionality
+        InGameCommand orderCommand = user.commandOptions.get(3);
+        user.getInvoker().addCommand(orderCommand);//adding orderup command to queue
     }
 }
