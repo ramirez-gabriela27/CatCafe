@@ -81,7 +81,7 @@ public class Model {
         for(Location location: lineLocations ){
             if(occupiedLocations.get(location) == -1){
                 System.out.println("Get next location");
-                printModel();
+                //printModel();
                 return location;
             }
         }
@@ -167,8 +167,8 @@ public class Model {
      * Deletes all data
      */
     public synchronized void clearModel(){
-        System.out.println("Game end");
-        printModel();
+        //System.out.println("Game end");
+        //printModel();
         /**for(int key: human.keySet()){
             removeData(key);
         }
@@ -193,7 +193,7 @@ public class Model {
                 }
             }
         }
-        printModel();
+        //printModel();
     }
     private void printModel(){
         for(int key: human.keySet()){
