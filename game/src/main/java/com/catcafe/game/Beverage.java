@@ -10,7 +10,7 @@ public class Beverage extends Item{
 
 class Coffee extends Beverage{
     public Coffee(){
-        graphicName = Drink.COFFEE;
+        graphicName = Requestable.COFFEE;
         this.description = "Coffee";
     }
     public Double getCost(){
@@ -26,11 +26,11 @@ class BeverageDecorator extends Beverage{
 class Milk extends BeverageDecorator{
     Beverage beverage;
     public Milk(Beverage bev){
-        if(bev.getGraphicName() == Drink.SYRUP_COFFEE || bev.getGraphicName() == Drink.SYRUP_LATTE){
-            graphicName = Drink.SYRUP_LATTE;
+        if(bev.getGraphicName() == Requestable.SYRUP_COFFEE || bev.getGraphicName() == Requestable.SYRUP_LATTE){
+            graphicName = Requestable.SYRUP_LATTE;
         }
         else{
-            graphicName = Drink.LATTE;
+            graphicName = Requestable.LATTE;
         }
         this.beverage = bev;
     }
@@ -44,11 +44,11 @@ class Milk extends BeverageDecorator{
 class Syrup extends BeverageDecorator{
     Beverage beverage;
     public Syrup(Beverage bev){
-        if(bev.getGraphicName() == Drink.SYRUP_LATTE || bev.getGraphicName() == Drink.LATTE){
-            graphicName = Drink.SYRUP_LATTE;
+        if(bev.getGraphicName() == Requestable.SYRUP_LATTE || bev.getGraphicName() == Requestable.LATTE){
+            graphicName = Requestable.SYRUP_LATTE;
         }
         else{
-            graphicName = Drink.SYRUP_COFFEE;
+            graphicName = Requestable.SYRUP_COFFEE;
         }
         this.beverage = bev;
     }

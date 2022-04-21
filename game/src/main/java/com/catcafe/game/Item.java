@@ -1,7 +1,7 @@
 package com.catcafe.game;
 abstract class Item{
     protected String description;
-    protected Drink graphicName;
+    protected Requestable graphicName;
     //Something here to be connect these with the correct Enum for the image
 
     /**
@@ -39,7 +39,7 @@ abstract class Item{
             return false;
             }
     }
-    public Drink getGraphicName(){return graphicName;}
+    public Requestable getGraphicName(){return graphicName;}
     public String getDescription() {
         return description;
     }
