@@ -50,6 +50,7 @@ enum Attribute{
 public class Model {
     private HashMap<Integer, HashMap<Attribute,Object>> human ;
     private int nextId;
+    private final Location[] lineLocations = {Location.LINE_0, Location.LINE_1, Location.LINE_2, Location.LINE_3};
     private static Model theModel = new Model();
     //https://www.baeldung.com/java-initialize-hashmap
     private HashMap<Location, Integer> occupiedLocations;
@@ -71,20 +72,22 @@ public class Model {
         return theModel;
     }
 
-    private int getNextId(){
+    private synchronized int getNextId(){
         int thisId = nextId;
         nextId +=1;
         return thisId;
     }
-    public Location getNextCustomerLocation(){
-        for(Location location: occupiedLocations.keySet()){
+    public synchronized Location getNextCustomerLocation(){
+        for(Location location: lineLocations ){
             if(occupiedLocations.get(location) == -1){
+                System.out.println("Get next location");
+                printModel();
                 return location;
             }
         }
         throw new RuntimeException("All customer locations are occupied.");
     }
-    private void updateLocationStatus(Location location, Integer id){
+    private synchronized void updateLocationStatus(Location location, Integer id){
         occupiedLocations.replace(location, id);
     }
     //Returns the Id
@@ -164,6 +167,8 @@ public class Model {
      * Deletes all data
      */
     public synchronized void clearModel(){
+        System.out.println("Game end");
+        printModel();
         /**for(int key: human.keySet()){
             removeData(key);
         }
@@ -178,16 +183,21 @@ public class Model {
         }};
     }
     private synchronized void lineMoveUp(){
-        Set<Location> spots = occupiedLocations.keySet();
         if(occupiedLocations.get(Location.LINE_0)==-1){
             //move everyone up
-            for(Location spot: spots){
+            for(Location spot: lineLocations){
                 if(occupiedLocations.get(spot)!=-1){
                     //found a person lets move them to the first empty spot
                     int id = occupiedLocations.get(spot);
                     modifyData(id, Attribute.LOCATION, getNextCustomerLocation());
                 }
             }
+        }
+        printModel();
+    }
+    private void printModel(){
+        for(int key: human.keySet()){
+            System.out.println(human.get(key));
         }
     }
 

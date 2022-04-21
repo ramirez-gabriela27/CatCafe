@@ -22,6 +22,7 @@ public class GamePlay_Controller {
     double baristaX = 360.0;
     double baristaY = 360.0;
     public GamePlay_Controller(){
+        //TODO make playable character character selected dynamically based on character selection page
         playableCharacter = new PlayableCharacter(Character.ANJALA);
         user = new InGameInteractiveUser(playableCharacter);
         //start game logic
