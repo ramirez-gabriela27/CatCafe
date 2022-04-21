@@ -24,35 +24,20 @@ abstract class Item{
             return true;
         }
         //with syrup with milk == with milk with syrup
-        else if(requestedCoffee.contains(" with milk") && requestedCoffee.contains(" with syrup")){
-            if(createdCoffee.contains(" with milk") && createdCoffee.contains(" with syrup")){
-                return true;
-            }
+        else if(requestedCoffee.contains(" with milk") && requestedCoffee.contains(" with syrup") && createdCoffee.contains(" with milk") && createdCoffee.contains(" with syrup")) {
+            return true;
+        }
             //if request has only milk
-            else if(requestedCoffee.contains(" with milk")){
-                if(createdCoffee.contains(" with milk")) {
-                    return true;
-                }
+        else if(requestedCoffee.contains(" with milk") && createdCoffee.contains(" with milk")) {
+            return true;
+        }
                 //request has only syrup
-                else if(requestedCoffee.contains(" with syrup")) {
-                    if (createdCoffee.contains(" with syrup")) {
-                        return true;
-                    }
-                    else{
-                        return false;
-                    }
-                }
-                else{
-                    return false;
-                }
-            }
-            else{
-                return false;
-            }
+        else if(requestedCoffee.contains(" with syrup")&& createdCoffee.contains(" with syrup")) {
+            return true;
         }
         else{
             return false;
-        }
+            }
     }
     public Drink getGraphicName(){return graphicName;}
     public String getDescription() {

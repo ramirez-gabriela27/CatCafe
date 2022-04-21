@@ -46,6 +46,7 @@ public abstract class NPC implements Patience{
     @Override
     public void decreasePatience() {
         patienceLevel -=patienceChangeAmount;
+        sendPatienceInfoToModel();
     }
 
     @Override
@@ -56,6 +57,7 @@ public abstract class NPC implements Patience{
     @Override
     public void fullPatience() {
         patienceLevel = 1;
+        sendPatienceInfoToModel();
 
     }
 
@@ -75,11 +77,17 @@ public abstract class NPC implements Patience{
     @Override
     public void increasePatience() {
         patienceLevel += patienceChangeAmount;
+        sendPatienceInfoToModel();
     }
 
     @Override
     public void lostPatience() {
         patienceLevel = 0;
+        sendPatienceInfoToModel();
+    }
+
+    private void sendPatienceInfoToModel(){
+        Model.getInstance().modifyData(objectID, Attribute.PATIENCE, patienceLevel);
     }
 }
 /**
@@ -114,11 +122,11 @@ class Cat extends NPC{
 class Customer extends NPC{
     public Customer(long patienceThreshold){
         super(patienceThreshold);
-        objectID = Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(),Drink.NONE, false);
+        objectID = Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(),Drink.NONE, false, patienceLevel);
     }
     public Customer(){
         super();
-        objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Drink.NONE, false);
+        objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Drink.NONE, false,patienceLevel);
         System.out.println("A customer has spawned! Id = " + objectID);
         addRequest(new CustomerRequest());
     }

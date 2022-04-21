@@ -35,7 +35,7 @@ public class GameFlow {
         //catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
         customerSpawnTimeDist = new ExponentialDistribution(avgCustomerSpawnRate);
         //calcNextCatTime();
-        calcNextCustomerTime();
+        nextCustomerTime = Instant.now().getEpochSecond();
     }
 
     //This will start a loop that runs until endime is reached
@@ -51,6 +51,7 @@ public class GameFlow {
             customerManager.patienceRoutine();
             //catManager.patienceRoutine();
         }
+        Model.getInstance().clearModel();
     }
     public double getEndMoney(){
         return account.getAmount();

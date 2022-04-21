@@ -117,6 +117,16 @@
                   </Button>
                </children>
             </AnchorPane>
+            <AnchorPane layoutX="438.0" layoutY="183.0" prefHeight="116.0" prefWidth="88.0">
+               <children>
+                  <ImageView fitHeight="131.0" fitWidth="93.0">
+                     <image>
+                        <Image url="@../../../assets/KitchenToolPNGs/trashcan.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="trash_button" layoutY="16.0" mnemonicParsing="false" onAction="#handleTrashAction" prefHeight="107.0" prefWidth="88.0" style="-fx-background-color: transparent;" />
+               </children>
+            </AnchorPane>
             <ImageView fx:id="barista" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" x="300.0" y="260.0">
                <image>
                   <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
@@ -146,11 +156,6 @@
                   </Button>
                </children>
             </AnchorPane>
-            <ImageView fitHeight="131.0" fitWidth="93.0" layoutX="437.0" layoutY="171.0">
-               <image>
-                  <Image url="@../../../assets/KitchenToolPNGs/trashcan.png" />
-               </image>
-            </ImageView>
          </children></AnchorPane>
     </children>
 </AnchorPane>

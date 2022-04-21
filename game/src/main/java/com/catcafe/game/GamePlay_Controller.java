@@ -22,6 +22,7 @@ public class GamePlay_Controller {
     double baristaX = 360.0;
     double baristaY = 360.0;
     public GamePlay_Controller(){
+        //TODO make playable character character selected dynamically based on character selection page
         playableCharacter = new PlayableCharacter(Character.ANJALA);
         user = new InGameInteractiveUser(playableCharacter);
         //start game logic
@@ -181,5 +182,27 @@ public class GamePlay_Controller {
         // TODO: cashier check functionality
         InGameCommand orderCommand = user.commandOptions.get(3);
         user.getInvoker().addCommand(orderCommand);//adding orderup command to queue
+    }
+    @FXML
+    private Button trash_button;
+    @FXML
+    protected void handleTrashAction(ActionEvent event){
+        System.out.println("Trash activate...heading to trash");
+        //path from location to trash
+        Polyline pathToTrash = new Polyline();
+        pathToTrash.getPoints().addAll(new Double[]{
+                baristaX, baristaY,
+                450.0, 260.0
+        });
+        PathTransition baristaPath = new PathTransition();
+        baristaPath.setNode(barista);
+        baristaPath.setPath(pathToTrash);
+        baristaPath.setDuration(Duration.seconds(3));
+        baristaPath.play();
+        //new position at milk
+        baristaX = 450.0;
+        baristaY = 260.0;
+        InGameCommand trashCommand = user.commandOptions.get(4);
+        user.getInvoker().addCommand(trashCommand);//adding trash command to queue
     }
 }

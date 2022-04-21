@@ -54,7 +54,12 @@ public class CustomerManager {
      * @return returns next customer in line
      */
     public Customer nextCustomer(){
-        return customers.get(0);
+        if(customers.size() > 0){
+            return customers.get(0);
+        }
+       else{
+           return null;
+        }
 
     }
 

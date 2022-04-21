@@ -28,12 +28,19 @@ public class PointOfSale {
      */
 
     public Boolean orderUp(Item bev){
+        Customer c = customerManager.nextCustomer();
+        if(c == null){
+            return false;
+        }
         if(bev instanceof Beverage){
-            Customer c = customerManager.nextCustomer();
+            System.out.println("Serving Customer " + c.objectID);
             Request r = c.getRequest();
+            System.out.println("customer wants " + r.getRequestedItem().getDescription());
+            System.out.println("you have " +bev.getDescription());
             if(r.getRequestedItem().compare(bev)) {
                 account.addMoney(((Beverage) bev).getCost());
                 customerManager.remove(c);
+                System.out.println("Correct Order");
                 return true;
             }
             else{
