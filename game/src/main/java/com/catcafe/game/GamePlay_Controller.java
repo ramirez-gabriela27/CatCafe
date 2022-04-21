@@ -203,6 +203,6 @@ public class GamePlay_Controller {
         baristaX = 450.0;
         baristaY = 260.0;
         InGameCommand trashCommand = user.commandOptions.get(4);
-        user.getInvoker().addCommand(trashCommand);//adding orderup command to queue
+        user.getInvoker().addCommand(trashCommand);//adding trash command to queue
     }
 }
