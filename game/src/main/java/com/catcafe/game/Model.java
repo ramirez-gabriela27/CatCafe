@@ -41,7 +41,8 @@ enum Attribute{
     CHARACTER,
     DRINK,
     LOCATION,
-    REQUEST
+    REQUEST,
+    PATIENCE
 }
 
 
@@ -49,6 +50,7 @@ enum Attribute{
 public class Model {
     private HashMap<Integer, HashMap<Attribute,Object>> human ;
     private int nextId;
+    private final Location[] lineLocations = {Location.LINE_0, Location.LINE_1, Location.LINE_2, Location.LINE_3};
     private static Model theModel = new Model();
     //https://www.baeldung.com/java-initialize-hashmap
     private HashMap<Location, Integer> occupiedLocations;
@@ -70,20 +72,22 @@ public class Model {
         return theModel;
     }
 
-    private int getNextId(){
+    private synchronized int getNextId(){
         int thisId = nextId;
         nextId +=1;
         return thisId;
     }
-    public Location getNextCustomerLocation(){
-        for(Location location: occupiedLocations.keySet()){
+    public synchronized Location getNextCustomerLocation(){
+        for(Location location: lineLocations ){
             if(occupiedLocations.get(location) == -1){
+                System.out.println("Get next location");
+                //printModel();
                 return location;
             }
         }
         throw new RuntimeException("All customer locations are occupied.");
     }
-    private void updateLocationStatus(Location location, Integer id){
+    private synchronized void updateLocationStatus(Location location, Integer id){
         occupiedLocations.replace(location, id);
     }
     //Returns the Id
@@ -118,15 +122,17 @@ public class Model {
      * @param drink - If there is a drink associated with this character (either carrying or a request) specify
      *              the type by picking from the Drink enum. If theres no drink associated put Drink.NONE
      * @param hasRequest - If this is a request (from a customer) put true. If they are carrying this item then false
+     * @param patienceLevel - Level of patience that character has. -1 if doesnt have patience (ex. playable character)
      * @return returns the id which will be used to modify this data.
      */
-    public synchronized int addData(Character character, Location location, Drink drink, Boolean hasRequest){
+    public synchronized int addData(Character character, Location location, Drink drink, Boolean hasRequest, double patienceLevel){
         int id = getNextId();
         human.put(id, new HashMap<Attribute,Object>());
         human.get(id).put(Attribute.CHARACTER, character);
         human.get(id).put(Attribute.LOCATION, location);
         human.get(id).put(Attribute.DRINK, drink);
         human.get(id).put(Attribute.REQUEST, hasRequest);
+        human.get(id).put(Attribute.PATIENCE, patienceLevel);
         updateLocationStatus(location, id);
         //TODO: Alert view that item with id has been created
         // view.alertChange(id)
@@ -161,21 +167,37 @@ public class Model {
      * Deletes all data
      */
     public synchronized void clearModel(){
-        for(int key: human.keySet()){
+        //System.out.println("Game end");
+        //printModel();
+        /**for(int key: human.keySet()){
             removeData(key);
         }
+         **/
+        human = new HashMap<Integer, HashMap<Attribute,Object>>();
+        occupiedLocations = new HashMap<Location, Integer>()
+        {{
+            put(Location.LINE_0, -1);
+            put(Location.LINE_1, -1);
+            put(Location.LINE_2, -1);
+            put(Location.LINE_3, -1);
+        }};
     }
     private synchronized void lineMoveUp(){
-        Set<Location> spots = occupiedLocations.keySet();
         if(occupiedLocations.get(Location.LINE_0)==-1){
             //move everyone up
-            for(Location spot: spots){
+            for(Location spot: lineLocations){
                 if(occupiedLocations.get(spot)!=-1){
                     //found a person lets move them to the first empty spot
                     int id = occupiedLocations.get(spot);
                     modifyData(id, Attribute.LOCATION, getNextCustomerLocation());
                 }
             }
+        }
+        //printModel();
+    }
+    private void printModel(){
+        for(int key: human.keySet()){
+            System.out.println(human.get(key));
         }
     }
 
