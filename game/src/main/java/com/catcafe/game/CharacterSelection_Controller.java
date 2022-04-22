@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -77,7 +79,7 @@ public class CharacterSelection_Controller {
 
     @FXML
     private Button EmmaSelectionButton;
-    @FXML //move on to the gameplay view
+    @FXML //set Barista character
     protected void handleEmmaAction(ActionEvent event) throws IOException {
         System.out.println("Emma selected as Barista");
         selectedBarista = Character.EMMA;
@@ -85,7 +87,7 @@ public class CharacterSelection_Controller {
 
     @FXML
     private Button AnjalaSelectionButton;
-    @FXML //move on to the gameplay view
+    @FXML //set Barista character
     protected void handleAnjalaAction(ActionEvent event) throws IOException {
         System.out.println("Anjala selected as Barista");
         selectedBarista = Character.ANJALA;
@@ -93,7 +95,7 @@ public class CharacterSelection_Controller {
 
     @FXML
     private Button KatySelectionButton;
-    @FXML //move on to the gameplay view
+    @FXML //set Barista character
     protected void handleKatyAction(ActionEvent event) throws IOException {
         System.out.println("Katy selected as Barista");
         selectedBarista = Character.KATY;
@@ -101,7 +103,7 @@ public class CharacterSelection_Controller {
 
     @FXML
     private Button GabySelectionButton;
-    @FXML //move on to the gameplay view
+    @FXML //set Barista character
     protected void handleGabyAction(ActionEvent event) throws IOException {
         System.out.println("Gaby selected as Barista");
         selectedBarista = Character.GABY;
