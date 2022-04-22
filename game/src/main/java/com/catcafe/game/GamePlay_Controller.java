@@ -5,23 +5,38 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Polyline;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.util.Pair;
 
-import java.nio.file.Path;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.HashMap;
 
 public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
+    //https://mkyong.com/java/how-to-write-an-image-to-file-imageio/
+    //File f = new File("../");
+    //System.out.println(f.list());
+
+
     double x,y;
+    Image walkImg;
+
     PlayableCharacter playableCharacter;
     InGameInteractiveUser user;
+    HashMap<Location, Pair<Double, Double>> locations;
     double baristaX = 360.0;
     double baristaY = 360.0;
-    public GamePlay_Controller(){
+    public GamePlay_Controller() throws IOException {
+        System.out.println(System.getProperty("user.dir"));
+        walkImg = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/Walk.gif" ));
+        initializeLocations();
         //TODO make playable character character selected dynamically based on character selection page
         playableCharacter = new PlayableCharacter(Character.ANJALA);
         user = new InGameInteractiveUser(playableCharacter);
@@ -71,6 +86,7 @@ public class GamePlay_Controller {
 
     //gameplay controls start here
 
+
     @FXML
     private ImageView barista;
     @FXML
@@ -82,19 +98,7 @@ public class GamePlay_Controller {
     private void handleCoffeeAction(ActionEvent event) {
         System.out.println("coffee machine activate...heading to it");
         //path from location, to coffee machine
-        Polyline pathToCoffee = new Polyline();
-        pathToCoffee.getPoints().addAll(new Double[]{
-                baristaX, baristaY,
-                100.0, 260.0
-        });
-        PathTransition baristaPath = new PathTransition();
-        baristaPath.setNode(barista);
-        baristaPath.setPath(pathToCoffee);
-        baristaPath.setDuration(Duration.seconds(3));
-        baristaPath.play();
-        //new position at coffee machine
-        baristaX = 100.0;
-        baristaY = 260.0;
+        walk(baristaX, baristaY, Location.COFFEE_MACHINE, barista);
 
         // TODO: make a simple coffee functionality
         InGameCommand coffeeCommand = user.commandOptions.get(0);
@@ -109,19 +113,7 @@ public class GamePlay_Controller {
     private void handleMilkAction(ActionEvent event){
         System.out.println("milk activate...heading over");
         //path from location, to milk
-        Polyline pathToCoffee = new Polyline();
-        pathToCoffee.getPoints().addAll(new Double[]{
-                baristaX, baristaY,
-                350.0, 260.0
-        });
-        PathTransition baristaPath = new PathTransition();
-        baristaPath.setNode(barista);
-        baristaPath.setPath(pathToCoffee);
-        baristaPath.setDuration(Duration.seconds(3));
-        baristaPath.play();
-        //new position at milk
-        baristaX = 350.0;
-        baristaY = 260.0;
+        walk(baristaX, baristaY, Location.MILK_STEAMER, barista);
 
 
         // TODO: make a latte functionality
@@ -137,25 +129,12 @@ public class GamePlay_Controller {
     protected void handleSyrupAction(ActionEvent event){
         System.out.println("lavender syrup activate...heading to it");
         //path from location, to lavender
-        Polyline pathToCoffee = new Polyline();
-        pathToCoffee.getPoints().addAll(new Double[]{
-                baristaX, baristaY,
-                250.0, 260.0
-        });
-        PathTransition baristaPath = new PathTransition();
-        baristaPath.setNode(barista);
-        baristaPath.setPath(pathToCoffee);
-        baristaPath.setDuration(Duration.seconds(3));
-        baristaPath.play();
-        //new position at coffee machine
-        baristaX = 250.0;
-        baristaY = 260.0;
+        walk(baristaX, baristaY, Location.SYRUPS, barista);
 
 
         // TODO: add lavender syrup functionality
         InGameCommand syrupCommand = user.commandOptions.get(1);
         user.getInvoker().addCommand(syrupCommand);//adding syrup command to queue
-
     }
 
     @FXML
@@ -165,19 +144,7 @@ public class GamePlay_Controller {
         System.out.println("cash activate...heading to register");
 
         //path from location to register
-        Polyline pathToCoffee = new Polyline();
-        pathToCoffee.getPoints().addAll(new Double[]{
-                baristaX, baristaY,
-                360.0,360.0
-        });
-        PathTransition baristaPath = new PathTransition();
-        baristaPath.setNode(barista);
-        baristaPath.setPath(pathToCoffee);
-        baristaPath.setDuration(Duration.seconds(3));
-        baristaPath.play();
-        //new position at register
-        baristaX = 360.0;
-        baristaY = 360.0;
+        walk(baristaX, baristaY, Location.REGISTER, barista);
 
         // TODO: cashier check functionality
         InGameCommand orderCommand = user.commandOptions.get(3);
@@ -189,20 +156,34 @@ public class GamePlay_Controller {
     protected void handleTrashAction(ActionEvent event){
         System.out.println("Trash activate...heading to trash");
         //path from location to trash
-        Polyline pathToTrash = new Polyline();
-        pathToTrash.getPoints().addAll(new Double[]{
-                baristaX, baristaY,
-                450.0, 260.0
+        walk(baristaX, baristaY, Location.TRASH, barista);
+        InGameCommand trashCommand = user.commandOptions.get(4);
+        user.getInvoker().addCommand(trashCommand);//adding orderup command to queue
+    }
+    private void initializeLocations(){
+        locations = new  HashMap<Location, Pair<Double, Double>>();
+        locations.put(Location.REGISTER, new Pair<Double, Double>(360.0, 360.0));
+        locations.put(Location.COFFEE_MACHINE, new Pair<Double, Double>(100.0, 260.0));
+        locations.put(Location.MILK_STEAMER, new Pair<Double,Double>(350.0, 260.0));
+        locations.put(Location.SYRUPS, new Pair<Double,Double>(250.0, 260.0));
+        locations.put(Location.TRASH, new Pair<Double, Double>(450.0, 260.0));
+    }
+    protected void walk(Double currentX, Double currentY, Location destination, ImageView barista){
+        //TODO: get currentX and currentY from player object
+        Pair<Double,Double> newLoc = locations.get(destination);
+        Double newX = newLoc.getKey();
+        Double newY = newLoc.getValue();
+        Polyline myPath = new Polyline();
+        myPath.getPoints().addAll(new Double[]{
+                currentX, currentY,
+                newX, newY
         });
         PathTransition baristaPath = new PathTransition();
         baristaPath.setNode(barista);
-        baristaPath.setPath(pathToTrash);
+        baristaPath.setPath(myPath);
         baristaPath.setDuration(Duration.seconds(3));
         baristaPath.play();
-        //new position at milk
-        baristaX = 450.0;
-        baristaY = 260.0;
-        InGameCommand trashCommand = user.commandOptions.get(4);
-        user.getInvoker().addCommand(trashCommand);//adding orderup command to queue
+        baristaX = newX;
+        baristaY = newY;
     }
 }
