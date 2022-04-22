@@ -124,7 +124,11 @@
                         <Image url="@../../../assets/KitchenToolPNGs/trashcan.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="trash_button" layoutY="16.0" mnemonicParsing="false" onAction="#handleTrashAction" prefHeight="107.0" prefWidth="88.0" style="-fx-background-color: transparent;" />
+                  <Button fx:id="trash_button" layoutY="16.0" mnemonicParsing="false" onAction="#handleTrashAction" prefHeight="107.0" prefWidth="88.0" style="-fx-background-color: transparent;" >
+                       <cursor>
+                           <Cursor fx:constant="OPEN_HAND" />
+                       </cursor>
+                  </Button>
                </children>
             </AnchorPane>
             <ImageView fx:id="barista" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" x="300.0" y="260.0">
