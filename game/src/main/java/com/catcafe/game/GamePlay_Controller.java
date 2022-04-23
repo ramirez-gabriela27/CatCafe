@@ -19,6 +19,7 @@ import javafx.util.Pair;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.HashMap;
 import java.nio.file.Path;
 
@@ -31,18 +32,18 @@ public class GamePlay_Controller {
 
     double x,y;
     PlayableCharacter playableCharacter;
+
+    private CharacterView mybarista;
     InGameInteractiveUser user;
+    @FXML private ImageView barista;
     HashMap<Location, Pair<Double, Double>> locations;
-    double baristaX = 360.0;
-    double baristaY = 360.0;
-    public GamePlay_Controller() throws IOException{
+    HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
+    public GamePlay_Controller() throws IOException {
         initializeLocations();
         //TODO make playable character character selected dynamically based on character selection page
-        baristaImage = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png"));
-        //setBaristaImage(baristaImage);
-        //Image img = new Image("file:src/main/resources/assets/characters/GabyChar/Gaby.png");
-        System.out.print("game controller started");
-        playableCharacter = new PlayableCharacter(Character.GABY);
+        playableCharacter = new PlayableCharacter(Character.ANJALA);
+        mybarista= CharacterView.makeCharacter(Character.ANJALA,playableCharacter.getId(), new Pair<>(360.0, 360.0));
+        inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
         user = new InGameInteractiveUser(playableCharacter);
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
@@ -50,6 +51,11 @@ public class GamePlay_Controller {
         DemoLevel test = new DemoLevel(user, playableCharacter, this);
         Thread t = new Thread(test);
         t.start();
+
+    }
+
+    public synchronized void initializeImageViews(ImageView barista){
+        inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
     }
     @FXML
     private Button close_button;
@@ -92,9 +98,7 @@ public class GamePlay_Controller {
 
 
 
-    @FXML
-    private ImageView barista;
-    private CharacterView mybarista = new AnjalaView(new Pair<>(360.0, 360.0));
+
     @FXML
     private ImageView customer;
 
@@ -104,7 +108,7 @@ public class GamePlay_Controller {
     private void handleCoffeeAction(ActionEvent event) {
         System.out.println("coffee machine activate...heading to it");
         //path from location, to coffee machine
-        walk(Location.COFFEE_MACHINE, mybarista, barista);
+        //walk(Location.COFFEE_MACHINE, mybarista, barista);
 
         // TODO: make a simple coffee functionality
         InGameCommand coffeeCommand = user.commandOptions.get(0);
@@ -117,11 +121,13 @@ public class GamePlay_Controller {
     private Button milk_button;
     @FXML
     private void handleMilkAction(ActionEvent event){
+        if(inGameCharacters.size() ==0){
+            initializeImageViews(barista);
+        }
+
         System.out.println("milk activate...heading over");
         //path from location, to milk
-        walk(Location.MILK_STEAMER, mybarista, barista);
-
-
+        //walk(Location.MILK_STEAMER, mybarista, barista);
         // TODO: make a latte functionality
         InGameCommand milkCommand = user.commandOptions.get(2);
         user.getInvoker().addCommand(milkCommand);//adding milk command to queue
@@ -135,7 +141,7 @@ public class GamePlay_Controller {
     protected void handleSyrupAction(ActionEvent event){
         System.out.println("lavender syrup activate...heading to it");
         //path from location, to lavender
-        walk(Location.SYRUPS, mybarista, barista);
+        //walk(Location.SYRUPS, mybarista, barista);
 
 
         // TODO: add lavender syrup functionality
@@ -150,7 +156,7 @@ public class GamePlay_Controller {
         System.out.println("cash activate...heading to register");
 
         //path from location to register
-        walk(Location.REGISTER, mybarista,barista);
+        //walk(Location.REGISTER, mybarista,barista);
 
         // TODO: cashier check functionality
         InGameCommand orderCommand = user.commandOptions.get(3);
@@ -162,7 +168,7 @@ public class GamePlay_Controller {
     protected void handleTrashAction(ActionEvent event){
         System.out.println("Trash activate...heading to trash");
         //path from location to trash
-        walk(Location.TRASH, mybarista, barista);
+       // walk(Location.TRASH, mybarista, barista);
         InGameCommand trashCommand = user.commandOptions.get(4);
         user.getInvoker().addCommand(trashCommand);//adding trash command to queue
     }
@@ -174,20 +180,21 @@ public class GamePlay_Controller {
         locations.put(Location.SYRUPS, new Pair<Double,Double>(250.0, 260.0));
         locations.put(Location.TRASH, new Pair<Double, Double>(450.0, 260.0));
     }
-    protected void walk( Location destination, CharacterView character, ImageView characterImageView){
+    protected synchronized void walk( Location destination, CharacterView character, ImageView characterImageView){
         Pair<Double,Double> currentLoc = character.getLocation();
         Double currentX = currentLoc.getKey();
         Double currentY = currentLoc.getValue();
         Pair<Double,Double> newLoc = locations.get(destination);
         Double newX = newLoc.getKey();
         Double newY = newLoc.getValue();
-        System.out.println("here");
-        if(newX - currentX <0){
-            System.out.println("here2");
+        character.setLocation(newLoc);
+        if(newX == currentX && newY == currentY){
+            return;
+        }
+        else if(newX - currentX <0){
             characterImageView.setImage(character.getWalkingCarryLeft());
         }
         else{
-            System.out.println("here3");
             characterImageView.setImage(character.getWalkingCarryRight());
         }
         Polyline myPath = new Polyline();
@@ -196,14 +203,32 @@ public class GamePlay_Controller {
                 newX, newY
         });
         int duration = 3;
-        PathTransition baristaPath = new PathTransition();
-        baristaPath.setNode(characterImageView);
-        baristaPath.setPath(myPath);
-        baristaPath.setDuration(Duration.seconds(duration));
+        long walkEndTime = Instant.now().getEpochSecond() +duration;
+        PathTransition walkPath = new PathTransition();
+        walkPath.setNode(characterImageView);
+        walkPath.setPath(myPath);
+        walkPath.setDuration(Duration.seconds(duration));
         //https://www.demo2s.com/java/javafx-pathtransition-setonfinished-eventhandler-actionevent-value.html
         //https://stackoverflow.com/questions/37752207/javafx-wait-for-animation-method-to-finish-before-going-to-next-method
-        baristaPath.setOnFinished((ActionEvent actionEvent) -> {characterImageView.setImage(character.getFrontImage());});
-        baristaPath.play();
-        character.setLocation(newLoc);
+        //walkPath.setOnFinished((ActionEvent actionEvent) -> {characterImageView.setImage(character.getFrontImage());});
+        walkPath.play();
+        while(Instant.now().getEpochSecond() < walkEndTime){
+            assert(true);
+        }
+        characterImageView.setImage(character.getFrontImage());
+    }
+    @FXML
+    public void updateLocation(int objectId, Location location){
+        if(!inGameCharacters.containsKey(objectId)){
+            throw new IllegalArgumentException("Invalid ID" + objectId+ "Current: " + inGameCharacters.keySet());
+        }
+        else {
+            Pair<ImageView, CharacterView> charInfo = inGameCharacters.get(objectId);
+            if(charInfo.getKey() == null){
+                System.out.println("Null");
+            }
+            walk(location, charInfo.getValue(), charInfo.getKey());
+        }
+
     }
 }

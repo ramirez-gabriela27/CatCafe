@@ -62,6 +62,7 @@ public class Model {
     private HashMap<Integer, HashMap<Attribute,Object>> human;
     private HashMap<Integer, HashMap<Attribute,Object>> cat;
     private int nextId;
+    private GamePlay_Controller view;
     private final Location[] lineLocations = {Location.LINE_0, Location.LINE_1, Location.LINE_2, Location.LINE_3};
     private static Model theModel = new Model();
     //https://www.baeldung.com/java-initialize-hashmap
@@ -163,9 +164,9 @@ public class Model {
             updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
             // make new location true
             updateLocationStatus((Location) value, id);
+            view.updateLocation(id, (Location) value);
         }
         human.get(id).replace(attribute, value);
-
         //TODO: Alert view that item with id has changed
     }
     public synchronized void removeData(int id){
@@ -206,6 +207,9 @@ public class Model {
             }
         }
         //printModel();
+    }
+    public void setView(GamePlay_Controller view){
+        this.view = view;
     }
     private void printModel(){
         for(int key: human.keySet()){
