@@ -30,7 +30,6 @@ public class GamePlay_Controller {
 
 
     double x,y;
-    Image walkImg;
 
     PlayableCharacter playableCharacter;
     InGameInteractiveUser user;
@@ -39,7 +38,6 @@ public class GamePlay_Controller {
     double baristaY = 360.0;
     public GamePlay_Controller() throws IOException {
         System.out.println(System.getProperty("user.dir"));
-        walkImg = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/Walk.gif" ));
         initializeLocations();
         //TODO make playable character character selected dynamically based on character selection page
         playableCharacter = new PlayableCharacter(Character.ANJALA);
@@ -94,7 +92,7 @@ public class GamePlay_Controller {
 
     @FXML
     private ImageView barista;
-    private CharacterView mybarista = new KatyView(new Pair<>(360.0, 360.0));
+    private CharacterView mybarista = new AnjalaView(new Pair<>(360.0, 360.0));
     @FXML
     private ImageView customer;
 
@@ -102,7 +100,6 @@ public class GamePlay_Controller {
     private Button coffee_button;
     @FXML
     private void handleCoffeeAction(ActionEvent event) {
-        barista.setImage(walkImg);
         System.out.println("coffee machine activate...heading to it");
         //path from location, to coffee machine
         walk(Location.COFFEE_MACHINE, mybarista, barista);
