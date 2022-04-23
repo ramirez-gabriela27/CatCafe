@@ -124,7 +124,7 @@
                         <Image url="@../../../assets/KitchenToolPNGs/trashcan.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="trash_button" layoutY="16.0" mnemonicParsing="false" onAction="#handleTrashAction" prefHeight="107.0" prefWidth="88.0" style="-fx-background-color: transparent;" >
+                  <Button fx:id="trash_button" layoutY="16.0" mnemonicParsing="false" onAction="#handleTrashAction" prefHeight="107.0" prefWidth="88.0" style="-fx-background-color: transparent;">
                        <cursor>
                            <Cursor fx:constant="OPEN_HAND" />
                        </cursor>
@@ -136,7 +136,7 @@
                   <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0" >
+            <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0">
                <image>
                   <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
                </image>
@@ -160,6 +160,16 @@
                   </Button>
                </children>
             </AnchorPane>
+            <ImageView fx:id="startButtonPicture" fitHeight="715.0" fitWidth="1288.0" layoutX="-7.0" layoutY="-1.0">
+               <image>
+                  <Image url="@../../../assets/buttons/startButton.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="startButton" layoutX="401.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleStartAction" opacity="0.0" prefHeight="184.0" prefWidth="469.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children></AnchorPane>
     </children>
 </AnchorPane>
