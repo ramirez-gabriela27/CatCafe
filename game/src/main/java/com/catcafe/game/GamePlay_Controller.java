@@ -43,7 +43,7 @@ public class GamePlay_Controller {
         //TODO make playable character character selected dynamically based on character selection page
         PlayableCharacter.setCharacter(Character.ANJALA);
         playableCharacter = PlayableCharacter.getInstance();
-        mybarista= CharacterView.makeCharacter(Character.ANJALA,playableCharacter.getId(), new Pair<>(360.0, 360.0));
+        mybarista= CharacterView.makeCharacter(playableCharacter.getCharacter(),playableCharacter.getId(), new Pair<>(360.0, 360.0));
         inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
         user = new InGameInteractiveUser(playableCharacter);
         //start game logic

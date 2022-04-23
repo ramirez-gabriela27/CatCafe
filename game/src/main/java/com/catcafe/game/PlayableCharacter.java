@@ -3,6 +3,7 @@ package com.catcafe.game;
 
 public class PlayableCharacter {
     private Item carryingItem;
+    private Character chosenCharacter;
     private static PlayableCharacter theChar;
     //private CoffeeShop shop;
     private int id;
@@ -13,6 +14,7 @@ public class PlayableCharacter {
 
     private PlayableCharacter(Character selectedCharacter){ //can take in a player name ex. "EMMA" as param
         //Adds graphic info to the view
+        chosenCharacter = selectedCharacter;
        id = Model.getInstance().addData(selectedCharacter, Location.REGISTER, Requestable.NONE, false, -1);
        carryingItem = null;
     }
@@ -41,6 +43,7 @@ public class PlayableCharacter {
         Model.getInstance().modifyData(id, Attribute.REQUEST,false);
 
     }
+    public Character getCharacter(){return chosenCharacter;}
 
     public Item getCarryingItem() {
         return carryingItem;
