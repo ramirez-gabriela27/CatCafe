@@ -133,7 +133,7 @@
             </AnchorPane>
             <ImageView fx:id="barista" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" x="300.0" y="260.0">
                <image>
-                  <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
+                  <Image url="@../../../assets/characters/empty.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0">
