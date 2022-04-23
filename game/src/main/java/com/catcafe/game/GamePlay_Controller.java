@@ -57,6 +57,8 @@ public class GamePlay_Controller {
 
     public synchronized void initializeImageViews(ImageView barista){
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
+        barista.setImage(mybarista.frontImage);
+
     }
     @FXML
     private Button close_button;
