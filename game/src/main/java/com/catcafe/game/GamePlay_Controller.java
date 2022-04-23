@@ -3,7 +3,10 @@ package com.catcafe.game;
 import javafx.animation.PathTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -87,8 +90,10 @@ public class GamePlay_Controller {
     //gameplay controls start here
 
 
-    @FXML
-    private ImageView barista;
+
+    //@FXML
+    //private ImageView barista;
+    private CharacterView mybarista = new KatyView(new Pair<>(360.0, 360.0));
     @FXML
     private ImageView customer;
 
@@ -98,7 +103,7 @@ public class GamePlay_Controller {
     private void handleCoffeeAction(ActionEvent event) {
         System.out.println("coffee machine activate...heading to it");
         //path from location, to coffee machine
-        walk(baristaX, baristaY, Location.COFFEE_MACHINE, barista);
+        walk(Location.COFFEE_MACHINE, mybarista);
 
         // TODO: make a simple coffee functionality
         InGameCommand coffeeCommand = user.commandOptions.get(0);
@@ -113,7 +118,7 @@ public class GamePlay_Controller {
     private void handleMilkAction(ActionEvent event){
         System.out.println("milk activate...heading over");
         //path from location, to milk
-        walk(baristaX, baristaY, Location.MILK_STEAMER, barista);
+        walk(Location.MILK_STEAMER, mybarista);
 
 
         // TODO: make a latte functionality
@@ -129,7 +134,7 @@ public class GamePlay_Controller {
     protected void handleSyrupAction(ActionEvent event){
         System.out.println("lavender syrup activate...heading to it");
         //path from location, to lavender
-        walk(baristaX, baristaY, Location.SYRUPS, barista);
+        walk(Location.SYRUPS, mybarista);
 
 
         // TODO: add lavender syrup functionality
@@ -144,7 +149,7 @@ public class GamePlay_Controller {
         System.out.println("cash activate...heading to register");
 
         //path from location to register
-        walk(baristaX, baristaY, Location.REGISTER, barista);
+        walk(Location.REGISTER, mybarista);
 
         // TODO: cashier check functionality
         InGameCommand orderCommand = user.commandOptions.get(3);
@@ -156,7 +161,7 @@ public class GamePlay_Controller {
     protected void handleTrashAction(ActionEvent event){
         System.out.println("Trash activate...heading to trash");
         //path from location to trash
-        walk(baristaX, baristaY, Location.TRASH, barista);
+        walk(Location.TRASH, mybarista);
         InGameCommand trashCommand = user.commandOptions.get(4);
         user.getInvoker().addCommand(trashCommand);//adding orderup command to queue
     }
@@ -168,8 +173,10 @@ public class GamePlay_Controller {
         locations.put(Location.SYRUPS, new Pair<Double,Double>(250.0, 260.0));
         locations.put(Location.TRASH, new Pair<Double, Double>(450.0, 260.0));
     }
-    protected void walk(Double currentX, Double currentY, Location destination, ImageView barista){
-        //TODO: get currentX and currentY from player object
+    protected void walk( Location destination, CharacterView character){
+        Pair<Double,Double> currentLoc = character.getLocation();
+        Double currentX = currentLoc.getKey();
+        Double currentY = currentLoc.getValue();
         Pair<Double,Double> newLoc = locations.get(destination);
         Double newX = newLoc.getKey();
         Double newY = newLoc.getValue();
@@ -179,11 +186,17 @@ public class GamePlay_Controller {
                 newX, newY
         });
         PathTransition baristaPath = new PathTransition();
-        baristaPath.setNode(barista);
+        baristaPath.setNode(mybarista.getImageView());
         baristaPath.setPath(myPath);
         baristaPath.setDuration(Duration.seconds(3));
+        if(newX - currentX <0){
+            character.setWalkingCarryRight();
+        }
+        else{
+            character.setWalkingCarryRight();
+        }
         baristaPath.play();
-        baristaX = newX;
-        baristaY = newY;
+        character.setFrontImage();
+        character.setLocation(newLoc);
     }
 }
