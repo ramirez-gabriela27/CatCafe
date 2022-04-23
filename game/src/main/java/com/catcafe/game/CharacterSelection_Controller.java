@@ -17,8 +17,8 @@ import java.io.IOException;
 
 public class CharacterSelection_Controller {
     double x,y;
-    Enum selectedBarista = null;
-
+    Character selectedBarista = null;
+    //PlayableCharacter pc = PlayableCharacter.getInstance();
     @FXML
     private Button close_button;
     @FXML //close window with custom button
@@ -69,6 +69,12 @@ public class CharacterSelection_Controller {
     private Button SelectCharacter;
     @FXML //move on to the gameplay view
     protected void handlePlayAction(ActionEvent event) throws IOException {
+        if(selectedBarista == null){
+            PlayableCharacter.setCharacter(Character.ANJALA);
+        }
+        else{
+            PlayableCharacter.setCharacter(selectedBarista);
+        }
         System.out.println("Moving on to gameplay");
         Parent gameplay_parent = FXMLLoader.load(getClass().getResource("gameplay-view.fxml"));
         Scene gameplay_scene = new Scene(gameplay_parent);
