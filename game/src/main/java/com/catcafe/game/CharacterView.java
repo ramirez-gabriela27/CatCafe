@@ -73,11 +73,12 @@ public abstract class CharacterView{
 class AnjalaView extends CharacterView{
     public AnjalaView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
-        frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
-        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
-        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
-        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkLeft.gif" ));
-        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkRight.gif" ));
+        System.out.print(System.getProperty("user.dir"));
+        frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
+        walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkRight.gif" ));
     }
 }
 class EmmaView extends CharacterView{

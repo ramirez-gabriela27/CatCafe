@@ -35,7 +35,15 @@ class Milk extends BeverageDecorator{
         this.beverage = bev;
     }
     public String getDescription(){
-        return beverage.getDescription() + " with milk";
+        if(beverage.getDescription() == "Coffee"){
+            return beverage.getDescription() + " with milk";
+        }
+        else if(beverage.getDescription() == "Coffee with syrup"){
+            return "Lavender latte";
+        }
+        else{
+            return "";
+        }
     }
     public Double getCost(){
         return beverage.getCost() + 0.50;
@@ -53,7 +61,15 @@ class Syrup extends BeverageDecorator{
         this.beverage = bev;
     }
     public String getDescription(){
-        return beverage.getDescription() + " with syrup";
+        if(beverage.getDescription() == "Coffee"){
+            return beverage.getDescription() + " with syrup";
+        }
+        else if(beverage.getDescription() == "Coffee with milk"){
+            return "Lavender latte";
+        }
+        else{
+            return "";
+        }
     }
     public Double getCost(){
         return beverage.getCost() + 0.50;
