@@ -13,6 +13,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public abstract class CharacterView{
+    int objectID;
     Double x;
     Double y;
     Image frontImage;
@@ -20,9 +21,13 @@ public abstract class CharacterView{
     Image walkingCarryLeft;
     Image walkingRight;
     Image walkingLeft;
-    public CharacterView(Pair<Double, Double>initialLocation){
+    public CharacterView(int objectId, Pair<Double, Double>initialLocation){
+        this.objectID = objectId;
         x = initialLocation.getKey();
         y = initialLocation.getValue();
+    }
+    public int getObjectID(){
+        return objectID;
     }
     public Pair<Double, Double> getLocation(){
         return new Pair<>(x,y);
@@ -46,11 +51,28 @@ public abstract class CharacterView{
         x = newLoc.getKey();;
         y = newLoc.getValue();
     }
+    public static CharacterView makeCharacter(Character choice, int objectID,Pair<Double, Double>initialLocation ) throws IOException {
+        switch (choice){
+            case ANJALA -> {
+                return new AnjalaView(objectID, initialLocation);
+            }
+            case EMMA ->{
+            return new EmmaView(objectID, initialLocation);
+            }
+            case GABY ->{
+                return new GabyView(objectID, initialLocation);
+            }
+            case KATY ->{
+                return new KatyView(objectID, initialLocation);
+            }
+            default -> throw new IllegalArgumentException("Illegal character choice.");
+        }
+    }
 }
 
 class AnjalaView extends CharacterView{
-    public AnjalaView(Pair<Double, Double>initialLocation) throws IOException {
-        super(initialLocation);
+    public AnjalaView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
         frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
         walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
         walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
@@ -59,8 +81,8 @@ class AnjalaView extends CharacterView{
     }
 }
 class EmmaView extends CharacterView{
-    public EmmaView(Pair<Double, Double>initialLocation) throws IOException {
-        super(initialLocation);
+    public EmmaView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
         frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/Emma.png" ));
         walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkCarryLeft.gif" ));
         walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkCarryRight.gif" ));
@@ -69,8 +91,8 @@ class EmmaView extends CharacterView{
     }
 }
 class GabyView extends CharacterView{
-    public GabyView(Pair<Double, Double>initialLocation) throws IOException {
-        super(initialLocation);
+    public GabyView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
         frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/Gaby.png" ));
         walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
         walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
@@ -79,8 +101,8 @@ class GabyView extends CharacterView{
     }
 }
 class KatyView extends CharacterView{
-    public KatyView(Pair<Double, Double>initialLocation) throws IOException {
-        super(initialLocation);
+    public KatyView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
         frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/Katy.png" ));
         walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
         walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
