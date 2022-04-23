@@ -41,7 +41,8 @@ public class GamePlay_Controller {
     public GamePlay_Controller() throws IOException {
         initializeLocations();
         //TODO make playable character character selected dynamically based on character selection page
-        playableCharacter = new PlayableCharacter(Character.ANJALA);
+        PlayableCharacter.setCharacter(Character.ANJALA);
+        playableCharacter = PlayableCharacter.getInstance();
         mybarista= CharacterView.makeCharacter(Character.ANJALA,playableCharacter.getId(), new Pair<>(360.0, 360.0));
         inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
         user = new InGameInteractiveUser(playableCharacter);
