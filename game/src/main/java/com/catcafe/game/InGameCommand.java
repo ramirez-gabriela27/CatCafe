@@ -61,14 +61,14 @@ class SteamMilkCommand extends InGameCommand{
             System.out.println("You need to click coffee first");
             return;
         }
-        if(receiver.getCarryingItem().graphicName == Drink.COFFEE){
+        if(receiver.getCarryingItem().graphicName == Requestable.COFFEE){
             Beverage coffee = new Coffee();
             Beverage latte = new Milk(coffee);
             receiver.setCarryingItem(latte);
             System.out.println("milk added to coffee, made latte");
             return;
         }
-        else if(receiver.getCarryingItem().graphicName == Drink.SYRUP_COFFEE){
+        else if(receiver.getCarryingItem().graphicName == Requestable.SYRUP_COFFEE){
             Beverage coffee = new Coffee();
             Beverage syrupCofee = new Syrup(coffee);
             Beverage lavLatte = new Milk(syrupCofee);
@@ -89,14 +89,14 @@ class AddSyrupCommand extends InGameCommand{
             System.out.println("You need to click coffee first");
             return;
         }
-        if(receiver.getCarryingItem().graphicName == Drink.COFFEE){
+        if(receiver.getCarryingItem().graphicName == Requestable.COFFEE){
             Beverage coffee = new Coffee();
             Beverage syrupCoffee = new Syrup(coffee);
             receiver.setCarryingItem(syrupCoffee);
             System.out.println("syrup added to coffee, made lavender coffee");
             return;
         }
-        else if(receiver.getCarryingItem().graphicName == Drink.LATTE){
+        else if(receiver.getCarryingItem().graphicName == Requestable.LATTE){
             Beverage coffee = new Coffee();
             Beverage latte = new Milk(coffee);
             Beverage lavLatte = new Syrup(latte);

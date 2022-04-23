@@ -12,13 +12,13 @@ public class PlayableCharacter {
 
     public PlayableCharacter(Character selectedCharacter){ //can take in a player name ex. "EMMA" as param
         //Adds graphic info to the view
-       id = Model.getInstance().addData(selectedCharacter, Location.REGISTER, Drink.NONE, false, -1);
+       id = Model.getInstance().addData(selectedCharacter, Location.REGISTER, Requestable.NONE, false, -1);
        carryingItem = null;
     }
     //Empties the character's hands
     public void stopCarryingItem(){
         carryingItem =  null;
-        Model.getInstance().modifyData(id, Attribute.DRINK, Drink.NONE);
+        Model.getInstance().modifyData(id, Attribute.DRINK, Requestable.NONE);
 
     }
     public void setCarryingItem(Item item){
