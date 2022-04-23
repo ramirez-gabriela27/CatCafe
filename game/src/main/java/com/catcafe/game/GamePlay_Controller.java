@@ -41,7 +41,7 @@ public class GamePlay_Controller {
     public GamePlay_Controller() throws IOException {
         initializeLocations();
         //TODO make playable character character selected dynamically based on character selection page
-        PlayableCharacter.setCharacter(Character.ANJALA);
+        //PlayableCharacter.setCharacter(Character.ANJALA);
         playableCharacter = PlayableCharacter.getInstance();
         mybarista= CharacterView.makeCharacter(playableCharacter.getCharacter(),playableCharacter.getId(), new Pair<>(360.0, 360.0));
         inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
@@ -107,6 +107,7 @@ public class GamePlay_Controller {
         if(inGameCharacters.size() ==0){
             initializeImageViews(barista);
         }
+        barista.setImage(mybarista.frontImage);
         startButtonPicture.setOpacity(0);
         startButtonPicture.setDisable(true);
         startButton.setDisable(true);

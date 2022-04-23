@@ -35,11 +35,13 @@ class Milk extends BeverageDecorator{
         this.beverage = bev;
     }
     public String getDescription(){
-        if(beverage.getDescription() == "Coffee"){
-            return beverage.getDescription() + " with milk";
+        //When you add milk, coffee becomes a latte, lavender coffee becomes lavender latte
+        if(beverage.getDescription().contains("Coffee")){
+            return beverage.getDescription().replace("Coffee","Latte");
         }
-        else if(beverage.getDescription() == "Coffee with syrup"){
-            return "Lavender latte";
+        //already a latte -> add latte again so drink is wrong
+        else if(beverage.getDescription().contains("Latte")){
+            return beverage.getDescription()+ " Latte";
         }
         else{
             return "";
@@ -61,15 +63,9 @@ class Syrup extends BeverageDecorator{
         this.beverage = bev;
     }
     public String getDescription(){
-        if(beverage.getDescription() == "Coffee"){
-            return beverage.getDescription() + " with syrup";
-        }
-        else if(beverage.getDescription() == "Coffee with milk"){
-            return "Lavender latte";
-        }
-        else{
-            return "";
-        }
+        //Coffee -> Lavender Coffee, Latte (Coffee w milk) -> Lavender Latte
+        //keeps adding lavender so if a drink says lavender more than once it's wrong
+        return "Lavender " + beverage.getDescription();
     }
     public Double getCost(){
         return beverage.getCost() + 0.50;

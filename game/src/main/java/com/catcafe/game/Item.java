@@ -13,31 +13,19 @@ abstract class Item{
     public boolean compare(Item item){
         String requestedCoffee = this.getDescription();
         String createdCoffee = item.getDescription();
-        String milkStr = " with milk";
-        String syrupStr = " with syrup";
+        String lavenderStr = "Lavender";
+        String latteStr = "Latte";
         //make sure created Coffee only has one syrup and one milk
-        if(getNumInstances(milkStr,createdCoffee) > 1 || getNumInstances(syrupStr,createdCoffee) > 1){
+        if(getNumInstances(latteStr,createdCoffee) > 1 || getNumInstances(lavenderStr,createdCoffee) > 1){
             return false;
         }
         //check if the descriptions are exactly the same
         else if(item.getDescription() == this.getDescription()){
             return true;
         }
-        //with syrup with milk == with milk with syrup
-        else if(requestedCoffee.contains(" with milk") && requestedCoffee.contains(" with syrup") && createdCoffee.contains(" with milk") && createdCoffee.contains(" with syrup")) {
-            return true;
-        }
-            //if request has only milk
-        else if(requestedCoffee.contains(" with milk") && createdCoffee.contains(" with milk")) {
-            return true;
-        }
-                //request has only syrup
-        else if(requestedCoffee.contains(" with syrup")&& createdCoffee.contains(" with syrup")) {
-            return true;
-        }
         else{
             return false;
-            }
+        }
     }
     public Requestable getGraphicName(){return graphicName;}
     public String getDescription() {
