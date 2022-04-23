@@ -95,9 +95,16 @@ public class GamePlay_Controller {
     }
 
     //gameplay controls start here
-
-
-
+    @FXML
+    private Button startButton;
+    @FXML
+    private ImageView startButtonPicture;
+    @FXML
+    private void handleStartAction(ActionEvent event){
+        startButtonPicture.setOpacity(0);
+        startButtonPicture.setDisable(true);
+        startButton.setDisable(true);
+    }
 
     @FXML
     private ImageView customer;
