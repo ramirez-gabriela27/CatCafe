@@ -73,40 +73,41 @@ public abstract class CharacterView{
 class AnjalaView extends CharacterView{
     public AnjalaView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
-        frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
-        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
-        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
-        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkLeft.gif" ));
-        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkRight.gif" ));
+        System.out.println(System.getProperty("user.dir"));
+        frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
+        walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkRight.gif" ));
     }
 }
 class EmmaView extends CharacterView{
     public EmmaView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
-        frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/Emma.png" ));
-        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkCarryLeft.gif" ));
-        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkCarryRight.gif" ));
-        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkLeft.gif" ));
-        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkRight.gif" ));
+        frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/Emma.png" ));
+        walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkRight.gif" ));
     }
 }
 class GabyView extends CharacterView{
     public GabyView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
-        frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/Gaby.png" ));
-        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
-        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
-        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkLeft.gif" ));
-        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkRight.gif" ));
+        frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
+        walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkRight.gif" ));
     }
 }
 class KatyView extends CharacterView{
     public KatyView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
-        frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/Katy.png" ));
-        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
-        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
-        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkLeft.gif" ));
-        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkRight.gif" ));
+        frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
+        walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkRight.gif" ));
     }
 }
