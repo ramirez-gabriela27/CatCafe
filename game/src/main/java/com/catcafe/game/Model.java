@@ -5,11 +5,14 @@ import java.util.*;
 //Make all of these enums public and put in different files??
 
 
-enum Drink{
+enum Requestable{
     COFFEE,
     LATTE,
     SYRUP_COFFEE,
     SYRUP_LATTE,
+    CAT_FOOD,
+    CAT_TOY,
+    CAT_WATER,
     NONE
 }
 enum Location{
@@ -21,13 +24,21 @@ enum Location{
     COFFEE_MACHINE,
     MILK_STEAMER,
     SYRUPS,
-    TRASH
+    TRASH,
+    CAT_1,
+    CAT_2,
+    CAT_FOOD_BAG,
+    CAT_WATER_BOWL,
+    CAT_TOY_BIN;
+
 }
 enum Character{
     ANJALA,
     EMMA,
     GABY,
-    KATY;
+    KATY,
+    LEO,
+    SPOT;
 
     //https://stackoverflow.com/questions/1972392/pick-a-random-value-from-an-enum
     private static final List<Character> VALUES =
@@ -48,8 +59,10 @@ enum Attribute{
 
 
 public class Model {
-    private HashMap<Integer, HashMap<Attribute,Object>> human ;
+    private HashMap<Integer, HashMap<Attribute,Object>> human;
+    private HashMap<Integer, HashMap<Attribute,Object>> cat;
     private int nextId;
+    private GamePlay_Controller view;
     private final Location[] lineLocations = {Location.LINE_0, Location.LINE_1, Location.LINE_2, Location.LINE_3};
     private static Model theModel = new Model();
     //https://www.baeldung.com/java-initialize-hashmap
@@ -125,7 +138,7 @@ public class Model {
      * @param patienceLevel - Level of patience that character has. -1 if doesnt have patience (ex. playable character)
      * @return returns the id which will be used to modify this data.
      */
-    public synchronized int addData(Character character, Location location, Drink drink, Boolean hasRequest, double patienceLevel){
+    public synchronized int addData(Character character, Location location, Requestable drink, Boolean hasRequest, double patienceLevel){
         int id = getNextId();
         human.put(id, new HashMap<Attribute,Object>());
         human.get(id).put(Attribute.CHARACTER, character);
@@ -151,9 +164,9 @@ public class Model {
             updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
             // make new location true
             updateLocationStatus((Location) value, id);
+            view.updateLocation(id, (Location) value);
         }
         human.get(id).replace(attribute, value);
-
         //TODO: Alert view that item with id has changed
     }
     public synchronized void removeData(int id){
@@ -194,6 +207,9 @@ public class Model {
             }
         }
         //printModel();
+    }
+    public void setView(GamePlay_Controller view){
+        this.view = view;
     }
     private void printModel(){
         for(int key: human.keySet()){

@@ -25,7 +25,7 @@ public abstract class NPC implements Patience{
         System.out.println("NPC id " + objectID + " no longer has a request");
         request = null;
 
-        Model.getInstance().modifyData(objectID, Attribute.DRINK, Drink.NONE);
+        Model.getInstance().modifyData(objectID, Attribute.DRINK, Requestable.NONE);
         Model.getInstance().modifyData(objectID, Attribute.REQUEST, false);
     }
     public void addRequest(Request request){
@@ -122,11 +122,11 @@ class Cat extends NPC{
 class Customer extends NPC{
     public Customer(long patienceThreshold){
         super(patienceThreshold);
-        objectID = Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(),Drink.NONE, false, patienceLevel);
+        objectID = Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(),Requestable.NONE, false, patienceLevel);
     }
     public Customer(){
         super();
-        objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Drink.NONE, false,patienceLevel);
+        objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Requestable.NONE, false,patienceLevel);
         System.out.println("A customer has spawned! Id = " + objectID);
         addRequest(new CustomerRequest());
     }

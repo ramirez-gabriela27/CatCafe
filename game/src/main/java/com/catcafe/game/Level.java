@@ -15,6 +15,7 @@ public abstract class Level implements Runnable{
             this.playableCharacter = playableCharacter;
             this.gameView = gameView;
             this.user = user;
+            model.setView(gameView);
     }
     public void run(){
         gameFlow.startGame();

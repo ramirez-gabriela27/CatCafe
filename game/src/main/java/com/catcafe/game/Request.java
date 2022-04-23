@@ -11,6 +11,7 @@ abstract class Request{
     protected Long requestStartTime;
     protected Item requestedItem;
     public Request(){
+        requestStartTime = Instant.now().getEpochSecond();
     }
     protected Long getRequestStartTime() {
         return requestStartTime;
@@ -28,8 +29,8 @@ class CustomerRequest extends Request{
         add(new Milk(new Syrup(new Coffee())));
     }};
     public CustomerRequest(){
+        super();
         requestedItem = getRandomRequest();
-        requestStartTime = Instant.now().getEpochSecond();
     }
     private Beverage getRandomRequest(){
         return(possibleRequests.get(new Random().nextInt(possibleRequests.size())));
@@ -41,8 +42,12 @@ class CustomerRequest extends Request{
  */
 class CatRequest extends Request{
     public CatRequest(){
-
+        super();
+       setRandomRequest();
     }
-    private ArrayList<CatItem> availableCatRequests;
-    private void setRandomRequest(){}
+    private CatItem[] availableCatRequests = {new Food(), new Toy(), new Water()};
+    private void setRandomRequest(){
+        Random r = new Random();
+        requestedItem = availableCatRequests[r.nextInt(3)];
+    }
 }

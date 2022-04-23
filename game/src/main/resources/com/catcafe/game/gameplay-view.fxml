@@ -136,7 +136,7 @@
                   <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0">
+            <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0" >
                <image>
                   <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
                </image>

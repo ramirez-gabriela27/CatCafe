@@ -19,6 +19,10 @@ public class CatManager {
     public static CatManager getInstance(){
         return catManager;
     }
+
+    public void spawnCats(int nCats){
+
+    }
     /**
      *
      * @param cat Cat object to be added to all cats
