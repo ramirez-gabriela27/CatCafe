@@ -19,6 +19,7 @@ import javafx.util.Pair;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.HashMap;
 
 public class GamePlay_Controller {
@@ -91,8 +92,8 @@ public class GamePlay_Controller {
 
 
 
-    //@FXML
-    //private ImageView barista;
+    @FXML
+    private ImageView barista;
     private CharacterView mybarista = new KatyView(new Pair<>(360.0, 360.0));
     @FXML
     private ImageView customer;
@@ -101,9 +102,10 @@ public class GamePlay_Controller {
     private Button coffee_button;
     @FXML
     private void handleCoffeeAction(ActionEvent event) {
+        barista.setImage(walkImg);
         System.out.println("coffee machine activate...heading to it");
         //path from location, to coffee machine
-        walk(Location.COFFEE_MACHINE, mybarista);
+        walk(Location.COFFEE_MACHINE, mybarista, barista);
 
         // TODO: make a simple coffee functionality
         InGameCommand coffeeCommand = user.commandOptions.get(0);
@@ -118,7 +120,7 @@ public class GamePlay_Controller {
     private void handleMilkAction(ActionEvent event){
         System.out.println("milk activate...heading over");
         //path from location, to milk
-        walk(Location.MILK_STEAMER, mybarista);
+        walk(Location.MILK_STEAMER, mybarista, barista);
 
 
         // TODO: make a latte functionality
@@ -134,7 +136,7 @@ public class GamePlay_Controller {
     protected void handleSyrupAction(ActionEvent event){
         System.out.println("lavender syrup activate...heading to it");
         //path from location, to lavender
-        walk(Location.SYRUPS, mybarista);
+        walk(Location.SYRUPS, mybarista, barista);
 
 
         // TODO: add lavender syrup functionality
@@ -149,7 +151,7 @@ public class GamePlay_Controller {
         System.out.println("cash activate...heading to register");
 
         //path from location to register
-        walk(Location.REGISTER, mybarista);
+        walk(Location.REGISTER, mybarista,barista);
 
         // TODO: cashier check functionality
         InGameCommand orderCommand = user.commandOptions.get(3);
@@ -161,7 +163,7 @@ public class GamePlay_Controller {
     protected void handleTrashAction(ActionEvent event){
         System.out.println("Trash activate...heading to trash");
         //path from location to trash
-        walk(Location.TRASH, mybarista);
+        walk(Location.TRASH, mybarista, barista);
         InGameCommand trashCommand = user.commandOptions.get(4);
         user.getInvoker().addCommand(trashCommand);//adding orderup command to queue
     }
@@ -173,30 +175,36 @@ public class GamePlay_Controller {
         locations.put(Location.SYRUPS, new Pair<Double,Double>(250.0, 260.0));
         locations.put(Location.TRASH, new Pair<Double, Double>(450.0, 260.0));
     }
-    protected void walk( Location destination, CharacterView character){
+    protected void walk( Location destination, CharacterView character, ImageView characterImageView){
         Pair<Double,Double> currentLoc = character.getLocation();
         Double currentX = currentLoc.getKey();
         Double currentY = currentLoc.getValue();
         Pair<Double,Double> newLoc = locations.get(destination);
         Double newX = newLoc.getKey();
         Double newY = newLoc.getValue();
+        System.out.println("here");
+        if(newX - currentX <0){
+            System.out.println("here2");
+            characterImageView.setImage(character.getWalkingCarryLeft());
+        }
+        else{
+            System.out.println("here3");
+            characterImageView.setImage(character.getWalkingCarryRight());
+        }
         Polyline myPath = new Polyline();
         myPath.getPoints().addAll(new Double[]{
                 currentX, currentY,
                 newX, newY
         });
+        int duration = 3;
         PathTransition baristaPath = new PathTransition();
-        baristaPath.setNode(mybarista.getImageView());
+        baristaPath.setNode(characterImageView);
         baristaPath.setPath(myPath);
-        baristaPath.setDuration(Duration.seconds(3));
-        if(newX - currentX <0){
-            character.setWalkingCarryRight();
-        }
-        else{
-            character.setWalkingCarryRight();
-        }
+        baristaPath.setDuration(Duration.seconds(duration));
+        //https://www.demo2s.com/java/javafx-pathtransition-setonfinished-eventhandler-actionevent-value.html
+        //https://stackoverflow.com/questions/37752207/javafx-wait-for-animation-method-to-finish-before-going-to-next-method
+        baristaPath.setOnFinished((ActionEvent actionEvent) -> {characterImageView.setImage(character.getFrontImage());});
         baristaPath.play();
-        character.setFrontImage();
         character.setLocation(newLoc);
     }
 }

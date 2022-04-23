@@ -15,7 +15,6 @@ import java.io.IOException;
 public abstract class CharacterView{
     Double x;
     Double y;
-    ImageView imageView;
     Image frontImage;
     Image walkingCarryRight;
     Image walkingCarryLeft;
@@ -28,23 +27,20 @@ public abstract class CharacterView{
     public Pair<Double, Double> getLocation(){
         return new Pair<>(x,y);
     }
-    public void setWalkingCarryRight(){
-        imageView.setImage(walkingCarryRight);
+    public Image getWalkingCarryRight(){
+        return walkingCarryRight;
     }
-    public void setWalkingCarryLeft(){
-        imageView.setImage(walkingCarryLeft);
+    public Image getWalkingCarryLeft(){
+        return walkingCarryLeft;
     }
-    public void setWalkingLeft(){
-        imageView.setImage(walkingLeft);
+    public Image getWalkingLeft(){
+        return walkingLeft;
     }
-    public void setWalkingRight(){
-        imageView.setImage(walkingCarryRight);
+    public Image getWalkingRight(){
+        return walkingRight;
     }
-    public void setFrontImage(){
-        imageView.setImage(frontImage);
-    }
-    public ImageView getImageView(){
-        return imageView;
+    public Image getFrontImage(){
+        return frontImage;
     }
     public void setLocation(Pair<Double, Double> newLoc){
         x = newLoc.getKey();;
@@ -52,15 +48,43 @@ public abstract class CharacterView{
     }
 }
 
+class AnjalaView extends CharacterView{
+    public AnjalaView(Pair<Double, Double>initialLocation) throws IOException {
+        super(initialLocation);
+        frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
+        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/AnjalaChar/WalkRight.gif" ));
+    }
+}
+class EmmaView extends CharacterView{
+    public EmmaView(Pair<Double, Double>initialLocation) throws IOException {
+        super(initialLocation);
+        frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/Emma.png" ));
+        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/EmmaChar/WalkRight.gif" ));
+    }
+}
+class GabyView extends CharacterView{
+    public GabyView(Pair<Double, Double>initialLocation) throws IOException {
+        super(initialLocation);
+        frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/Gaby.png" ));
+        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/GabyChar/WalkRight.gif" ));
+    }
+}
 class KatyView extends CharacterView{
     public KatyView(Pair<Double, Double>initialLocation) throws IOException {
         super(initialLocation);
-        FXMLLoader fxmlLoader = new FXMLLoader(CatCafe_App.class.getResource("gameplay-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
         frontImage = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/Katy.png" ));
-        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkCarry.gif" ));
-        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/Walk.gif" ));
-        //this.imageView = (ImageView) gameplay_scene.lookup("#barista");
-        //imageView.setImage(frontImage);
+        walkingCarryLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
+        walkingCarryRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
+        walkingLeft = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkLeft.gif" ));
+        walkingRight = new Image(new FileInputStream("game/src/main/resources/assets/characters/KatyChar/WalkRight.gif" ));
     }
 }
