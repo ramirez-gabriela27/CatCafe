@@ -19,8 +19,8 @@ import javafx.util.Pair;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.time.Instant;
 import java.util.HashMap;
+import java.nio.file.Path;
 
 public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
@@ -30,17 +30,19 @@ public class GamePlay_Controller {
 
 
     double x,y;
-
     PlayableCharacter playableCharacter;
     InGameInteractiveUser user;
     HashMap<Location, Pair<Double, Double>> locations;
     double baristaX = 360.0;
     double baristaY = 360.0;
-    public GamePlay_Controller() throws IOException {
-        System.out.println(System.getProperty("user.dir"));
+    public GamePlay_Controller() throws IOException{
         initializeLocations();
         //TODO make playable character character selected dynamically based on character selection page
-        playableCharacter = new PlayableCharacter(Character.ANJALA);
+        baristaImage = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png"));
+        //setBaristaImage(baristaImage);
+        //Image img = new Image("file:src/main/resources/assets/characters/GabyChar/Gaby.png");
+        System.out.print("game controller started");
+        playableCharacter = new PlayableCharacter(Character.GABY);
         user = new InGameInteractiveUser(playableCharacter);
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
@@ -162,7 +164,7 @@ public class GamePlay_Controller {
         //path from location to trash
         walk(Location.TRASH, mybarista, barista);
         InGameCommand trashCommand = user.commandOptions.get(4);
-        user.getInvoker().addCommand(trashCommand);//adding orderup command to queue
+        user.getInvoker().addCommand(trashCommand);//adding trash command to queue
     }
     private void initializeLocations(){
         locations = new  HashMap<Location, Pair<Double, Double>>();

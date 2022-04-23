@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -15,6 +17,7 @@ import java.io.IOException;
 
 public class CharacterSelection_Controller {
     double x,y;
+    Enum selectedBarista = null;
 
     @FXML
     private Button close_button;
@@ -72,5 +75,37 @@ public class CharacterSelection_Controller {
         Stage stage = (Stage) SelectCharacter.getScene().getWindow();
         stage.setScene(gameplay_scene);
         stage.show();
+    }
+
+    @FXML
+    private Button EmmaSelectionButton;
+    @FXML //set Barista character
+    protected void handleEmmaAction(ActionEvent event) throws IOException {
+        System.out.println("Emma selected as Barista");
+        selectedBarista = Character.EMMA;
+    }
+
+    @FXML
+    private Button AnjalaSelectionButton;
+    @FXML //set Barista character
+    protected void handleAnjalaAction(ActionEvent event) throws IOException {
+        System.out.println("Anjala selected as Barista");
+        selectedBarista = Character.ANJALA;
+    }
+
+    @FXML
+    private Button KatySelectionButton;
+    @FXML //set Barista character
+    protected void handleKatyAction(ActionEvent event) throws IOException {
+        System.out.println("Katy selected as Barista");
+        selectedBarista = Character.KATY;
+    }
+
+    @FXML
+    private Button GabySelectionButton;
+    @FXML //set Barista character
+    protected void handleGabyAction(ActionEvent event) throws IOException {
+        System.out.println("Gaby selected as Barista");
+        selectedBarista = Character.GABY;
     }
 }
