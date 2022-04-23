@@ -1,4 +1,7 @@
 package com.catcafe.game;
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
 
 public class Clickable {
 

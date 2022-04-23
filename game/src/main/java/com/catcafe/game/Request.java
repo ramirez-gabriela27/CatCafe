@@ -1,8 +1,53 @@
 package com.catcafe.game;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.Random;
+
+/**
+ * Possible requests could be an object pool
+ */
 abstract class Request{
-    private Long requestStartTime;
-    private Item requestedItem;
-    public Long getRequestStartTime() {
+    protected Long requestStartTime;
+    protected Item requestedItem;
+    public Request(){
+        requestStartTime = Instant.now().getEpochSecond();
+    }
+    protected Long getRequestStartTime() {
         return requestStartTime;
+    }
+    protected Item getRequestedItem(){
+        return requestedItem;
+    }
+}
+
+class CustomerRequest extends Request{
+    private ArrayList<Beverage> possibleRequests= new ArrayList<Beverage>(){{
+        add(new Coffee());
+        add(new Milk(new Coffee()));
+        add(new Syrup(new Coffee()));
+        add(new Milk(new Syrup(new Coffee())));
+    }};
+    public CustomerRequest(){
+        super();
+        requestedItem = getRandomRequest();
+    }
+    private Beverage getRandomRequest(){
+        return(possibleRequests.get(new Random().nextInt(possibleRequests.size())));
+    }
+}
+
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
+class CatRequest extends Request{
+    public CatRequest(){
+        super();
+       setRandomRequest();
+    }
+    private CatItem[] availableCatRequests = {new Food(), new Toy(), new Water()};
+    private void setRandomRequest(){
+        Random r = new Random();
+        requestedItem = availableCatRequests[r.nextInt(3)];
     }
 }

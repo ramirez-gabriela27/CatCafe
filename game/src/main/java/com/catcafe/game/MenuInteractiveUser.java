@@ -1,5 +1,8 @@
 package com.catcafe.game;
 /**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
+/**
  * COMMAND Pattern
  */
 public class MenuInteractiveUser extends InteractiveUser{

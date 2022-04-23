@@ -2,7 +2,9 @@ package com.catcafe.game;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
 public class ViewManager {
     private Model model;
     private HashMap<Integer, Clickable> clickables;

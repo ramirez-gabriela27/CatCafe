@@ -15,18 +15,38 @@ public abstract class NPC implements Patience{
         this.patienceThreshold = patienceThreshold;
         patienceLevel = 1;
         setNextDecrementTime();
-
-        //Figure out how objetID is going to work
     }
     public NPC(){
         this.patienceThreshold = 5;
         patienceLevel = 1;
         setNextDecrementTime();
     }
+    public void removeRequest(){
+        System.out.println("NPC id " + objectID + " no longer has a request");
+        request = null;
+
+        Model.getInstance().modifyData(objectID, Attribute.DRINK, Requestable.NONE);
+        Model.getInstance().modifyData(objectID, Attribute.REQUEST, false);
+    }
+    public void addRequest(Request request){
+        if(this.request != null){
+            throw new RuntimeException("Cannot add new request when NPC already has a request.");
+        }
+        System.out.println("NPC id " + objectID + " has a request for " + request.getRequestedItem().getDescription());
+        this.request = request;
+        Model.getInstance().modifyData(objectID, Attribute.DRINK, request.getRequestedItem().getGraphicName());
+        Model.getInstance().modifyData(objectID, Attribute.REQUEST, true);
+    }
+    public Request getRequest(){
+        return request;
+    }
+    public abstract void destroy();
+
 
     @Override
     public void decreasePatience() {
         patienceLevel -=patienceChangeAmount;
+        sendPatienceInfoToModel();
     }
 
     @Override
@@ -37,6 +57,7 @@ public abstract class NPC implements Patience{
     @Override
     public void fullPatience() {
         patienceLevel = 1;
+        sendPatienceInfoToModel();
 
     }
 
@@ -56,14 +77,22 @@ public abstract class NPC implements Patience{
     @Override
     public void increasePatience() {
         patienceLevel += patienceChangeAmount;
+        sendPatienceInfoToModel();
     }
 
     @Override
     public void lostPatience() {
         patienceLevel = 0;
+        sendPatienceInfoToModel();
+    }
+
+    private void sendPatienceInfoToModel(){
+        Model.getInstance().modifyData(objectID, Attribute.PATIENCE, patienceLevel);
     }
 }
-
+/**
+ * CAT NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
 class Cat extends NPC{
 
     public Cat(long patienceThreshold){
@@ -71,12 +100,19 @@ class Cat extends NPC{
         //Cats start off with no request
         request = null;
     }
+
+    @Override
+    public void destroy() {
+
+    }
+
     /**
      *
      * @param item Item that is being presented to the cat to attempt to fulfill the request (It doesn't have to be a cat
      *             item however, giving a cat a beverage will not ever fulfill their request)
      * @return a boolean of whether or not the request was fulfilled.
      */
+
     public Boolean attemptFulfillRequest(Item item){
         return false;
     }
@@ -86,8 +122,20 @@ class Cat extends NPC{
 class Customer extends NPC{
     public Customer(long patienceThreshold){
         super(patienceThreshold);
+        objectID = Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(),Requestable.NONE, false, patienceLevel);
     }
     public Customer(){
         super();
+        objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Requestable.NONE, false,patienceLevel);
+        System.out.println("A customer has spawned! Id = " + objectID);
+        addRequest(new CustomerRequest());
     }
+    @Override
+    public void destroy() {
+        System.out.println("Customer " + objectID + " is now gone.");
+        Model.getInstance().removeData(objectID);
+
+    }
+
+
 }

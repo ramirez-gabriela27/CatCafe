@@ -1,4 +1,7 @@
 package com.catcafe.game;
+/**
+ * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
+ */
 
 import java.util.ArrayList;
 
@@ -7,9 +10,18 @@ public class CatManager {
     private ArrayList<Cat> cats;
     //Contains cats with active requests
     private ArrayList<Cat> requestingCats;
+    private static CatManager catManager = new CatManager(0);
 
-    public CatManager(int nCats){
+    private CatManager(int nCats){
         //make nCats
+    }
+
+    public static CatManager getInstance(){
+        return catManager;
+    }
+
+    public void spawnCats(int nCats){
+
     }
     /**
      *

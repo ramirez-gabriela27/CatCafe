@@ -66,12 +66,12 @@ public class CatCafe_Controller {
     private Button PlayButton;
     @FXML //move on to the gameplay view
     protected void handlePlayAction(ActionEvent event) throws IOException {
-        System.out.println("Moving on to gameplay");
-        Parent gameplay_parent = FXMLLoader.load(getClass().getResource("gameplay-view.fxml"));
+        System.out.println("Moving on to character selection");
+        Parent gameplay_parent = FXMLLoader.load(getClass().getResource("characterselection-view.fxml"));
         Scene gameplay_scene = new Scene(gameplay_parent);
         Stage stage = (Stage) PlayButton.getScene().getWindow();
         stage.setScene(gameplay_scene);
         stage.show();
-    }
 
+    }
 }

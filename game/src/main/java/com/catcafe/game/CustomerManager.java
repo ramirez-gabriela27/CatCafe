@@ -8,10 +8,18 @@ public class CustomerManager {
     private CatCustomerInteraction catInteraction;
     private int customerPatienceThreshold = 10;
     private final int MAX_CUSTOMERS = 4;
+    private static CustomerManager customerManager;
 
-    public CustomerManager(CatManager catManager, Account account){
+    private CustomerManager(Account account, CatManager catManager){
         customers = new ArrayList<Customer>();
         catInteraction = new CatCustomerInteraction(catManager, account);
+    }
+
+    public static synchronized CustomerManager getInstance(Account account, CatManager catManager){
+        if (customerManager == null){
+            customerManager = new CustomerManager(account, catManager);
+        }
+        return customerManager;
     }
 
     /**
@@ -23,9 +31,8 @@ public class CustomerManager {
             return;
         }
         else {
-            Customer newCustomer = new Customer(customerPatienceThreshold);
+            Customer newCustomer = new Customer();
             customers.add(newCustomer);
-            //TODO: Put the customer in line and have the graphics appear
         }
     }
 
@@ -38,8 +45,8 @@ public class CustomerManager {
      */
     public void remove(Customer customer){
         //TODO: Cat interaction
+        customer.destroy();
         customers.remove(customer);
-        //TODO: Move the other customers up in line in the view
     }
 
     /**
@@ -47,7 +54,12 @@ public class CustomerManager {
      * @return returns next customer in line
      */
     public Customer nextCustomer(){
-        return customers.get(0);
+        if(customers.size() > 0){
+            return customers.get(0);
+        }
+       else{
+           return null;
+        }
 
     }
 

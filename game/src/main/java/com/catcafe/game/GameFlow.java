@@ -4,6 +4,8 @@ import org.apache.commons.math3.distribution.ExponentialDistribution;
 
 import java.time.Instant;
 
+import static java.lang.Thread.sleep;
+
 public class GameFlow {
     //All of these times will be Unix Timestamps (seconds since 1970) which is a long.
     //https://attacomsian.com/blog/java-get-unix-timestamp
@@ -20,18 +22,20 @@ public class GameFlow {
 
     /**
      * @param avgCatRequestRate This is the average time between cat requests spawning
-     * @param  avgCustomerSpawnRate This is the average time between customers spawning
+     * @param avgCustomerSpawnRate This is the average time between customers spawning
      * @param invoker This is the invoker that is a part of the in game command pattern
      * @param gameLength This is how long the game should last in seconds
      * **/
     public GameFlow(double avgCatRequestRate, double avgCustomerSpawnRate, long gameLength, Invoker invoker, int nCats){
-        this.catManager = new CatManager(nCats);
+        this.catManager = CatManager.getInstance();
         this.gameLength = gameLength;
         account = Account.getInstance();
-        this.customerManager = new CustomerManager(catManager,account);
+        this.customerManager = CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance());
         this.invoker = invoker;
-        catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
+        //catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
         customerSpawnTimeDist = new ExponentialDistribution(avgCustomerSpawnRate);
+        //calcNextCatTime();
+        nextCustomerTime = Instant.now().getEpochSecond();
     }
 
     //This will start a loop that runs until endime is reached
@@ -43,10 +47,14 @@ public class GameFlow {
         while(Instant.now().getEpochSecond() < endTime){
             invoker.doNextCommand();
             customerCheck();
-            catCheck();
+            //catCheck();
             customerManager.patienceRoutine();
-            catManager.patienceRoutine();
+            //catManager.patienceRoutine();
         }
+        Model.getInstance().clearModel();
+    }
+    public double getEndMoney(){
+        return account.getAmount();
     }
 
     /**

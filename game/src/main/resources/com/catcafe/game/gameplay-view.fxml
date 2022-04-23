@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.catcafe.game.CatCafe_Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.catcafe.game.GamePlay_Controller">
     <children>
       <ImageView fitHeight="760.0" fitWidth="1280.0">
          <image>
@@ -69,6 +69,97 @@
                 </Pane>
             </top>
         </BorderPane>
-      <AnchorPane layoutY="48.0" prefHeight="716.0" prefWidth="1280.0" />
+      <AnchorPane layoutY="48.0" prefHeight="716.0" prefWidth="1280.0">
+         <children>
+            <ImageView fitHeight="123.0" fitWidth="488.0" layoutX="-60.0" layoutY="201.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/back_counter.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="184.0" layoutY="132.0">
+               <children>
+                  <ImageView fitHeight="96.0" fitWidth="33.0">
+                     <image>
+                        <Image url="@../../../assets/KitchenToolPNGs/lavender_syrup.png" />
+                     </image>
+                  </ImageView>
+                  <Button id="SyrupButton" fx:id="syrup_button" mnemonicParsing="false" onAction="#handleSyrupAction" prefHeight="96.0" prefWidth="33.0" style="-fx-background-color: transparent;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor></Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="22.0" layoutY="132.0">
+               <children>
+                  <ImageView fitHeight="96.0" fitWidth="77.0">
+                     <image>
+                        <Image url="@../../../assets/KitchenToolPNGs/coffeeMaker.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="coffee_button" mnemonicParsing="false" onAction="#handleCoffeeAction" prefHeight="96.0" prefWidth="77.0" style="-fx-background-color: transparent;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="278.0" layoutY="132.0">
+               <children>
+                  <ImageView fitHeight="96.0" fitWidth="88.0">
+                     <image>
+                        <Image url="@../../../assets/KitchenToolPNGs/milk_steamer.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="milk_button" mnemonicParsing="false" onAction="#handleMilkAction" prefHeight="96.0" prefWidth="88.0" style="-fx-background-color: transparent;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="438.0" layoutY="183.0" prefHeight="116.0" prefWidth="88.0">
+               <children>
+                  <ImageView fitHeight="131.0" fitWidth="93.0">
+                     <image>
+                        <Image url="@../../../assets/KitchenToolPNGs/trashcan.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="trash_button" layoutY="16.0" mnemonicParsing="false" onAction="#handleTrashAction" prefHeight="107.0" prefWidth="88.0" style="-fx-background-color: transparent;" >
+                       <cursor>
+                           <Cursor fx:constant="OPEN_HAND" />
+                       </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <ImageView fx:id="barista" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" x="300.0" y="260.0">
+               <image>
+                  <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="234.0" fitWidth="628.0" layoutX="-90.0" layoutY="313.0">
+               <image>
+                  <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="customer" fitHeight="180.0" fitWidth="118.0" layoutX="300.0" layoutY="494.0">
+               <image>
+                  <Image url="@../../../assets/characters/KatyChar/KatySideCarry.png" />
+               </image>
+            </ImageView>
+            <AnchorPane layoutX="310.0" layoutY="334.0">
+               <children>
+                  <ImageView fitHeight="96.0" fitWidth="98.0">
+                     <image>
+                        <Image url="@../../../assets/KitchenToolPNGs/cash_register.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="cash_button" mnemonicParsing="false" onAction="#handleCashAction" prefHeight="96.0" prefWidth="98.0" style="-fx-background-color: transparent;">
+                     <cursor>
+                        <Cursor fx:constant="OPEN_HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
     </children>
 </AnchorPane>
