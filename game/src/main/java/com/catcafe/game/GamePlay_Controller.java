@@ -101,6 +101,9 @@ public class GamePlay_Controller {
     private ImageView startButtonPicture;
     @FXML
     private void handleStartAction(ActionEvent event){
+        if(inGameCharacters.size() ==0){
+            initializeImageViews(barista);
+        }
         startButtonPicture.setOpacity(0);
         startButtonPicture.setDisable(true);
         startButton.setDisable(true);
@@ -116,7 +119,6 @@ public class GamePlay_Controller {
         System.out.println("coffee machine activate...heading to it");
         //path from location, to coffee machine
         //walk(Location.COFFEE_MACHINE, mybarista, barista);
-
         // TODO: make a simple coffee functionality
         InGameCommand coffeeCommand = user.commandOptions.get(0);
         user.getInvoker().addCommand(coffeeCommand);//adding make coffee command to queue
@@ -128,10 +130,6 @@ public class GamePlay_Controller {
     private Button milk_button;
     @FXML
     private void handleMilkAction(ActionEvent event){
-        if(inGameCharacters.size() ==0){
-            initializeImageViews(barista);
-        }
-
         System.out.println("milk activate...heading over");
         //path from location, to milk
         //walk(Location.MILK_STEAMER, mybarista, barista);
@@ -188,40 +186,66 @@ public class GamePlay_Controller {
         locations.put(Location.TRASH, new Pair<Double, Double>(450.0, 260.0));
     }
     protected synchronized void walk( Location destination, CharacterView character, ImageView characterImageView){
+        //uppack the current location coordinates from the chracter data structure
         Pair<Double,Double> currentLoc = character.getLocation();
         Double currentX = currentLoc.getKey();
         Double currentY = currentLoc.getValue();
+
+        //get coordinates of new location based on enum Location argument
         Pair<Double,Double> newLoc = locations.get(destination);
         Double newX = newLoc.getKey();
         Double newY = newLoc.getValue();
+
+        //update the new location in character data structure
         character.setLocation(newLoc);
         if(newX == currentX && newY == currentY){
+            //Do nothing if new location is same as current
             return;
         }
         else if(newX - currentX <0){
+            //set the image displayed to be the walking left gif if the character is going left
             characterImageView.setImage(character.getWalkingCarryLeft());
         }
         else{
+            //set the image displayed to be the walking right gif if the character is going right
             characterImageView.setImage(character.getWalkingCarryRight());
         }
+
+        //creating path based on coordinates of current and new locations
         Polyline myPath = new Polyline();
         myPath.getPoints().addAll(new Double[]{
                 currentX, currentY,
                 newX, newY
         });
+        PathTransition walkPath = new PathTransition();
+
+        //character will spend 3 seconds walking to destination walkEndTime is the unix timestamp of when (approx) the
+        //walking animation will be done
         int duration = 3;
         long walkEndTime = Instant.now().getEpochSecond() +duration;
-        PathTransition walkPath = new PathTransition();
+
+        //setting up walking animation
         walkPath.setNode(characterImageView);
         walkPath.setPath(myPath);
         walkPath.setDuration(Duration.seconds(duration));
+
+
         //https://www.demo2s.com/java/javafx-pathtransition-setonfinished-eventhandler-actionevent-value.html
         //https://stackoverflow.com/questions/37752207/javafx-wait-for-animation-method-to-finish-before-going-to-next-method
         //walkPath.setOnFinished((ActionEvent actionEvent) -> {characterImageView.setImage(character.getFrontImage());});
+
+        //plays the walking animation
         walkPath.play();
+
+        //This is to force waiting until the walking animation is finished to change back to the
+        //front facing image and also to make sure that this method does not exit until the walking
+        // animation is done (if we do itll execute the next command and that's how we get
+        // teleporting)
         while(Instant.now().getEpochSecond() < walkEndTime){
             assert(true);
         }
+
+        //change image back to the fron facing image
         characterImageView.setImage(character.getFrontImage());
     }
     @FXML
