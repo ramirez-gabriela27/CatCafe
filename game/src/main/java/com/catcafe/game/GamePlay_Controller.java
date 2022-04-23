@@ -101,6 +101,9 @@ public class GamePlay_Controller {
     private ImageView startButtonPicture;
     @FXML
     private void handleStartAction(ActionEvent event){
+        if(inGameCharacters.size() ==0){
+            initializeImageViews(barista);
+        }
         startButtonPicture.setOpacity(0);
         startButtonPicture.setDisable(true);
         startButton.setDisable(true);
@@ -127,10 +130,6 @@ public class GamePlay_Controller {
     private Button milk_button;
     @FXML
     private void handleMilkAction(ActionEvent event){
-        if(inGameCharacters.size() ==0){
-            initializeImageViews(barista);
-        }
-
         System.out.println("milk activate...heading over");
         //path from location, to milk
         //walk(Location.MILK_STEAMER, mybarista, barista);
