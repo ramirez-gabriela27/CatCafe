@@ -16,6 +16,7 @@ import javafx.scene.shape.Polyline;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import javafx.scene.text.Text;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -36,7 +37,7 @@ public class GamePlay_Controller {
     private CharacterView mybarista;
     InGameInteractiveUser user;
     @FXML private ImageView barista;
-    @FXML private Button amountDisplay;
+    @FXML private Text amountDisplay;
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     public GamePlay_Controller() throws IOException {
