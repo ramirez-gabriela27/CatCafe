@@ -38,6 +38,7 @@ abstract class CharacterView extends View {
     Image walkingCarryLeft;
     Image walkingRight;
     Image walkingLeft;
+    Character name;
     static Image noImage;
 
     public CharacterView(int objectId, Pair<Double, Double> initialLocation) {
@@ -53,6 +54,9 @@ abstract class CharacterView extends View {
 
     public static Image getNoImg(){
         return noImage;
+    }
+    public Character getName(){
+        return name;
     }
     public Image getWalkingCarryRight() {
         return walkingCarryRight;
@@ -96,6 +100,7 @@ abstract class CharacterView extends View {
 class AnjalaView extends CharacterView{
     public AnjalaView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
+        name = Character.ANJALA;
         frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
         walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
@@ -106,6 +111,7 @@ class AnjalaView extends CharacterView{
 class EmmaView extends CharacterView{
     public EmmaView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
+        name = Character.EMMA;
         frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/Emma.png" ));
         walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryLeft.gif" ));
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryRight.gif" ));
@@ -116,6 +122,7 @@ class EmmaView extends CharacterView{
 class GabyView extends CharacterView{
     public GabyView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
+        name = Character.GABY;
         frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
         walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
@@ -126,6 +133,7 @@ class GabyView extends CharacterView{
 class KatyView extends CharacterView{
     public KatyView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
+        name = Character.KATY;
         frontImage = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
         walkingCarryLeft = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));

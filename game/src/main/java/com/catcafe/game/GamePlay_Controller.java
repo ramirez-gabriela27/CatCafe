@@ -51,6 +51,11 @@ public class GamePlay_Controller {
 
     public synchronized void initializeImageViews(ImageView barista){
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
+        //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
+        customer1.setVisible(false);
+        customer2.setVisible(false);
+        customer3.setVisible(false);
+        customer4.setVisible(false);
         inGameCharacters.put(-1, new Pair<>(customer1, null));
         inGameCharacters.put(-2, new Pair<>(customer2, null));
         inGameCharacters.put(-3, new Pair<>(customer3, null));
@@ -187,11 +192,11 @@ public class GamePlay_Controller {
         locations.put(Location.MILK_STEAMER, new Pair<Double,Double>(350.0, 260.0));
         locations.put(Location.SYRUPS, new Pair<Double,Double>(250.0, 260.0));
         locations.put(Location.TRASH, new Pair<Double, Double>(450.0, 260.0));
-        locations.put(Location.OFF_SCREEN, new Pair<>(1200.0, 490.0));
-        locations.put(Location.LINE_0, new Pair<>(300.0, 490.0));
-        locations.put(Location.LINE_1, new Pair<>(550.0, 490.0));
-        locations.put(Location.LINE_2, new Pair<>(800.0, 490.0));
-        locations.put(Location.LINE_3, new Pair<>(1000.0, 490.0));
+        locations.put(Location.OFF_SCREEN, new Pair<>(1200.0, 480.0));
+        locations.put(Location.LINE_0, new Pair<>(300.0, 480.0));
+        locations.put(Location.LINE_1, new Pair<>(500.0, 480.0));
+        locations.put(Location.LINE_2, new Pair<>(700.0, 480.0));
+        locations.put(Location.LINE_3, new Pair<>(900.0, 480.0));
     }
     protected void walk( Location destination, CharacterView character, ImageView characterImageView){
         //uppack the current location coordinates from the chracter data structure
@@ -269,7 +274,7 @@ public class GamePlay_Controller {
             walk(location, charInfo.getValue(), charInfo.getKey());
         }
     }
-    public void updateLocationNoWalk(int objectId, Location location){
+    public synchronized void updateLocationNoWalk(int objectId, Location location){
         System.out.println(objectId);
         if(!inGameCharacters.containsKey(objectId)){
             throw new IllegalArgumentException("Invalid ID" + objectId+ "Current: " + inGameCharacters.keySet());
@@ -279,8 +284,10 @@ public class GamePlay_Controller {
             if(charInfo.getKey() == null){
                 System.out.println("Null");
             }
+            charInfo.getValue().setLocation(locations.get(location));
             charInfo.getKey().setLayoutX(locations.get(location).getKey());
             charInfo.getKey().setLayoutY(locations.get(location).getValue());
+            printAllLocations();
         }
     }
 
@@ -296,7 +303,7 @@ public class GamePlay_Controller {
             }
         });
     }
-    public void addNPC(int id, Character character, Location location) throws IOException {
+    public synchronized void addNPC(int id, Character character, Location location) throws IOException {
         //https://www.tutorialspoint.com/find-minimum-element-of-hashset-in-java#:~:text=To%20get%20the%20minimum%20element,min()%20method.
         Set<Integer> keys = inGameCharacters.keySet();
         int emptySpot = Collections.min(keys);
@@ -315,20 +322,58 @@ public class GamePlay_Controller {
             imageView.setImage(characterView.getFrontImage());
             //updateLocation(id, location);
             System.out.println("got here");
+            imageView.setVisible(true);
+            printAllLocations();
         }
     }
 
-    public void removeNPC(int id){
+    public synchronized void removeNPC(int id){
         if(inGameCharacters.containsKey(id)){
             Pair<ImageView, CharacterView> goodbyeNPC = inGameCharacters.remove(id);
             ImageView imageView = goodbyeNPC.getKey();
-            imageView.setImage(CharacterView.getNoImg());
+            //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
+            imageView.setVisible(false);
+            Pair<Double, Double> offscreen = locations.get(Location.OFF_SCREEN);
+            imageView.setLayoutX(offscreen.getKey());
+            imageView.setLayoutY(offscreen.getValue());
             Set<Integer> keys = inGameCharacters.keySet();
             int negID = Collections.min(keys) -1;
             inGameCharacters.put(negID, new Pair<ImageView, CharacterView>(imageView, null));
         }
         else{
             throw new RuntimeException("Trying to remove NPC that doesn't exist. Id = " + id + " ingame characters  = " + inGameCharacters.keySet());
+        }
+        printAllLocations();
+    }
+    private void printAllLocations(){
+        for(int charID: inGameCharacters.keySet()) {
+            if (charID >= 0) {
+                System.out.println("ID: "
+                        + charID
+                        + " name: "
+                        + inGameCharacters.get(charID).getValue().getName()
+                        + " location: "
+                        + inGameCharacters.get(charID).getValue().getLocation()
+                        + " true location : "
+                        + inGameCharacters.get(charID).getKey().getLayoutX()
+                        + " , "
+                        + inGameCharacters.get(charID).getKey().getLayoutY()
+                        + " visible: "
+                        + inGameCharacters.get(charID).getKey().isVisible());;
+
+            }
+            else{
+                System.out.println("ID: "
+                        + charID
+                        + " name: none"
+                        + " true location : "
+                        + inGameCharacters.get(charID).getKey().getLayoutX()
+                        + " , "
+                        + inGameCharacters.get(charID).getKey().getLayoutY()
+                        + " visible: "
+                        + inGameCharacters.get(charID).getKey().isVisible());
+
+            }
         }
     }
 }
