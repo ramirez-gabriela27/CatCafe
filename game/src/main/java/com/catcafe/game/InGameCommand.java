@@ -14,7 +14,6 @@ class OrderUpCommand extends InGameCommand{
         description = "Order Up Command"; }
     @Override
     void execute() {
-        model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
         System.out.println(description);
         PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
         Boolean orderBool = point.orderUp(receiver.getCarryingItem());
@@ -23,8 +22,8 @@ class OrderUpCommand extends InGameCommand{
         }else{
             System.out.println("Incorrect order, throw away and try again.");
         }
-
-
+        model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
+        model.updateMoneyAmount();
     }
 }
 
