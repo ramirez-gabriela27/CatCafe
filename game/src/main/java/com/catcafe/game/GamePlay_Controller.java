@@ -321,6 +321,14 @@ public class GamePlay_Controller {
         }
 
         //change image back to the front facing image
+        if(playableCharacter.getCarryingItem()!= null){
+            switch (playableCharacter.getCarryingItem().graphicName){
+                case NONE -> characterImageView.setImage(character.getFrontImage());
+                case COFFEE -> characterImageView.setImage(character.getFrontImageCoffee());
+                case SYRUP_COFFEE -> characterImageView.setImage(character.getFrontImageLavCoffee());
+                case SYRUP_LATTE -> characterImageView.setImage(character.getFrontImageLavLatte());
+            }
+        }
         characterImageView.setImage(character.getFrontImage());
     }
     public void updateLocation(int objectId, Location location){
