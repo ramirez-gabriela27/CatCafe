@@ -70,7 +70,8 @@ public class CharacterSelection_Controller {
     @FXML //move on to the gameplay view
     protected void handlePlayAction(ActionEvent event) throws IOException {
         if(selectedBarista == null){
-            PlayableCharacter.setCharacter(Character.ANJALA);
+            //no character selected, random character chosen
+            PlayableCharacter.setCharacter(Character.randomCharacter());
         }
         else{
             PlayableCharacter.setCharacter(selectedBarista);
