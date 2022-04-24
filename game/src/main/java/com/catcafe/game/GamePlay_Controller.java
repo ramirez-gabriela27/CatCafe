@@ -54,7 +54,6 @@ public class GamePlay_Controller {
         DemoLevel test = new DemoLevel(user, playableCharacter, this);
         Thread t = new Thread(test);
         t.start();
-
     }
 
     public synchronized void initializeImageViews(ImageView barista){
@@ -192,6 +191,7 @@ public class GamePlay_Controller {
         locations.put(Location.MILK_STEAMER, new Pair<Double,Double>(350.0, 260.0));
         locations.put(Location.SYRUPS, new Pair<Double,Double>(250.0, 260.0));
         locations.put(Location.TRASH, new Pair<Double, Double>(450.0, 260.0));
+        locations.put(Location.THOUGHT_BUBBLE, new Pair<Double, Double>(376.0, 430.0));
     }
     protected synchronized void walk( Location destination, CharacterView character, ImageView characterImageView){
         //uppack the current location coordinates from the chracter data structure
@@ -253,7 +253,7 @@ public class GamePlay_Controller {
             assert(true);
         }
 
-        //change image back to the fron facing image
+        //change image back to the front facing image
         characterImageView.setImage(character.getFrontImage());
     }
     @FXML
@@ -280,5 +280,17 @@ public class GamePlay_Controller {
                 amountDisplay.setText("$" + newAmountString);
             }
         });
+    }
+    @FXML
+    private ImageView requestGraphic;
+    @FXML
+    public void updateCurrentRequestBubble(Requestable newRequest){
+        try {
+            DrinkView updateRequest = DrinkView.makeDrink(newRequest, 55, new Pair<>(376.0, 430.0));
+            requestGraphic.setImage(updateRequest.thoughtBubbleImage);
+            requestGraphic.setOpacity(100.0);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
