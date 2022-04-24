@@ -143,11 +143,26 @@
                   <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="customer" fitHeight="180.0" fitWidth="118.0" layoutX="300.0" layoutY="494.0">
+            <ImageView fx:id="customer1" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" layoutX="1000.0" layoutY="494.0">
                <image>
-                  <Image url="@../../../assets/characters/KatyChar/KatySideCarry.png" />
+                  <Image url="@../../../assets/characters/empty.png" />
                </image>
             </ImageView>
+             <ImageView fx:id="customer2" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" layoutX="500.0" layoutY="494.0">
+                 <image>
+                     <Image url="@../../../assets/characters/empty.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="customer3" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" layoutX="500.0" layoutY="494.0">
+                 <image>
+                     <Image url="@../../../assets/characters/empty.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="customer4" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" layoutX="500.0" layoutY="494.0">
+                 <image>
+                     <Image url="@../../../assets/characters/empty.png" />
+                 </image>
+             </ImageView>
             <ImageView fitHeight="71.0" fitWidth="158.0" layoutX="1122.0" layoutY="5.0">
                <image>
                   <Image url="@../../../assets/moneyBox.png" />

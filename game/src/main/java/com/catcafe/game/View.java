@@ -32,19 +32,28 @@ public abstract class View{
     }
 }
 
-class CharacterView extends View {
+abstract class CharacterView extends View {
     Image frontImage;
     Image walkingCarryRight;
     Image walkingCarryLeft;
     Image walkingRight;
     Image walkingLeft;
+    static Image noImage;
 
     public CharacterView(int objectId, Pair<Double, Double> initialLocation) {
         this.objectID = objectId;
         x = initialLocation.getKey();
         y = initialLocation.getValue();
+        try {
+            noImage = new Image(new FileInputStream("src/main/resources/assets/characters/empty.png" ));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
+    public static Image getNoImg(){
+        return noImage;
+    }
     public Image getWalkingCarryRight() {
         return walkingCarryRight;
     }
