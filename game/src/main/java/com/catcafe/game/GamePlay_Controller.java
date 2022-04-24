@@ -339,7 +339,8 @@ public class GamePlay_Controller {
         }
         else{
             throw new RuntimeException("Trying to remove NPC that doesn't exist. Id = " + id + " ingame characters  = " + inGameCharacters.keySet());
-
+        }
+    }
     @FXML
     private ImageView requestGraphic;
     @FXML
