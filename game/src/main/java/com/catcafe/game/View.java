@@ -251,23 +251,22 @@ class DrinkView extends View{
         return thoughtBubbleImage;
     }
 
-    public static DrinkView makeCharacter(Character choice, int objectID, Pair<Double, Double> initialLocation) throws IOException {
+    public static DrinkView makeDrink(Requestable choice, int objectID, Pair<Double, Double> initialLocation) throws IOException {
         switch (choice) {
-            case ANJALA -> {
-                //return new CoffeeView(objectID, initialLocation);
-                return new CupView(objectID, initialLocation);
+            case COFFEE -> {
+                return new CoffeeView(objectID, initialLocation);
             }
-            case EMMA -> {
-                //return new LatteView(objectID, initialLocation);
-                return new CupView(objectID, initialLocation);
+            case LATTE -> {
+                return new LatteView(objectID, initialLocation);
             }
-            case GABY -> {
-                //return new CoffeeSyrupView(objectID, initialLocation);
-                return new CupView(objectID, initialLocation);
+            case SYRUP_COFFEE -> {
+                return new CoffeeSyrupView(objectID, initialLocation);
             }
-            case KATY -> {
-                //return new LavLatteView(objectID, initialLocation);
-                return new CupView(objectID, initialLocation);
+            case SYRUP_LATTE -> {
+                return new LavLatteView(objectID, initialLocation);
+            }
+            case NONE -> {
+                return new NoneDrinkView(objectID, initialLocation);
             }
             default -> throw new IllegalArgumentException("Illegal drink choice.");
         }
@@ -311,5 +310,13 @@ class LavLatteView extends DrinkView{
         super(objectId,initialLocation);
         cupImage = new Image(new FileInputStream("src/main/resources/assets/beverages/lavenderLatte.png" ));
         thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/lavLatteRequest.png" ));
+    }
+}
+
+class NoneDrinkView extends DrinkView{
+    public NoneDrinkView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
+        cupImage = new Image(new FileInputStream("src/main/resources/assets/characters/empty.png" ));
+        thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/requestCloud.png" ));
     }
 }

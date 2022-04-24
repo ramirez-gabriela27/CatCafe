@@ -53,6 +53,14 @@ public class GamePlay_Controller {
         //drinkView = DrinkView.makeCharacter(playableCharacter.getCharacter(),playableCharacter.getId(), new Pair<>(360.0, 360.0));
         inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
         user = new InGameInteractiveUser(playableCharacter);
+
+        //start game logic
+        //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
+        //interactive
+        DemoLevel test = new DemoLevel(user, playableCharacter, this);
+        Thread t = new Thread(test);
+        t.start();
+
     }
 
     public synchronized void initializeImageViews(ImageView barista){
@@ -206,6 +214,7 @@ public class GamePlay_Controller {
         locations.put(Location.LINE_1, new Pair<>(550.0, 490.0));
         locations.put(Location.LINE_2, new Pair<>(800.0, 490.0));
         locations.put(Location.LINE_3, new Pair<>(1000.0, 490.0));
+        locations.put(Location.THOUGHT_BUBBLE, new Pair<Double, Double>(376.0, 430.0));
     }
     protected void walk( Location destination, CharacterView character, ImageView characterImageView){
         //uppack the current location coordinates from the chracter data structure
@@ -311,7 +320,7 @@ public class GamePlay_Controller {
             assert(true);
         }
 
-        //change image back to the fron facing image
+        //change image back to the front facing image
         characterImageView.setImage(character.getFrontImage());
     }
     public void updateLocation(int objectId, Location location){
@@ -354,6 +363,7 @@ public class GamePlay_Controller {
             }
         });
     }
+
     public void addNPC(int id, Character character, Location location) throws IOException {
         //https://www.tutorialspoint.com/find-minimum-element-of-hashset-in-java#:~:text=To%20get%20the%20minimum%20element,min()%20method.
         Set<Integer> keys = inGameCharacters.keySet();
@@ -387,6 +397,19 @@ public class GamePlay_Controller {
         }
         else{
             throw new RuntimeException("Trying to remove NPC that doesn't exist. Id = " + id + " ingame characters  = " + inGameCharacters.keySet());
+        }
+    }
+    @FXML
+    private ImageView requestGraphic;
+    @FXML
+    public void updateCurrentRequestBubble(Requestable newRequest){
+        try {
+            DrinkView updateRequest = DrinkView.makeDrink(newRequest, 55, new Pair<>(376.0, 430.0));
+            requestGraphic.setImage(updateRequest.thoughtBubbleImage);
+            requestGraphic.setOpacity(100.0);
+        } catch (IOException e) {
+            e.printStackTrace();
+
         }
     }
 }
