@@ -269,7 +269,7 @@ public class Model {
             view.updateCurrentRequestBubble((Requestable) human.get(occupiedLocations.get(Location.LINE_0)).get(Attribute.DRINK));
         }
         else{
-            updateRequestGraphic();
+            view.hideDrinkRequest();
         }
     }
 
