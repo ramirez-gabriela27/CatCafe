@@ -38,8 +38,8 @@ public class GamePlay_Controller {
     private CharacterView mybarista;
     InGameInteractiveUser user;
     @FXML private ImageView barista;
+
     @FXML private Text amountDisplay;
-    private Text moneyDisplay;
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     public GamePlay_Controller() throws IOException {
@@ -60,8 +60,6 @@ public class GamePlay_Controller {
     public synchronized void initializeImageViews(ImageView barista){
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
         barista.setImage(mybarista.frontImage);
-        moneyDisplay = amountDisplay;
-
     }
     @FXML
     private Button close_button;
