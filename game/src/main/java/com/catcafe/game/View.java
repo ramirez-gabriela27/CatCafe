@@ -163,17 +163,17 @@ class AnjalaView extends CharacterView{
         walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeftCoffee.gif" ));
         walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRightCoffee.gif" ));
         //replace these with the real gifs when done
-        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
-        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
-        walkingCarryLeftLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
-        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
-        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeft.gif" ));
-        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
+        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeftLatte.gif" ));
+        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRightLatte.gif" ));
+        walkingCarryLeftLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeftLavCoffee.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRightLavCoffee.gif" ));
+        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeftLavLatte.gif" ));
+        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRightLavLatte.gif" ));
 
-        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
-        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
-        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
-        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/Anjala.png" ));
+        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/AnjalaCoffee.png" ));
+        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/AnjalaLatte.png" ));
+        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/AnjalaLavCoffee.png" ));
+        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/AnjalaLavLatte.png" ));
     }
 }
 class EmmaView extends CharacterView{
@@ -194,7 +194,7 @@ class EmmaView extends CharacterView{
         walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryLeft.gif" ));
         walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryRight.gif" ));
 
-        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/Emma.png" ));
+        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/EmmaCoffee.png" ));
         frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/Emma.png" ));
         frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/Emma.png" ));
         frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/Emma.png" ));
