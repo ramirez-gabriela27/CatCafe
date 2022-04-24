@@ -36,6 +36,7 @@ public class GamePlay_Controller {
     private CharacterView mybarista;
     InGameInteractiveUser user;
     @FXML private ImageView barista;
+    @FXML private Button amountDisplay;
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     public GamePlay_Controller() throws IOException {
@@ -106,6 +107,7 @@ public class GamePlay_Controller {
             initializeImageViews(barista);
         }
         barista.setImage(mybarista.frontImage);
+        amountDisplay.setText("$0.00");
         startButtonPicture.setOpacity(0);
         startButtonPicture.setDisable(true);
         startButton.setDisable(true);
@@ -125,7 +127,7 @@ public class GamePlay_Controller {
         InGameCommand coffeeCommand = user.commandOptions.get(0);
         user.getInvoker().addCommand(coffeeCommand);//adding make coffee command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
-
+        amountDisplay.setText("$" + Account.getInstance().getAmountString());
     }
 
     @FXML
@@ -139,7 +141,7 @@ public class GamePlay_Controller {
         InGameCommand milkCommand = user.commandOptions.get(2);
         user.getInvoker().addCommand(milkCommand);//adding milk command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
-
+        amountDisplay.setText("$" + Account.getInstance().getAmountString());
     }
 
     @FXML
@@ -154,6 +156,7 @@ public class GamePlay_Controller {
         // TODO: add lavender syrup functionality
         InGameCommand syrupCommand = user.commandOptions.get(1);
         user.getInvoker().addCommand(syrupCommand);//adding syrup command to queue
+        amountDisplay.setText("$" + Account.getInstance().getAmountString());
     }
 
     @FXML
@@ -168,6 +171,7 @@ public class GamePlay_Controller {
         // TODO: cashier check functionality
         InGameCommand orderCommand = user.commandOptions.get(3);
         user.getInvoker().addCommand(orderCommand);//adding orderup command to queue
+        amountDisplay.setText("$" + Account.getInstance().getAmountString());
     }
     @FXML
     private Button trash_button;
@@ -178,6 +182,7 @@ public class GamePlay_Controller {
        // walk(Location.TRASH, mybarista, barista);
         InGameCommand trashCommand = user.commandOptions.get(4);
         user.getInvoker().addCommand(trashCommand);//adding trash command to queue
+        amountDisplay.setText("$" + Account.getInstance().getAmountString());
     }
     private void initializeLocations(){
         locations = new  HashMap<Location, Pair<Double, Double>>();
