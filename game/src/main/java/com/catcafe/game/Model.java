@@ -1,4 +1,5 @@
 package com.catcafe.game;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -20,6 +21,7 @@ enum Location{
     LINE_1,
     LINE_2,
     LINE_3,
+    OFF_SCREEN,
     REGISTER,
     COFFEE_MACHINE,
     MILK_STEAMER,
@@ -142,6 +144,10 @@ public class Model {
      */
     public synchronized int addData(Character character, Location location, Requestable drink, Boolean hasRequest, double patienceLevel){
         int id = getNextId();
+        if(human.containsKey(id)){
+            printModel();
+            throw new RuntimeException("Something bad happened with model ids. multiple have id: " + id);
+        }
         human.put(id, new HashMap<Attribute,Object>());
         human.get(id).put(Attribute.CHARACTER, character);
         human.get(id).put(Attribute.LOCATION, location);
@@ -149,8 +155,17 @@ public class Model {
         human.get(id).put(Attribute.REQUEST, hasRequest);
         human.get(id).put(Attribute.PATIENCE, patienceLevel);
         updateLocationStatus(location, id);
+        if(hasRequest){
+            try {
+                System.out.println("HEREEEE");
+                view.addNPC(id, character, location);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         //TODO: Alert view that item with id has been created
         // view.alertChange(id)
+        printModel();
         return id;
     }
 
@@ -167,7 +182,13 @@ public class Model {
             // make new location true
             updateLocationStatus((Location) value, id);
             //System.out.println("ID = " + id);
-            view.updateLocation(id, (Location) value);
+            if((Double)getData(id, Attribute.PATIENCE)==-1){
+                view.updateLocation(id, (Location) value);
+            }
+            else{
+                view.updateLocationNoWalk(id, (Location) value);
+            }
+
         }
         human.get(id).replace(attribute, value);
         //TODO: Alert view that item with id has changed
@@ -176,7 +197,8 @@ public class Model {
         //make it so nobody is standing there
         updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
         human.remove(id);
-        //lineMoveUp();
+        view.removeNPC(id);
+        lineMoveUp();
     }
 
     /**
@@ -199,18 +221,19 @@ public class Model {
         }};
     }
     private synchronized void lineMoveUp(){
-        //System.out.println("here");
-        //printModel();
+        System.out.println("line move up");
+        printModel();
         if(occupiedLocations.get(Location.LINE_0)==-1){
             //move everyone up
-            //System.out.println("here2");
             for(Location spot: lineLocations){
+                System.out.println(spot);
                 if(occupiedLocations.get(spot)!=-1){
                     //System.out.println("here3");
                     //found a person lets move them to the first empty spot
                     int id = occupiedLocations.get(spot);
-                    //System.out.println("here4");
+                   //System.out.println("here4");
                     modifyData(id, Attribute.LOCATION, getNextCustomerLocation());
+                    printModel();
                 }
             }
         }
@@ -220,7 +243,7 @@ public class Model {
     }
     private void printModel(){
         for(int key: human.keySet()){
-            System.out.println(human.get(key));
+            System.out.println(key + " " + " " + human.get(key));
         }
     }
     public void updateMoneyAmount(){
