@@ -27,6 +27,7 @@ enum Location{
     MILK_STEAMER,
     SYRUPS,
     TRASH,
+    THOUGHT_BUBBLE,
     CAT_1,
     CAT_2,
     CAT_FOOD_BAG,
@@ -63,6 +64,8 @@ enum Attribute{
 public class Model {
     private HashMap<Integer, HashMap<Attribute,Object>> human;
     private HashMap<Integer, HashMap<Attribute,Object>> cat;
+    private HashMap<Integer, HashMap<Attribute,Object>> drinkRequest;
+    private HashMap<Integer, HashMap<Attribute,Object>> drinkCup;
     private String moneyAmount;
     private int nextId;
     private GamePlay_Controller view;
