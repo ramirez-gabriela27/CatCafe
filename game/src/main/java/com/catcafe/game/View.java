@@ -320,7 +320,7 @@ class CoffeeSyrupView extends DrinkView{
     public CoffeeSyrupView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
         cupImage = new Image(new FileInputStream("src/main/resources/assets/beverages/lavendercoffee2.png" ));
-        thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/lavendercoffee2.png" ));
+        thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/lavendercoffeeRequest.png" ));
     }
 }
 

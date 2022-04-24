@@ -414,6 +414,7 @@ public class GamePlay_Controller {
     private ImageView requestGraphic;
     @FXML
     public void updateCurrentRequestBubble(Requestable newRequest){
+        System.out.println("Updating request bubble" + newRequest.toString());
         try {
             DrinkView updateRequest = DrinkView.makeDrink(newRequest, 55, new Pair<>(376.0, 430.0));
             requestGraphic.setImage(updateRequest.thoughtBubbleImage);
@@ -422,5 +423,12 @@ public class GamePlay_Controller {
             e.printStackTrace();
 
         }
+    }
+
+    @FXML
+    public void hideDrinkRequest(){
+
+        System.out.println("Hiding request bubble");
+        requestGraphic.setOpacity(0.0);
     }
 }
