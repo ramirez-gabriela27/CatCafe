@@ -17,6 +17,7 @@ public class PlayableCharacter {
         chosenCharacter = selectedCharacter;
        id = Model.getInstance().addData(selectedCharacter, Location.REGISTER, Requestable.NONE, false, -1);
        carryingItem = null;
+       //carryingItem.graphicName = Requestable.NONE;
     }
     public static PlayableCharacter getInstance(){
         if(theChar == null){
