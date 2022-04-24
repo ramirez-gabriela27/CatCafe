@@ -53,6 +53,14 @@ public class GamePlay_Controller {
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
         //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
         customer1.setVisible(false);
+        customer1.setX(0);
+        customer1.setY(0);
+        customer2.setX(0);
+        customer2.setY(0);
+        customer3.setX(0);
+        customer3.setY(0);
+        customer4.setX(0);
+        customer4.setY(0);
         customer2.setVisible(false);
         customer3.setVisible(false);
         customer4.setVisible(false);

@@ -128,6 +128,7 @@ class GabyView extends CharacterView{
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
         walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkLeft.gif" ));
         walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkRight.gif" ));
+
     }
 }
 class KatyView extends CharacterView{
