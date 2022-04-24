@@ -51,7 +51,7 @@ public abstract class CharacterView{
         x = newLoc.getKey();;
         y = newLoc.getValue();
     }
-    public static CharacterView makeCharacter(Character choice, int objectID,Pair<Double, Double>initialLocation ) throws IOException {
+    public static CharacterView makeCharacter(Character choice, int objectID,Pair<Double, Double> initialLocation ) throws IOException {
         switch (choice){
             case ANJALA -> {
                 return new AnjalaView(objectID, initialLocation);

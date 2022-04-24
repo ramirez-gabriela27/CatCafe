@@ -122,13 +122,14 @@ class Cat extends NPC{
 class Customer extends NPC{
     public Customer(long patienceThreshold){
         super(patienceThreshold);
-        objectID = Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(),Requestable.NONE, false, patienceLevel);
+        addRequest(new CustomerRequest());
+        objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), request.requestedItem.getGraphicName(), true,patienceLevel);
     }
     public Customer(){
         super();
-        objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), Requestable.NONE, false,patienceLevel);
-        System.out.println("A customer has spawned! Id = " + objectID);
         addRequest(new CustomerRequest());
+        objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), request.requestedItem.getGraphicName(), true,patienceLevel);
+        System.out.println("A customer has spawned! Id = " + objectID);
     }
     @Override
     public void destroy() {

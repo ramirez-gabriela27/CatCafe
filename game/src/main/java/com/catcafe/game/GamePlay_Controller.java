@@ -4,12 +4,8 @@ import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -19,11 +15,11 @@ import javafx.util.Duration;
 import javafx.util.Pair;
 import javafx.scene.text.Text;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.time.Instant;
+import java.util.Collections;
 import java.util.HashMap;
-import java.nio.file.Path;
+import java.util.Set;
 
 public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
@@ -38,8 +34,11 @@ public class GamePlay_Controller {
     private CharacterView mybarista;
     InGameInteractiveUser user;
     @FXML private ImageView barista;
-
     @FXML private Text amountDisplay;
+    @FXML private ImageView customer1;
+    @FXML private ImageView customer2;
+    @FXML private ImageView customer3;
+    @FXML private ImageView customer4;
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     public GamePlay_Controller() throws IOException {
@@ -48,17 +47,14 @@ public class GamePlay_Controller {
         mybarista= CharacterView.makeCharacter(playableCharacter.getCharacter(),playableCharacter.getId(), new Pair<>(360.0, 360.0));
         inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
         user = new InGameInteractiveUser(playableCharacter);
-        //start game logic
-        //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
-        //interactive
-        DemoLevel test = new DemoLevel(user, playableCharacter, this);
-        Thread t = new Thread(test);
-        t.start();
-
     }
 
     public synchronized void initializeImageViews(ImageView barista){
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
+        inGameCharacters.put(-1, new Pair<>(customer1, null));
+        inGameCharacters.put(-2, new Pair<>(customer2, null));
+        inGameCharacters.put(-3, new Pair<>(customer3, null));
+        inGameCharacters.put(-4, new Pair<>(customer4, null));
         barista.setImage(mybarista.frontImage);
     }
     @FXML
@@ -113,10 +109,14 @@ public class GamePlay_Controller {
         startButtonPicture.setOpacity(0);
         startButtonPicture.setDisable(true);
         startButton.setDisable(true);
+        //start game logic
+        //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
+        //interactive
+        DemoLevel test = new DemoLevel(user, playableCharacter, this);
+        Thread t = new Thread(test);
+        t.start();
     }
 
-    @FXML
-    private ImageView customer;
 
     @FXML
     private Button coffee_button;
@@ -192,8 +192,13 @@ public class GamePlay_Controller {
         locations.put(Location.MILK_STEAMER, new Pair<Double,Double>(350.0, 260.0));
         locations.put(Location.SYRUPS, new Pair<Double,Double>(250.0, 260.0));
         locations.put(Location.TRASH, new Pair<Double, Double>(450.0, 260.0));
+        locations.put(Location.OFF_SCREEN, new Pair<>(1000.0, 494.0));
+        locations.put(Location.LINE_0, new Pair<>(300.0, 494.0));
+        locations.put(Location.LINE_1, new Pair<>(300.0, 494.0));
+        locations.put(Location.LINE_2, new Pair<>(300.0, 494.0));
+        locations.put(Location.LINE_3, new Pair<>(300.0, 494.0));
     }
-    protected synchronized void walk( Location destination, CharacterView character, ImageView characterImageView){
+    protected void walk( Location destination, CharacterView character, ImageView characterImageView){
         //uppack the current location coordinates from the chracter data structure
         Pair<Double,Double> currentLoc = character.getLocation();
         Double currentX = currentLoc.getKey();
@@ -258,6 +263,7 @@ public class GamePlay_Controller {
     }
     @FXML
     public void updateLocation(int objectId, Location location){
+        System.out.println(objectId);
         if(!inGameCharacters.containsKey(objectId)){
             throw new IllegalArgumentException("Invalid ID" + objectId+ "Current: " + inGameCharacters.keySet());
         }
@@ -280,5 +286,28 @@ public class GamePlay_Controller {
                 amountDisplay.setText("$" + newAmountString);
             }
         });
+    }
+    public synchronized void addNPC(int id, Character character, Location location) throws IOException {
+        //https://www.tutorialspoint.com/find-minimum-element-of-hashset-in-java#:~:text=To%20get%20the%20minimum%20element,min()%20method.
+        Set<Integer> keys = inGameCharacters.keySet();
+        int emptySpot = Collections.min(keys);
+        System.out.println(emptySpot);
+        if(emptySpot>=0){
+            throw new RuntimeException("No space for a new NPC");
+        }
+        else {
+            Pair<ImageView, CharacterView> newNPC = inGameCharacters.remove(emptySpot);
+            ImageView imageView = newNPC.getKey();
+            Pair<Double, Double> startingLocation = locations.get(Location.OFF_SCREEN);
+            CharacterView characterView = CharacterView.makeCharacter(character, id, startingLocation);
+            inGameCharacters.put(id, new Pair<>(imageView, characterView));
+            imageView.setLayoutX(startingLocation.getKey());
+            imageView.setLayoutY(startingLocation.getValue());
+            imageView.setImage(characterView.getFrontImage());
+            updateLocation(id, location);
+            System.out.println("got here");
+        }
+    }
+    public void removeNPC(){
     }
 }

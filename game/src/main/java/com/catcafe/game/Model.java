@@ -1,4 +1,5 @@
 package com.catcafe.game;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -20,6 +21,7 @@ enum Location{
     LINE_1,
     LINE_2,
     LINE_3,
+    OFF_SCREEN,
     REGISTER,
     COFFEE_MACHINE,
     MILK_STEAMER,
@@ -142,6 +144,10 @@ public class Model {
      */
     public synchronized int addData(Character character, Location location, Requestable drink, Boolean hasRequest, double patienceLevel){
         int id = getNextId();
+        if(human.containsKey(id)){
+            printModel();
+            throw new RuntimeException("Something bad happened with model ids. multiple have id: " + id);
+        }
         human.put(id, new HashMap<Attribute,Object>());
         human.get(id).put(Attribute.CHARACTER, character);
         human.get(id).put(Attribute.LOCATION, location);
@@ -149,8 +155,17 @@ public class Model {
         human.get(id).put(Attribute.REQUEST, hasRequest);
         human.get(id).put(Attribute.PATIENCE, patienceLevel);
         updateLocationStatus(location, id);
+        if(hasRequest){
+            try {
+                System.out.println("HEREEEE");
+                view.addNPC(id, character, location);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         //TODO: Alert view that item with id has been created
         // view.alertChange(id)
+        printModel();
         return id;
     }
 
@@ -220,7 +235,7 @@ public class Model {
     }
     private void printModel(){
         for(int key: human.keySet()){
-            System.out.println(human.get(key));
+            System.out.println(key + " " + " " + human.get(key));
         }
     }
     public void updateMoneyAmount(){
