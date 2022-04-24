@@ -39,7 +39,7 @@ public class GamePlay_Controller {
     InGameInteractiveUser user;
     @FXML private ImageView barista;
     @FXML private Text amountDisplay;
-
+    private Text moneyDisplay;
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     public GamePlay_Controller() throws IOException {
