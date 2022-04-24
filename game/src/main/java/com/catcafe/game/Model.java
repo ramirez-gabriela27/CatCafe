@@ -61,6 +61,7 @@ enum Attribute{
 public class Model {
     private HashMap<Integer, HashMap<Attribute,Object>> human;
     private HashMap<Integer, HashMap<Attribute,Object>> cat;
+    private String moneyAmount;
     private int nextId;
     private GamePlay_Controller view;
     private final Location[] lineLocations = {Location.LINE_0, Location.LINE_1, Location.LINE_2, Location.LINE_3};
@@ -77,6 +78,7 @@ public class Model {
             put(Location.LINE_2, -1);
             put(Location.LINE_3, -1);
         }};
+        moneyAmount = Account.getInstance().getAmountString();
     }
     public static synchronized Model getInstance(){
         if(theModel == null){
@@ -173,7 +175,7 @@ public class Model {
         //make it so nobody is standing there
         updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
         human.remove(id);
-        lineMoveUp();
+        //lineMoveUp();
     }
 
     /**
@@ -215,6 +217,10 @@ public class Model {
         for(int key: human.keySet()){
             System.out.println(human.get(key));
         }
+    }
+    public void updateMoneyAmount(){
+        moneyAmount = Account.getInstance().getAmountString();
+        view.updateMoneyDisplay(moneyAmount);
     }
 
 }
