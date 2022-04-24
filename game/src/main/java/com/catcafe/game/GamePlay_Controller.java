@@ -1,6 +1,7 @@
 package com.catcafe.game;
 
 import javafx.animation.PathTransition;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +38,7 @@ public class GamePlay_Controller {
     InGameInteractiveUser user;
     @FXML private ImageView barista;
     @FXML private Button amountDisplay;
+    private Button moneyDisplay;
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     public GamePlay_Controller() throws IOException {
@@ -57,6 +59,7 @@ public class GamePlay_Controller {
     public synchronized void initializeImageViews(ImageView barista){
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
         barista.setImage(mybarista.frontImage);
+        moneyDisplay = amountDisplay;
 
     }
     @FXML
@@ -182,7 +185,6 @@ public class GamePlay_Controller {
        // walk(Location.TRASH, mybarista, barista);
         InGameCommand trashCommand = user.commandOptions.get(4);
         user.getInvoker().addCommand(trashCommand);//adding trash command to queue
-        amountDisplay.setText("$" + Account.getInstance().getAmountString());
     }
     private void initializeLocations(){
         locations = new  HashMap<Location, Pair<Double, Double>>();
@@ -267,6 +269,17 @@ public class GamePlay_Controller {
             }
             walk(location, charInfo.getValue(), charInfo.getKey());
         }
-
+    }
+    //https://stackoverflow.com/questions/17850191/why-am-i-getting-java-lang-illegalstateexception-not-on-fx-application-thread
+    @FXML
+    public void updateMoneyDisplay(String newAmountString){
+        System.out.println(amountDisplay);
+        System.out.println(newAmountString);
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                amountDisplay.setText("$" + newAmountString);
+            }
+        });
     }
 }
