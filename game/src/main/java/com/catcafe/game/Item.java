@@ -20,7 +20,7 @@ abstract class Item{
             return false;
         }
         //check if the descriptions are exactly the same
-        else if(item.getDescription() == this.getDescription()){
+        else if(createdCoffee.compareTo(requestedCoffee) == 0){
             return true;
         }
         else{
