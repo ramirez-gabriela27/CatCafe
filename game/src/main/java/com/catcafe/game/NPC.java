@@ -32,7 +32,6 @@ public abstract class NPC implements Patience{
         if(this.request != null){
             throw new RuntimeException("Cannot add new request when NPC already has a request.");
         }
-        System.out.println("NPC id " + objectID + " has a request for " + request.getRequestedItem().getDescription());
         this.request = request;
         Model.getInstance().modifyData(objectID, Attribute.DRINK, request.getRequestedItem().getGraphicName());
         Model.getInstance().modifyData(objectID, Attribute.REQUEST, true);
@@ -45,8 +44,13 @@ public abstract class NPC implements Patience{
 
     @Override
     public void decreasePatience() {
-        patienceLevel -=patienceChangeAmount;
-        sendPatienceInfoToModel();
+        if (patienceLevel > 0) {
+            patienceLevel -= patienceChangeAmount;
+            sendPatienceInfoToModel();
+        }
+        else{
+            return;
+        }
     }
 
     @Override
@@ -130,6 +134,7 @@ class Customer extends NPC{
         addRequest(new CustomerRequest());
         objectID=Model.getInstance().addData(Character.randomCharacter(),Model.getInstance().getNextCustomerLocation(), request.requestedItem.getGraphicName(), true,patienceLevel);
         System.out.println("A customer has spawned! Id = " + objectID);
+        System.out.println("NPC id " + objectID + " has a request for " + request.getRequestedItem().getDescription());
     }
     @Override
     public void destroy() {

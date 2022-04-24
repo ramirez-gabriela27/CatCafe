@@ -21,10 +21,16 @@ public abstract class CharacterView{
     Image walkingCarryLeft;
     Image walkingRight;
     Image walkingLeft;
+    static Image noImage;
     public CharacterView(int objectId, Pair<Double, Double>initialLocation){
         this.objectID = objectId;
         x = initialLocation.getKey();
         y = initialLocation.getValue();
+        try {
+            noImage = new Image(new FileInputStream("src/main/resources/assets/characters/empty.png" ));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
     public int getObjectID(){
         return objectID;
@@ -67,6 +73,9 @@ public abstract class CharacterView{
             }
             default -> throw new IllegalArgumentException("Illegal character choice.");
         }
+    }
+    public static Image getNoImg(){
+        return noImage;
     }
 }
 

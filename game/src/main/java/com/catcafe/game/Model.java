@@ -182,7 +182,13 @@ public class Model {
             // make new location true
             updateLocationStatus((Location) value, id);
             //System.out.println("ID = " + id);
-            view.updateLocation(id, (Location) value);
+            if((Double)getData(id, Attribute.PATIENCE)==-1){
+                view.updateLocation(id, (Location) value);
+            }
+            else{
+                view.updateLocationNoWalk(id, (Location) value);
+            }
+
         }
         human.get(id).replace(attribute, value);
         //TODO: Alert view that item with id has changed
@@ -191,7 +197,8 @@ public class Model {
         //make it so nobody is standing there
         updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
         human.remove(id);
-        //lineMoveUp();
+        view.removeNPC(id);
+        lineMoveUp();
     }
 
     /**
@@ -214,18 +221,19 @@ public class Model {
         }};
     }
     private synchronized void lineMoveUp(){
-        //System.out.println("here");
-        //printModel();
+        System.out.println("line move up");
+        printModel();
         if(occupiedLocations.get(Location.LINE_0)==-1){
             //move everyone up
-            //System.out.println("here2");
             for(Location spot: lineLocations){
+                System.out.println(spot);
                 if(occupiedLocations.get(spot)!=-1){
                     //System.out.println("here3");
                     //found a person lets move them to the first empty spot
                     int id = occupiedLocations.get(spot);
-                    //System.out.println("here4");
+                   //System.out.println("here4");
                     modifyData(id, Attribute.LOCATION, getNextCustomerLocation());
+                    printModel();
                 }
             }
         }
