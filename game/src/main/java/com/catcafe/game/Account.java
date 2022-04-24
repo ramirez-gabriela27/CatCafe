@@ -23,4 +23,7 @@ public class Account {
         System.out.println("Adding $" + amountToRemove +". Amount in bank: $" + getAmount());
     }
     public double getAmount(){return amount;}
+    public String getAmountString(){
+        return String.format("%.2f", amount);
+    }
 }
