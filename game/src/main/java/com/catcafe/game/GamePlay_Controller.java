@@ -327,9 +327,12 @@ public class GamePlay_Controller {
                 case COFFEE -> characterImageView.setImage(character.getFrontImageCoffee());
                 case SYRUP_COFFEE -> characterImageView.setImage(character.getFrontImageLavCoffee());
                 case SYRUP_LATTE -> characterImageView.setImage(character.getFrontImageLavLatte());
+                case LATTE -> characterImageView.setImage(character.getFrontImageLatte());
             }
+        }else{
+            characterImageView.setImage(character.getFrontImage());
         }
-        characterImageView.setImage(character.getFrontImage());
+
     }
     public void updateLocation(int objectId, Location location){
         System.out.println(objectId);
