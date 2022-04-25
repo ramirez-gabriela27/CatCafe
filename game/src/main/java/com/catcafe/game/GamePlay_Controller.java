@@ -21,9 +21,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
 public class GamePlay_Controller {
     // Handles TitleBar (minimize and close window)
     //https://mkyong.com/java/how-to-write-an-image-to-file-imageio/
@@ -42,25 +39,14 @@ public class GamePlay_Controller {
     @FXML private ImageView customer2;
     @FXML private ImageView customer3;
     @FXML private ImageView customer4;
-    //@FXML private ImageView cup;
-    //private DrinkView drinkView;
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     public GamePlay_Controller() throws IOException {
         initializeLocations();
         playableCharacter = PlayableCharacter.getInstance();
         mybarista= CharacterView.makeCharacter(playableCharacter.getCharacter(),playableCharacter.getId(), new Pair<>(360.0, 360.0));
-        //drinkView = DrinkView.makeCharacter(playableCharacter.getCharacter(),playableCharacter.getId(), new Pair<>(360.0, 360.0));
         inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
         user = new InGameInteractiveUser(playableCharacter);
-
-        //start game logic
-        //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
-        //interactive
-        DemoLevel test = new DemoLevel(user, playableCharacter, this);
-        Thread t = new Thread(test);
-        t.start();
-
     }
 
     public synchronized void initializeImageViews(ImageView barista){
@@ -83,7 +69,6 @@ public class GamePlay_Controller {
         inGameCharacters.put(-3, new Pair<>(customer3, null));
         inGameCharacters.put(-4, new Pair<>(customer4, null));
         barista.setImage(mybarista.frontImage);
-        //cup.setImage(drinkView.getCupImage());
     }
     @FXML
     private Button close_button;
@@ -158,13 +143,6 @@ public class GamePlay_Controller {
         user.getInvoker().addCommand(coffeeCommand);//adding make coffee command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
-//        try{
-//            drinkView = new CoffeeView(drinkView.objectID, new Pair<>(drinkView.x, drinkView.y));
-//        }catch(Exception e){
-//            System.out.println("something went wrong in handleCoffeeAction");
-//        }
-//        cup.setImage(drinkView.getCupImage());
-
     }
 
     @FXML
@@ -247,55 +225,11 @@ public class GamePlay_Controller {
         }
         else if(newX - currentX <0){
             //set the image displayed to be the walking left gif if the character is going left
-            if(playableCharacter.getCarryingItem() != null) {
-
-                switch (playableCharacter.getCarryingItem().graphicName) {
-                    case NONE:
-                        characterImageView.setImage(character.getWalkingCarryLeft());
-                        break;
-                    case COFFEE:
-                        characterImageView.setImage(character.getWalkingCarryLeftCoffee());
-                        break;
-                    case LATTE:
-                        characterImageView.setImage(character.getWalkingCarryLeftLatte());
-                        break;
-                    case SYRUP_LATTE:
-                        characterImageView.setImage(character.getWalkingCarryLeftLavLatte());
-                        break;
-                    case SYRUP_COFFEE:
-                        characterImageView.setImage(character.getWalkingCarryLeftLavCoffee());
-                        break;
-                }
-            }else{
-                characterImageView.setImage(character.getWalkingCarryLeft());
-            }
-
+            characterImageView.setImage(character.getWalkingCarryLeft());
         }
         else{
             //set the image displayed to be the walking right gif if the character is going right
-            if(playableCharacter.getCarryingItem() != null) {
-
-                switch (playableCharacter.getCarryingItem().graphicName) {
-                    case NONE:
-                        characterImageView.setImage(character.getWalkingCarryRight());
-                        break;
-                    case COFFEE:
-                        characterImageView.setImage(character.getWalkingCarryRightCoffee());
-                        break;
-                    case LATTE:
-                        characterImageView.setImage(character.getWalkingCarryRightLatte());
-                        break;
-                    case SYRUP_LATTE:
-                        characterImageView.setImage(character.getWalkingCarryRightLavLatte());
-                        break;
-                    case SYRUP_COFFEE:
-                        characterImageView.setImage(character.getWalkingCarryRightLavCoffee());
-                        break;
-                }
-            }else{
-                characterImageView.setImage(character.getWalkingCarryRight());
-            }
-
+            characterImageView.setImage(character.getWalkingCarryRight());
         }
 
         //creating path based on coordinates of current and new locations
@@ -332,19 +266,8 @@ public class GamePlay_Controller {
             assert(true);
         }
 
-        //change image back to the front facing image
-        if(playableCharacter.getCarryingItem()!= null){
-            switch (playableCharacter.getCarryingItem().graphicName){
-                case NONE -> characterImageView.setImage(character.getFrontImage());
-                case COFFEE -> characterImageView.setImage(character.getFrontImageCoffee());
-                case SYRUP_COFFEE -> characterImageView.setImage(character.getFrontImageLavCoffee());
-                case SYRUP_LATTE -> characterImageView.setImage(character.getFrontImageLavLatte());
-                case LATTE -> characterImageView.setImage(character.getFrontImageLatte());
-            }
-        }else{
-            characterImageView.setImage(character.getFrontImage());
-        }
-
+        //change image back to the fron facing image
+        characterImageView.setImage(character.getFrontImage());
     }
     public void updateLocation(int objectId, Location location){
         System.out.println(objectId);
@@ -460,26 +383,5 @@ public class GamePlay_Controller {
 
             }
         }
-    }
-    @FXML
-    private ImageView requestGraphic;
-    @FXML
-    public void updateCurrentRequestBubble(Requestable newRequest){
-        System.out.println("Updating request bubble" + newRequest.toString());
-        try {
-            DrinkView updateRequest = DrinkView.makeDrink(newRequest, 55, new Pair<>(376.0, 430.0));
-            requestGraphic.setImage(updateRequest.thoughtBubbleImage);
-            requestGraphic.setOpacity(100.0);
-        } catch (IOException e) {
-            e.printStackTrace();
-
-        }
-    }
-
-    @FXML
-    public void hideDrinkRequest(){
-
-        System.out.println("Hiding request bubble");
-        requestGraphic.setOpacity(0.0);
     }
 }
