@@ -27,6 +27,7 @@ enum Location{
     MILK_STEAMER,
     SYRUPS,
     TRASH,
+    THOUGHT_BUBBLE,
     CAT_1,
     CAT_2,
     CAT_FOOD_BAG,
@@ -63,6 +64,8 @@ enum Attribute{
 public class Model {
     private HashMap<Integer, HashMap<Attribute,Object>> human;
     private HashMap<Integer, HashMap<Attribute,Object>> cat;
+    private HashMap<Integer, HashMap<Attribute,Object>> drinkRequest;
+    private HashMap<Integer, HashMap<Attribute,Object>> drinkCup;
     private String moneyAmount;
     private int nextId;
     private GamePlay_Controller view;
@@ -174,6 +177,7 @@ public class Model {
             try {
                 System.out.println("HEREEEE");
                 view.addNPC(id, character, location);
+                updateRequestGraphic();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -213,6 +217,7 @@ public class Model {
         updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
         human.remove(id);
         view.removeNPC(id);
+        updateRequestGraphic(); //hide thought bubble because drink request fulfilled
         lineMoveUp();
     }
 
@@ -240,6 +245,7 @@ public class Model {
         printModel();
         if(occupiedLocations.get(Location.LINE_0)==-1){
             //move everyone up
+            System.out.println("First location empty, moving up the line");
             for(Location spot: lineLocations){
                 System.out.println(spot);
                 if(occupiedLocations.get(spot)!=-1){
@@ -251,7 +257,14 @@ public class Model {
                     printModel();
                 }
             }
+            //when line moves, drink request of person in front is shown
+            System.out.println("Should show drink request");
+            System.out.println((Requestable) human.get(occupiedLocations.get(Location.LINE_0)).get(Attribute.DRINK));
+
         }
+        System.out.println("person in line 0");
+        System.out.println(human.get(occupiedLocations.get(Location.LINE_0)));
+        updateRequestGraphic();
     }
     public void setView(GamePlay_Controller view){
         this.view = view;
@@ -264,6 +277,15 @@ public class Model {
     public void updateMoneyAmount(){
         moneyAmount = Account.getInstance().getAmountString();
         view.updateMoneyDisplay(moneyAmount);
+    }
+
+    public void updateRequestGraphic(){
+        if(occupiedLocations.get(Location.LINE_0) != -1){
+            view.updateCurrentRequestBubble((Requestable) human.get(occupiedLocations.get(Location.LINE_0)).get(Attribute.DRINK));
+        }
+        else{
+            view.hideDrinkRequest();
+        }
     }
 
 }

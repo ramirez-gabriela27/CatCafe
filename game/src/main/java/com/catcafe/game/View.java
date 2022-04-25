@@ -38,6 +38,18 @@ abstract class CharacterView extends View {
     Image walkingCarryLeft;
     Image walkingRight;
     Image walkingLeft;
+    Image frontImageCoffee;
+    Image walkingCarryRightCoffee;
+    Image walkingCarryLeftCoffee;
+    Image frontImageLatte;
+    Image walkingCarryRightLatte;
+    Image walkingCarryLeftLatte;
+    Image frontImageLavLatte;
+    Image walkingCarryRightLavLatte;
+    Image walkingCarryLeftLavLatte;
+    Image frontImageLavCoffee;
+    Image walkingCarryRightLavCoffee;
+    Image walkingCarryLeftLavCoffee;
     Character name;
     static Image noImage;
 
@@ -78,6 +90,53 @@ abstract class CharacterView extends View {
         return frontImage;
     }
 
+    public Image getFrontImageCoffee() {
+        return frontImageCoffee;
+    }
+
+    public Image getWalkingCarryLeftCoffee() {
+        return walkingCarryLeftCoffee;
+    }
+    public Image getWalkingCarryRightCoffee(){
+        return walkingCarryRightCoffee;
+    }
+
+    public Image getFrontImageLatte() {
+        return frontImageLatte;
+    }
+
+    public Image getWalkingCarryLeftLatte() {
+        return walkingCarryLeftLatte;
+    }
+
+    public Image getWalkingCarryRightLatte() {
+        return walkingCarryRightLatte;
+    }
+
+    public Image getFrontImageLavCoffee() {
+        return frontImageLavCoffee;
+    }
+
+    public Image getWalkingCarryLeftLavCoffee() {
+        return walkingCarryLeftLavCoffee;
+    }
+
+    public Image getWalkingCarryRightLavCoffee() {
+        return walkingCarryRightLavCoffee;
+    }
+
+    public Image getFrontImageLavLatte() {
+        return frontImageLavLatte;
+    }
+
+    public Image getWalkingCarryLeftLavLatte() {
+        return walkingCarryLeftLavLatte;
+    }
+
+    public Image getWalkingCarryRightLavLatte() {
+        return walkingCarryRightLavLatte;
+    }
+
     public static CharacterView makeCharacter(Character choice, int objectID, Pair<Double, Double> initialLocation) throws IOException {
         switch (choice) {
             case ANJALA -> {
@@ -106,6 +165,20 @@ class AnjalaView extends CharacterView{
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRight.gif" ));
         walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkLeft.gif" ));
         walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkRight.gif" ));
+
+        walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeftCoffee.gif" ));
+        walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRightCoffee.gif" ));
+        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeftLatte.gif" ));
+        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRightLatte.gif" ));
+        walkingCarryLeftLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeftLavCoffee.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRightLavCoffee.gif" ));
+        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryLeftLavLatte.gif" ));
+        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/WalkCarryRightLavLatte.gif" ));
+
+        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/AnjalaCoffee.png" ));
+        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/AnjalaLatte.png" ));
+        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/AnjalaLavCoffee.png" ));
+        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/AnjalaChar/AnjalaLavLatte.png" ));
     }
 }
 class EmmaView extends CharacterView{
@@ -117,6 +190,20 @@ class EmmaView extends CharacterView{
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryRight.gif" ));
         walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkLeft.gif" ));
         walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkRight.gif" ));
+
+        walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryLeftCoffee.gif" ));
+        walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryRightCoffee.gif" ));
+        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryLeftLatte.gif" ));
+        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryRightLatte.gif" ));
+        walkingCarryLeftLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryLeftLavCoffee.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryRightLavCoffee.gif" ));
+        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryLeftLavLatte.gif" ));
+        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/WalkCarryRightLavLatte.gif" ));
+
+        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/EmmaCoffee.png" ));
+        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/EmmaLatte.png" ));
+        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/EmmaLavCoffee.png" ));
+        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/EmmaChar/EmmaLavLatte.png" ));
     }
 }
 class GabyView extends CharacterView{
@@ -128,7 +215,20 @@ class GabyView extends CharacterView{
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
         walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkLeft.gif" ));
         walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkRight.gif" ));
+        //replace these with the real gifs when done
+        walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
+        walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
+        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
+        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
+        walkingCarryLeftLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
+        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
+        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
 
+        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
+        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
+        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
+        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
     }
 }
 class KatyView extends CharacterView{
@@ -140,6 +240,19 @@ class KatyView extends CharacterView{
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
         walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkLeft.gif" ));
         walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkRight.gif" ));
+        //replace these with the real gifs when done
+        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
+        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
+        walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
+        walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
+        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
+        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
+        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
+        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
+        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
+        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
     }
 }
 
@@ -153,6 +266,10 @@ class DrinkView extends View{
         y = initialLocation.getValue();
     }
 
+    public void setCupImage(Image cupImage) throws IOException {
+        this.cupImage = cupImage;
+    }
+
     public Image getCupImage(){
         return cupImage;
     }
@@ -161,22 +278,33 @@ class DrinkView extends View{
         return thoughtBubbleImage;
     }
 
-    public static DrinkView makeCharacter(Character choice, int objectID, Pair<Double, Double> initialLocation) throws IOException {
+    public static DrinkView makeDrink(Requestable choice, int objectID, Pair<Double, Double> initialLocation) throws IOException {
         switch (choice) {
-            case ANJALA -> {
+            case COFFEE -> {
                 return new CoffeeView(objectID, initialLocation);
             }
-            case EMMA -> {
+            case LATTE -> {
                 return new LatteView(objectID, initialLocation);
             }
-            case GABY -> {
+            case SYRUP_COFFEE -> {
                 return new CoffeeSyrupView(objectID, initialLocation);
             }
-            case KATY -> {
+            case SYRUP_LATTE -> {
                 return new LavLatteView(objectID, initialLocation);
+            }
+            case NONE -> {
+                return new NoneDrinkView(objectID, initialLocation);
             }
             default -> throw new IllegalArgumentException("Illegal drink choice.");
         }
+    }
+}
+
+class CupView extends DrinkView{
+    public CupView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
+        cupImage = new Image(new FileInputStream("src/main/resources/assets/beverages/cup.png" ));
+        thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/coffeeRequest.png" ));
     }
 }
 
@@ -200,7 +328,7 @@ class CoffeeSyrupView extends DrinkView{
     public CoffeeSyrupView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
         cupImage = new Image(new FileInputStream("src/main/resources/assets/beverages/lavendercoffee2.png" ));
-        thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/lavendercoffee2.png" ));
+        thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/lavendercoffeeRequest.png" ));
     }
 }
 
@@ -209,5 +337,13 @@ class LavLatteView extends DrinkView{
         super(objectId,initialLocation);
         cupImage = new Image(new FileInputStream("src/main/resources/assets/beverages/lavenderLatte.png" ));
         thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/lavLatteRequest.png" ));
+    }
+}
+
+class NoneDrinkView extends DrinkView{
+    public NoneDrinkView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
+        cupImage = new Image(new FileInputStream("src/main/resources/assets/characters/empty.png" ));
+        thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/requestCloud.png" ));
     }
 }
