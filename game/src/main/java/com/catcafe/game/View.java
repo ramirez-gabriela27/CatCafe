@@ -209,19 +209,19 @@ class GabyView extends CharacterView{
         walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkLeft.gif" ));
         walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkRight.gif" ));
         //replace these with the real gifs when done
-        walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
-        walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
-        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
-        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
-        walkingCarryLeftLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
-        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
-        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeft.gif" ));
-        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRight.gif" ));
+        walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeftCoffee.gif" ));
+        walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRightCoffee.gif" ));
+        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeftLatte.gif" ));
+        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRightLatte.gif" ));
+        walkingCarryLeftLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeftLavCoffee.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRightLavCoffee.gif" ));
+        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryLeftLavLatte.gif" ));
+        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/WalkCarryRightLavLatte.gif" ));
 
-        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
-        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
-        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
-        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/Gaby.png" ));
+        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/GabyCoffee.png" ));
+        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/GabyLatte.png" ));
+        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/GabyLavCoffee.png" ));
+        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/GabyChar/GabyLavLatte.png" ));
     }
 }
 class KatyView extends CharacterView{
@@ -233,18 +233,18 @@ class KatyView extends CharacterView{
         walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkLeft.gif" ));
         walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkRight.gif" ));
         //replace these with the real gifs when done
-        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
-        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
-        walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
-        walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
-        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
-        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
-        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeft.gif" ));
-        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
-        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
-        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
-        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
-        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/Katy.png" ));
+        walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeftLatte.gif" ));
+        walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRightLatte.gif" ));
+        walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeftCoffee.gif" ));
+        walkingCarryRightCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRightCoffee.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRightLavCoffee.gif" ));
+        walkingCarryRightLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRightLavCoffee.gif" ));
+        walkingCarryLeftLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeftLavLatte.gif" ));
+        walkingCarryRightLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRightLavLatte.gif" ));
+        frontImageCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/KatyCoffee.png" ));
+        frontImageLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/KatyLatte.png" ));
+        frontImageLavCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/KatyLavCoffee.png" ));
+        frontImageLavLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/KatyLavLatte.png" ));
     }
 }
 
