@@ -148,17 +148,17 @@
                   <Image url="@../../../assets/characters/empty.png" />
                </image>
             </ImageView>
-             <ImageView fx:id="customer2" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="494.0" preserveRatio="true">
+             <ImageView fx:id="customer2" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" layoutX="1000.0" layoutY="494.0">
                  <image>
                      <Image url="@../../../assets/characters/empty.png" />
                  </image>
              </ImageView>
-             <ImageView fx:id="customer3" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="494.0" preserveRatio="true">
+             <ImageView fx:id="customer3" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" layoutX="1000.0" layoutY="494.0">
                  <image>
                      <Image url="@../../../assets/characters/empty.png" />
                  </image>
              </ImageView>
-             <ImageView fx:id="customer4" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="494.0" preserveRatio="true">
+             <ImageView fx:id="customer4" fitHeight="180.0" fitWidth="118.0" preserveRatio="true" layoutX="1000.0" layoutY="494.0">
                  <image>
                      <Image url="@../../../assets/characters/empty.png" />
                  </image>
