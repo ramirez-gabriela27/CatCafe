@@ -178,12 +178,12 @@
                   <Image url="@../../../assets/requests/requestCloud.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="leo" layoutX="927.0" layoutY="351.0">
+            <ImageView fx:id="leo" layoutX="910.0" layoutY="347.0">
                <image>
                   <Image url="@../../../assets/Cats/cat2.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="spot" layoutX="1070.0" layoutY="303.0">
+            <ImageView fx:id="spot" layoutX="1037.0" layoutY="318.0">
                <image>
                   <Image url="@../../../assets/Cats/cat1.png" />
                </image>
@@ -191,6 +191,11 @@
             <ImageView fx:id="luna" layoutX="766.0" layoutY="318.0">
                <image>
                   <Image url="@../../../assets/Cats/cat3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="ramona" layoutX="646.0" layoutY="347.0">
+               <image>
+                  <Image url="@../../../assets/Cats/cat4.png" />
                </image>
             </ImageView>
             <AnchorPane layoutX="310.0" layoutY="334.0">
@@ -212,7 +217,7 @@
                   <Image url="@../../../assets/buttons/startButton.png" />
                </image>
             </ImageView>
-            <Button fx:id="startButton" layoutX="401.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleStartAction" opacity="0.0" prefHeight="184.0" prefWidth="469.0">
+            <Button fx:id="startButton" layoutX="401.0" layoutY="246.0" mnemonicParsing="false" onAction="#handleStartAction" opacity="0.0" prefHeight="184.0" prefWidth="469.0">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
