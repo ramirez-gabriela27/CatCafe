@@ -95,15 +95,30 @@ public class Model {
         return thisId;
     }
     public synchronized Location getNextCustomerLocation(){
-        for(Location location: lineLocations ){
-            if(occupiedLocations.get(location) == -1){
-                //System.out.println("Get next location = " + location);
-                //printModel();
-                return location;
+
+        Location location;
+        for(int i =lineLocations.length-2; i>=0; i--){
+            location = lineLocations[i];
+            if(occupiedLocations.get(location) != -1){
+                return lineLocations[i+1];
             }
+         }
+        if(occupiedLocations.get(lineLocations[0])==-1){
+            return lineLocations[0];
         }
+        else {
+            throw new RuntimeException("All customer locations are occupied.");
+        }
+    }
+    private synchronized Location getFirstAvailableLineSpot(){
+        for(Location location: lineLocations ){
+             if(occupiedLocations.get(location) == -1){
+                return location;
+             }
+         }
         throw new RuntimeException("All customer locations are occupied.");
     }
+
     private synchronized void updateLocationStatus(Location location, Integer id){
         occupiedLocations.replace(location, id);
     }
@@ -232,7 +247,7 @@ public class Model {
                     //found a person lets move them to the first empty spot
                     int id = occupiedLocations.get(spot);
                    //System.out.println("here4");
-                    modifyData(id, Attribute.LOCATION, getNextCustomerLocation());
+                    modifyData(id, Attribute.LOCATION, getFirstAvailableLineSpot());
                     printModel();
                 }
             }

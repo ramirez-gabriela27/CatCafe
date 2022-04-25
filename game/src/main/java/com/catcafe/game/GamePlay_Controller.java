@@ -367,7 +367,7 @@ public class GamePlay_Controller {
                         + " , "
                         + inGameCharacters.get(charID).getKey().getLayoutY()
                         + " visible: "
-                        + inGameCharacters.get(charID).getKey().isVisible());;
+                        + inGameCharacters.get(charID).getKey().isVisible());
 
             }
             else{
