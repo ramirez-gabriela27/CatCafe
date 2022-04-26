@@ -18,6 +18,7 @@ import java.io.IOException;
 public class CharacterSelection_Controller {
     double x,y;
     Character selectedBarista = null;
+
     //PlayableCharacter pc = PlayableCharacter.getInstance();
     @FXML
     private Button close_button;
@@ -90,6 +91,8 @@ public class CharacterSelection_Controller {
     protected void handleEmmaAction(ActionEvent event) throws IOException {
         System.out.println("Emma selected as Barista");
         selectedBarista = Character.EMMA;
+        EmmaSelectionButton.setOpacity(0.25);
+        buttonSelected(EmmaSelectionButton);
     }
 
     @FXML
@@ -98,6 +101,7 @@ public class CharacterSelection_Controller {
     protected void handleAnjalaAction(ActionEvent event) throws IOException {
         System.out.println("Anjala selected as Barista");
         selectedBarista = Character.ANJALA;
+        buttonSelected(AnjalaSelectionButton);
     }
 
     @FXML
@@ -106,6 +110,7 @@ public class CharacterSelection_Controller {
     protected void handleKatyAction(ActionEvent event) throws IOException {
         System.out.println("Katy selected as Barista");
         selectedBarista = Character.KATY;
+        buttonSelected(KatySelectionButton);
     }
 
     @FXML
@@ -114,5 +119,19 @@ public class CharacterSelection_Controller {
     protected void handleGabyAction(ActionEvent event) throws IOException {
         System.out.println("Gaby selected as Barista");
         selectedBarista = Character.GABY;
+        buttonSelected(GabySelectionButton);
+    }
+
+    @FXML
+    protected void buttonSelected(Button button){
+        Button[] listOfButtons = {EmmaSelectionButton, AnjalaSelectionButton, GabySelectionButton, KatySelectionButton};
+        for (Button b : listOfButtons){
+            if (b == button){
+                b.setOpacity(0.25);
+            }
+            else{
+                b.setOpacity(0.0);
+            }
+        }
     }
 }
