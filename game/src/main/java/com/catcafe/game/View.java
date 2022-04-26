@@ -27,7 +27,6 @@ public abstract class View{
 
     public void setLocation(Pair<Double, Double> newLoc) {
         x = newLoc.getKey();
-        ;
         y = newLoc.getValue();
     }
 }

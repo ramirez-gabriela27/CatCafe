@@ -31,7 +31,11 @@ enum Location{
     CAT_2,
     CAT_FOOD_BAG,
     CAT_WATER_BOWL,
-    CAT_TOY_BIN;
+    CAT_TOY_BIN,
+    WAITING_1,
+    WAITING_2,
+    WAITING_3,
+    WAITING_4;
 
 }
 enum Character{

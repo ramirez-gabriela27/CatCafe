@@ -40,6 +40,7 @@ public class GamePlay_Controller {
     @FXML private ImageView customer3;
     @FXML private ImageView customer4;
     HashMap<Location, Pair<Double, Double>> locations;
+    HashMap<Location, Boolean> waitingLocations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     public GamePlay_Controller() throws IOException {
         initializeLocations();
@@ -47,20 +48,12 @@ public class GamePlay_Controller {
         mybarista= CharacterView.makeCharacter(playableCharacter.getCharacter(),playableCharacter.getId(), new Pair<>(360.0, 360.0));
         inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
         user = new InGameInteractiveUser(playableCharacter);
+        waitingLocations = new HashMap<Location, Boolean>();
     }
 
     public synchronized void initializeImageViews(ImageView barista){
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
         //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
-        customer1.setVisible(false);
-        customer1.setLayoutX(480.0);
-        customer1.setLayoutY(900.0);
-        customer2.setLayoutX(480.0);
-        customer2.setLayoutY(900.0);
-        customer3.setLayoutX(480.0);
-        customer3.setLayoutY(900.0);
-        customer4.setLayoutX(480.0);
-        customer4.setLayoutY(900.0);
         customer1.setVisible(false);
         customer2.setVisible(false);
         customer3.setVisible(false);
@@ -69,6 +62,10 @@ public class GamePlay_Controller {
         inGameCharacters.put(-2, new Pair<>(customer2, null));
         inGameCharacters.put(-3, new Pair<>(customer3, null));
         inGameCharacters.put(-4, new Pair<>(customer4, null));
+        waitingLocations.put(Location.WAITING_1, true);
+        waitingLocations.put(Location.WAITING_2, true);
+        waitingLocations.put(Location.WAITING_3, true);
+        waitingLocations.put(Location.WAITING_4, true);
         barista.setImage(mybarista.frontImage);
     }
     @FXML
@@ -144,7 +141,7 @@ public class GamePlay_Controller {
         user.getInvoker().addCommand(coffeeCommand);//adding make coffee command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
-        checkTheLine();
+        //checkTheLine();
     }
 
     @FXML
@@ -159,7 +156,7 @@ public class GamePlay_Controller {
         user.getInvoker().addCommand(milkCommand);//adding milk command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
-        checkTheLine();
+        //checkTheLine();
     }
 
     @FXML
@@ -170,7 +167,7 @@ public class GamePlay_Controller {
         InGameCommand syrupCommand = user.commandOptions.get(1);
         user.getInvoker().addCommand(syrupCommand);//adding syrup command to queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
-        checkTheLine();
+       // checkTheLine();
     }
 
     @FXML
@@ -186,7 +183,7 @@ public class GamePlay_Controller {
         InGameCommand orderCommand = user.commandOptions.get(3);
         user.getInvoker().addCommand(orderCommand);//adding orderup command to queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
-        checkTheLine();
+        //checkTheLine();
     }
     @FXML
     private Button trash_button;
@@ -197,7 +194,7 @@ public class GamePlay_Controller {
        // walk(Location.TRASH, mybarista, barista);
         InGameCommand trashCommand = user.commandOptions.get(4);
         user.getInvoker().addCommand(trashCommand);//adding trash command to queue
-        checkTheLine();
+        //checkTheLine();
     }
     private void initializeLocations(){
         locations = new  HashMap<Location, Pair<Double, Double>>();
@@ -211,6 +208,10 @@ public class GamePlay_Controller {
         locations.put(Location.LINE_1, new Pair<>(500.0, 480.0));
         locations.put(Location.LINE_2, new Pair<>(700.0, 480.0));
         locations.put(Location.LINE_3, new Pair<>(900.0, 480.0));
+        locations.put(Location.WAITING_1, new Pair<>(500.0, 250.0));
+        locations.put(Location.WAITING_2, new Pair<>(700.0, 250.0));
+        locations.put(Location.WAITING_3, new Pair<>(900.0, 250.0));
+        locations.put(Location.WAITING_4, new Pair<>(1100.0, 250.0));
     }
     protected void walk( Location destination, CharacterView character, ImageView characterImageView){
         //uppack the current location coordinates from the chracter data structure
@@ -301,9 +302,15 @@ public class GamePlay_Controller {
             if(charInfo.getValue().getLocation() == locations.get(location)){
                 return;
             }
+
             charInfo.getValue().setLocation(locations.get(location));
-            charInfo.getKey().setLayoutX(locations.get(location).getKey());
-            charInfo.getKey().setLayoutY(locations.get(location).getValue());
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    charInfo.getKey().setLayoutX(locations.get(location).getKey());
+                    charInfo.getKey().setLayoutY(locations.get(location).getValue());
+                }
+            });
             printAllLocations();
         }
     }
@@ -330,16 +337,38 @@ public class GamePlay_Controller {
         else {
             Pair<ImageView, CharacterView> newNPC = inGameCharacters.remove(emptySpot);
             ImageView imageView = newNPC.getKey();
-            //Pair<Double, Double> startingLocation = locations.get(Location.OFF_SCREEN);
+            int waitingLocation = (int)imageView.getLayoutX();
+            if (waitingLocation == locations.get(Location.WAITING_1).getKey()) {
+                leaveWaitingLocation(Location.WAITING_1);
+            }
+            else if(waitingLocation == locations.get(Location.WAITING_2).getKey()) {
+                leaveWaitingLocation(Location.WAITING_2);
+            }
+            else if(waitingLocation == locations.get(Location.WAITING_3).getKey()) {
+                leaveWaitingLocation(Location.WAITING_3);
+            }
+            else if(waitingLocation == locations.get(Location.WAITING_4).getKey()) {
+                leaveWaitingLocation(Location.WAITING_4);
+            }
+            else{
+                //throw new RuntimeException("invalid waiting location");
+            }
+
             Pair<Double, Double> startingLocation = locations.get(location);
             CharacterView characterView = CharacterView.makeCharacter(character, id, startingLocation);
             inGameCharacters.put(id, new Pair<>(imageView, characterView));
-            imageView.setLayoutX(startingLocation.getKey());
-            imageView.setLayoutY(startingLocation.getValue());
-            imageView.setImage(characterView.getFrontImage());
+
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    imageView.setLayoutX(startingLocation.getKey());
+                    imageView.setLayoutY(startingLocation.getValue());
+                    imageView.setImage(characterView.getFrontImage());
+                    imageView.setVisible(true);
+                }
+            });
             //updateLocation(id, location);
-            System.out.println("got here");
-            imageView.setVisible(true);
+
             printAllLocations();
         }
     }
@@ -349,10 +378,16 @@ public class GamePlay_Controller {
             Pair<ImageView, CharacterView> goodbyeNPC = inGameCharacters.remove(id);
             ImageView imageView = goodbyeNPC.getKey();
             //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
-            imageView.setVisible(false);
-            Pair<Double, Double> offscreen = locations.get(Location.OFF_SCREEN);
-            imageView.setLayoutX(offscreen.getKey());
-            imageView.setLayoutY(offscreen.getValue());
+            //imageView.setVisible(false);
+            Pair<Double, Double> waitingLoc = locations.get(getAvailableWaitingLocation());
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    imageView.setLayoutX(waitingLoc.getKey());
+                    imageView.setLayoutY(waitingLoc.getValue());
+                }
+            });
+
             Set<Integer> keys = inGameCharacters.keySet();
             int negID = Collections.min(keys) -1;
             inGameCharacters.put(negID, new Pair<ImageView, CharacterView>(imageView, null));
@@ -409,5 +444,17 @@ public class GamePlay_Controller {
                 imageView.setVisible(true);
             }
         }
+    }
+    private Location getAvailableWaitingLocation() {
+        for(Location location: waitingLocations.keySet()){
+            if(waitingLocations.get(location)){
+                waitingLocations.replace(location,false);
+                return location;
+            }
+        }
+        throw new RuntimeException("No available waiting location.");
+    }
+    private void leaveWaitingLocation(Location location){
+        waitingLocations.replace(location,true);
     }
 }
