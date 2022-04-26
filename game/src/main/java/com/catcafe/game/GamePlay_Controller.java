@@ -231,11 +231,11 @@ public class GamePlay_Controller {
         }
         else if(newX - currentX <0){
             //set the image displayed to be the walking left gif if the character is going left
-            characterImageView.setImage(character.getWalkingCarryLeft());
+            characterImageView.setImage(character.getWalkingLeft());
         }
         else{
             //set the image displayed to be the walking right gif if the character is going right
-            characterImageView.setImage(character.getWalkingCarryRight());
+            characterImageView.setImage(character.getWalkingRight());
         }
 
         //creating path based on coordinates of current and new locations

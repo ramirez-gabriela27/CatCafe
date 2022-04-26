@@ -231,7 +231,7 @@ class KatyView extends CharacterView{
         walkingCarryRight = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRight.gif" ));
         walkingLeft = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkLeft.gif" ));
         walkingRight = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkRight.gif" ));
-       
+
         walkingCarryLeftLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeftLatte.gif" ));
         walkingCarryRightLatte = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryRightLatte.gif" ));
         walkingCarryLeftCoffee = new Image(new FileInputStream("src/main/resources/assets/characters/KatyChar/WalkCarryLeftCoffee.gif" ));
