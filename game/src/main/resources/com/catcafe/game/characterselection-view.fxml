@@ -117,7 +117,7 @@
                               <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="AnjalaSelectionButton" layoutX="-7.0" layoutY="-7.0" mnemonicParsing="false" onAction="#handleAnjalaAction" opacity="0.0" prefHeight="267.0" prefWidth="200.0">
+                        <Button fx:id="AnjalaSelectionButton" layoutX="0" layoutY="0" mnemonicParsing="false" onAction="#handleAnjalaAction" opacity="0.0" prefHeight="260.0" prefWidth="193.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
@@ -130,7 +130,7 @@
                               <Image url="@../../../assets/characters/EmmaChar/Emma.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="EmmaSelectionButton" layoutX="-5.0" layoutY="-8.0" mnemonicParsing="false" onAction="#handleEmmaAction" opacity="0.0" prefHeight="269.0" prefWidth="199.0">
+                        <Button fx:id="EmmaSelectionButton" layoutX="-5.0" layoutY="0" mnemonicParsing="false" onAction="#handleEmmaAction" opacity="0.0" prefHeight="260.0" prefWidth="199.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
@@ -143,7 +143,7 @@
                               <Image url="@../../../assets/characters/GabyChar/Gaby.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="GabySelectionButton" layoutX="-7.0" layoutY="-3.0" mnemonicParsing="false" onAction="#handleGabyAction" opacity="0.0" prefHeight="265.0" prefWidth="200.0">
+                        <Button fx:id="GabySelectionButton" layoutX="0" layoutY="-3.0" mnemonicParsing="false" onAction="#handleGabyAction" opacity="0.0" prefHeight="265.0" prefWidth="195.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
@@ -156,7 +156,7 @@
                               <Image url="@../../../assets/characters/KatyChar/Katy.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="KatySelectionButton" layoutX="-6.0" layoutY="-8.0" mnemonicParsing="false" onAction="#handleKatyAction" opacity="0.0" prefHeight="272.0" prefWidth="203.0">
+                        <Button fx:id="KatySelectionButton" layoutX="0" layoutY="0" mnemonicParsing="false" onAction="#handleKatyAction" opacity="0.0" prefHeight="263.0" prefWidth="198.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
