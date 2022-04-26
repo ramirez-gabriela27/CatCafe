@@ -339,3 +339,46 @@ class NoneDrinkView extends DrinkView{
         thoughtBubbleImage = new Image(new FileInputStream("src/main/resources/assets/requests/requestCloud.png" ));
     }
 }
+
+class LevelScreenView extends View{
+    Image startSceenImage;
+    Image winScreenImage;
+    Image loseScreenImage;
+
+    public LevelScreenView(int objectId, Pair<Double, Double> initialLocation) {
+        this.objectID = objectId;
+        x = initialLocation.getKey();
+        y = initialLocation.getValue();
+    }
+
+    public Image getStartScreenImage(){
+        return startSceenImage;
+    }
+
+    public Image getWinScreenImage(){
+        return winScreenImage;
+    }
+
+    public Image getLoseScreenImage(){
+        return loseScreenImage;
+    }
+
+    public static LevelScreenView makeLevelView(LevelName lvl, int objectID, Pair<Double, Double> initialLocation) throws IOException {
+        switch (lvl) {
+            case ONE -> {
+                return new LevelOneView(objectID, initialLocation);
+            }
+            default -> throw new IllegalArgumentException("Illegal level choice.");
+        }
+    }
+}
+
+class LevelOneView extends LevelScreenView{
+    public LevelOneView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
+        startSceenImage = new Image(new FileInputStream("src/main/resources/assets/buttons/StartScreen.png" ));
+        winScreenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level1WinScreen.png" ));
+        loseScreenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level1FailScreen.png" ));
+    }
+}
+

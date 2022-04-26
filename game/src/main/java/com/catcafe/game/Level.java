@@ -22,9 +22,11 @@ public abstract class Level implements Runnable{
         double endMoney = gameFlow.getEndMoney();
         if(endMoney >= moneyGoal){
             System.out.println("You Won!!!");
+            gameView.endGame(true);
         }
         else{
             System.out.println("You Lost :(");
+            gameView.endGame(false);
         }
     }
 }
@@ -34,7 +36,7 @@ class DemoLevel extends Level{
     public DemoLevel(InGameInteractiveUser user, PlayableCharacter playableCharacter, GamePlay_Controller gameView){
         super(user, playableCharacter, gameView);
         moneyGoal = 5.00;
-        gameFlow = new GameFlow(1, 10, 300, invoker, 0);
+        gameFlow = new GameFlow(1, 20, 20, invoker, 0);
     }
 }
 

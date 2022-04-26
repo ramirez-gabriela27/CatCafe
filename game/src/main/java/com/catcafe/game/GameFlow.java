@@ -84,6 +84,4 @@ public class GameFlow {
     private void calcNextCatTime(){
         nextCatRequestTime = Instant.now().getEpochSecond() + Math.round(catRequestTimeDist.sample());
     }
-
-
 }
