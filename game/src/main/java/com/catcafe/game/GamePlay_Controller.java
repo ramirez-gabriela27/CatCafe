@@ -53,14 +53,15 @@ public class GamePlay_Controller {
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
         //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
         customer1.setVisible(false);
-        customer1.setX(0);
-        customer1.setY(0);
-        customer2.setX(0);
-        customer2.setY(0);
-        customer3.setX(0);
-        customer3.setY(0);
-        customer4.setX(0);
-        customer4.setY(0);
+        customer1.setLayoutX(480.0);
+        customer1.setLayoutY(900.0);
+        customer2.setLayoutX(480.0);
+        customer2.setLayoutY(900.0);
+        customer3.setLayoutX(480.0);
+        customer3.setLayoutY(900.0);
+        customer4.setLayoutX(480.0);
+        customer4.setLayoutY(900.0);
+        customer1.setVisible(false);
         customer2.setVisible(false);
         customer3.setVisible(false);
         customer4.setVisible(false);
@@ -143,6 +144,7 @@ public class GamePlay_Controller {
         user.getInvoker().addCommand(coffeeCommand);//adding make coffee command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
+        checkTheLine();
     }
 
     @FXML
@@ -157,6 +159,7 @@ public class GamePlay_Controller {
         user.getInvoker().addCommand(milkCommand);//adding milk command to queue
         //startGame() in GameFlow.java triggers the first command on the queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
+        checkTheLine();
     }
 
     @FXML
@@ -167,6 +170,7 @@ public class GamePlay_Controller {
         InGameCommand syrupCommand = user.commandOptions.get(1);
         user.getInvoker().addCommand(syrupCommand);//adding syrup command to queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
+        checkTheLine();
     }
 
     @FXML
@@ -182,6 +186,7 @@ public class GamePlay_Controller {
         InGameCommand orderCommand = user.commandOptions.get(3);
         user.getInvoker().addCommand(orderCommand);//adding orderup command to queue
         amountDisplay.setText("$" + Account.getInstance().getAmountString());
+        checkTheLine();
     }
     @FXML
     private Button trash_button;
@@ -192,6 +197,7 @@ public class GamePlay_Controller {
        // walk(Location.TRASH, mybarista, barista);
         InGameCommand trashCommand = user.commandOptions.get(4);
         user.getInvoker().addCommand(trashCommand);//adding trash command to queue
+        checkTheLine();
     }
     private void initializeLocations(){
         locations = new  HashMap<Location, Pair<Double, Double>>();
@@ -292,6 +298,9 @@ public class GamePlay_Controller {
             if(charInfo.getKey() == null){
                 System.out.println("Null");
             }
+            if(charInfo.getValue().getLocation() == locations.get(location)){
+                return;
+            }
             charInfo.getValue().setLocation(locations.get(location));
             charInfo.getKey().setLayoutX(locations.get(location).getKey());
             charInfo.getKey().setLayoutY(locations.get(location).getValue());
@@ -367,7 +376,9 @@ public class GamePlay_Controller {
                         + " , "
                         + inGameCharacters.get(charID).getKey().getLayoutY()
                         + " visible: "
-                        + inGameCharacters.get(charID).getKey().isVisible());
+                        + inGameCharacters.get(charID).getKey().isVisible()
+                        + " view: "
+                        + inGameCharacters.get(charID).getKey().getId());
 
             }
             else{
@@ -379,8 +390,23 @@ public class GamePlay_Controller {
                         + " , "
                         + inGameCharacters.get(charID).getKey().getLayoutY()
                         + " visible: "
-                        + inGameCharacters.get(charID).getKey().isVisible());
+                        + inGameCharacters.get(charID).getKey().isVisible()
+                        + " view: "
+                        + inGameCharacters.get(charID).getKey().getId());
 
+            }
+        }
+    }
+    private void checkTheLine(){
+        for(Integer id: inGameCharacters.keySet()){
+            if(id > 0) {
+                ImageView imageView = inGameCharacters.get(id).getKey();
+                CharacterView characterView = inGameCharacters.get(id).getValue();
+                Pair<Double, Double> currentLocation = locations.get(Model.getInstance().getData(id, Attribute.LOCATION));
+                imageView.setLayoutX(currentLocation.getKey());
+                imageView.setLayoutY(currentLocation.getValue());
+                characterView.setLocation(currentLocation);
+                imageView.setVisible(true);
             }
         }
     }

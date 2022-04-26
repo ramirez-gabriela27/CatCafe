@@ -180,6 +180,7 @@ public class Model {
         }
         //TODO: Alert view that item with id has been created
         // view.alertChange(id)
+        lineMoveUp();
         printModel();
         return id;
     }
@@ -237,7 +238,7 @@ public class Model {
     }
     private synchronized void lineMoveUp(){
         System.out.println("line move up");
-        printModel();
+        //printModel();
         if(occupiedLocations.get(Location.LINE_0)==-1){
             //move everyone up
             for(Location spot: lineLocations){
@@ -248,10 +249,11 @@ public class Model {
                     int id = occupiedLocations.get(spot);
                    //System.out.println("here4");
                     modifyData(id, Attribute.LOCATION, getFirstAvailableLineSpot());
-                    printModel();
+                    //printModel();
                 }
             }
         }
+        printModel();
     }
     public void setView(GamePlay_Controller view){
         this.view = view;
