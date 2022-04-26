@@ -176,8 +176,8 @@ public class Model {
         updateLocationStatus(location, id);
         if(hasRequest){
             try {
-                System.out.println("HEREEEE");
                 view.addNPC(id, character, location);
+                updateRequestGraphic();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -257,6 +257,9 @@ public class Model {
                 }
             }
         }
+        if(view != null){
+            updateRequestGraphic();
+        }
         printModel();
     }
     public void setView(GamePlay_Controller view){
@@ -270,6 +273,15 @@ public class Model {
     public void updateMoneyAmount(){
         moneyAmount = Account.getInstance().getAmountString();
         view.updateMoneyDisplay(moneyAmount);
+    }
+    public void updateRequestGraphic(){
+        System.out.println("here");
+        if(occupiedLocations.get(Location.LINE_0) != -1){
+            view.updateCurrentRequestBubble((Requestable) human.get(occupiedLocations.get(Location.LINE_0)).get(Attribute.DRINK));
+        }
+        else{
+            view.hideDrinkRequest();
+        }
     }
 
 }

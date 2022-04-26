@@ -232,11 +232,53 @@ public class GamePlay_Controller {
         }
         else if(newX - currentX <0){
             //set the image displayed to be the walking left gif if the character is going left
-            characterImageView.setImage(character.getWalkingLeft());
+            if(playableCharacter.getCarryingItem() != null) {
+                System.out.println(playableCharacter.getCarryingItem().graphicName);
+                switch (playableCharacter.getCarryingItem().graphicName) {
+                    case NONE:
+                        characterImageView.setImage(character.getWalkingLeft());
+                        break;
+                    case COFFEE:
+                        characterImageView.setImage(character.getWalkingCarryLeftCoffee());
+                        break;
+                    case LATTE:
+                        characterImageView.setImage(character.getWalkingCarryLeftLatte());
+                        break;
+                    case SYRUP_LATTE:
+                        characterImageView.setImage(character.getWalkingCarryLeftLavLatte());
+                        break;
+                    case SYRUP_COFFEE:
+                        characterImageView.setImage(character.getWalkingCarryLeftLavCoffee());
+                        break;
+                }
+            }else{
+                characterImageView.setImage(character.getWalkingLeft());
+            }
         }
         else{
             //set the image displayed to be the walking right gif if the character is going right
-            characterImageView.setImage(character.getWalkingRight());
+            if(playableCharacter.getCarryingItem() != null) {
+
+                switch (playableCharacter.getCarryingItem().graphicName) {
+                    case NONE:
+                        characterImageView.setImage(character.getWalkingRight());
+                        break;
+                    case COFFEE:
+                        characterImageView.setImage(character.getWalkingCarryRightCoffee());
+                        break;
+                    case LATTE:
+                        characterImageView.setImage(character.getWalkingCarryRightLatte());
+                        break;
+                    case SYRUP_LATTE:
+                        characterImageView.setImage(character.getWalkingCarryRightLavLatte());
+                        break;
+                    case SYRUP_COFFEE:
+                        characterImageView.setImage(character.getWalkingCarryRightLavCoffee());
+                        break;
+                }
+            }else{
+                characterImageView.setImage(character.getWalkingRight());
+            }
         }
 
         //creating path based on coordinates of current and new locations
@@ -272,9 +314,18 @@ public class GamePlay_Controller {
         while(Instant.now().getEpochSecond() < walkEndTime){
             assert(true);
         }
-
-        //change image back to the fron facing image
-        characterImageView.setImage(character.getFrontImage());
+        //change image back to the front facing image
+        if(playableCharacter.getCarryingItem()!= null){
+            switch (playableCharacter.getCarryingItem().graphicName){
+                case NONE -> characterImageView.setImage(character.getFrontImage());
+                case COFFEE -> characterImageView.setImage(character.getFrontImageCoffee());
+                case SYRUP_COFFEE -> characterImageView.setImage(character.getFrontImageLavCoffee());
+                case SYRUP_LATTE -> characterImageView.setImage(character.getFrontImageLavLatte());
+                case LATTE -> characterImageView.setImage(character.getFrontImageLatte());
+            }
+        }else{
+            characterImageView.setImage(character.getFrontImage());
+        }
     }
     public void updateLocation(int objectId, Location location){
         System.out.println(objectId);
@@ -337,21 +388,22 @@ public class GamePlay_Controller {
         else {
             Pair<ImageView, CharacterView> newNPC = inGameCharacters.remove(emptySpot);
             ImageView imageView = newNPC.getKey();
-            int waitingLocation = (int)imageView.getLayoutX();
-            if (waitingLocation == locations.get(Location.WAITING_1).getKey()) {
+            //https://www.geeksforgeeks.org/double-compare-method-in-java-with-examples/#:~:text=The%20compare()%20method%20of,returned%20by%20the%20function%20call.
+            Double waitingLocation = imageView.getLayoutX();
+            if (Double.compare(waitingLocation ,locations.get(Location.WAITING_1).getKey()) ==0) {
                 leaveWaitingLocation(Location.WAITING_1);
             }
-            else if(waitingLocation == locations.get(Location.WAITING_2).getKey()) {
+            else if(Double.compare(waitingLocation ,locations.get(Location.WAITING_2).getKey()) ==0) {
                 leaveWaitingLocation(Location.WAITING_2);
             }
-            else if(waitingLocation == locations.get(Location.WAITING_3).getKey()) {
+            else if(Double.compare(waitingLocation ,locations.get(Location.WAITING_3).getKey()) ==0) {
                 leaveWaitingLocation(Location.WAITING_3);
             }
-            else if(waitingLocation == locations.get(Location.WAITING_4).getKey()) {
+            else if(Double.compare(waitingLocation ,locations.get(Location.WAITING_4).getKey()) ==0) {
                 leaveWaitingLocation(Location.WAITING_4);
             }
             else{
-                //throw new RuntimeException("invalid waiting location");
+
             }
 
             Pair<Double, Double> startingLocation = locations.get(location);
@@ -452,9 +504,32 @@ public class GamePlay_Controller {
                 return location;
             }
         }
-        throw new RuntimeException("No available waiting location.");
+        System.out.println("ERROR: No available waiting location. " + waitingLocations);
+        //TODO
+        return null;
     }
     private void leaveWaitingLocation(Location location){
         waitingLocations.replace(location,true);
+    }
+    @FXML
+    private ImageView requestGraphic;
+    @FXML
+    public void updateCurrentRequestBubble(Requestable newRequest){
+        System.out.println("Updating request bubble" + newRequest.toString());
+        try {
+            DrinkView updateRequest = DrinkView.makeDrink(newRequest, 55, new Pair<>(376.0, 430.0));
+            requestGraphic.setImage(updateRequest.thoughtBubbleImage);
+            requestGraphic.setOpacity(100.0);
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        }
+    }
+
+    @FXML
+    public void hideDrinkRequest(){
+
+        System.out.println("Hiding request bubble");
+        requestGraphic.setOpacity(0.0);
     }
 }
