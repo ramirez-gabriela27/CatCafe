@@ -57,10 +57,14 @@ public class GamePlay_Controller {
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
         //interactive
+        newGame();
+    }
+
+    public void newGame(){
+        user = new InGameInteractiveUser(playableCharacter);
         DemoLevel test = new DemoLevel(user, playableCharacter, this);
         Thread t = new Thread(test);
         t.start();
-
     }
 
     public synchronized void initializeImageViews(ImageView barista){
@@ -113,7 +117,7 @@ public class GamePlay_Controller {
     @FXML
     private Button startButton;
     @FXML
-    private ImageView startButtonPicture;
+    private ImageView levelScreenPicture;
     @FXML
     private void handleStartAction(ActionEvent event){
         if(inGameCharacters.size() ==0){
@@ -121,8 +125,8 @@ public class GamePlay_Controller {
         }
         barista.setImage(mybarista.frontImage);
         amountDisplay.setText("$0.00");
-        startButtonPicture.setOpacity(0);
-        startButtonPicture.setDisable(true);
+        levelScreenPicture.setOpacity(0);
+        levelScreenPicture.setDisable(true);
         startButton.setDisable(true);
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
@@ -416,7 +420,7 @@ public class GamePlay_Controller {
     public void updateCurrentRequestBubble(Requestable newRequest){
         System.out.println("Updating request bubble" + newRequest.toString());
         try {
-            DrinkView updateRequest = DrinkView.makeDrink(newRequest, 55, new Pair<>(376.0, 430.0));
+            DrinkView updateRequest = DrinkView.makeDrink(newRequest, 100, new Pair<>(376.0, 430.0));
             requestGraphic.setImage(updateRequest.thoughtBubbleImage);
             requestGraphic.setOpacity(100.0);
         } catch (IOException e) {
@@ -427,8 +431,54 @@ public class GamePlay_Controller {
 
     @FXML
     public void hideDrinkRequest(){
-
         System.out.println("Hiding request bubble");
         requestGraphic.setOpacity(0.0);
+    }
+
+    @FXML
+    private Button tryAgainButton;
+    @FXML
+    private Button loseQuitButton;
+    @FXML
+    private Button winQuitButton;
+    @FXML
+    public void endGame(boolean wonGame){
+        disableGame();
+        if (wonGame){
+            System.out.println("Going to won game screen");
+            try {
+                LevelScreenView updateScreen = LevelScreenView.makeLevelView(LevelName.ONE, 101, new Pair<>(0.0, 1.0));
+                levelScreenPicture.setImage(updateScreen.winScreenImage);
+                winQuitButton.setDisable(false);
+                levelScreenPicture.setOpacity(100.0);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            System.out.println("Going to lost game screen");
+            try {
+                LevelScreenView updateScreen = LevelScreenView.makeLevelView(LevelName.ONE,  102, new Pair<>(0.0, 1.0));
+                levelScreenPicture.setImage(updateScreen.loseScreenImage);
+                tryAgainButton.setDisable(false);
+                loseQuitButton.setDisable(false);
+                levelScreenPicture.setOpacity(100.0);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @FXML void disableGame(){
+        Button[] listOfGameButtons = {coffee_button,syrup_button,milk_button,cash_button,trash_button};
+        for (Button b : listOfGameButtons){
+            b.setDisable(true);
+        }
+    }
+
+    @FXML
+    protected void handleTryAgainAction(){
+//        Model.getInstance().clearModel();
+//        newGame();
     }
 }
