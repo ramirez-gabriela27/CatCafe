@@ -59,6 +59,10 @@ enum Attribute{
     PATIENCE
 }
 
+enum LevelName{
+    ONE
+}
+
 
 
 public class Model {
