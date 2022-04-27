@@ -19,14 +19,9 @@ public class PointOfSale {
         return pos;
     }
 
-    private void setAccount(Account givenAccount){
-        account = givenAccount;
-    }
-
     /*
      Compare the customer request and created beverage and see if they are the same. Returns true if success.
      */
-
     public Boolean orderUp(Item bev){
         Customer c = customerManager.nextCustomer();
         if(c == null){
