@@ -214,7 +214,7 @@
             </AnchorPane>
             <ImageView fx:id="levelScreenPicture" fitHeight="715.0" fitWidth="1281.0" layoutX="-1.0" layoutY="3.0">
                <image>
-                  <Image url="@../../../assets/buttons/StartScreen.png" />
+                  <Image url="@../../../assets/screens/Level1StartScreen.png" />
                </image>
             </ImageView>
             <Button fx:id="startButton" layoutX="267.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleStartAction" opacity="0.0" prefHeight="168.0" prefWidth="737.0">
@@ -232,11 +232,21 @@
                      <Cursor fx:constant="HAND" />
                  </cursor>
              </Button>
-             <Button fx:id="winQuitButton" disable="true" layoutX="433.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleCloseAction" opacity="0.0" prefHeight="168.0" prefWidth="432.0">
+             <Button fx:id="winQuitButton1" disable="true" layoutX="431.0" layoutY="505.0" mnemonicParsing="false" onAction="#handleCloseAction" opacity="0.0" prefHeight="168.0" prefWidth="432.0">
                  <cursor>
                      <Cursor fx:constant="HAND" />
                  </cursor>
              </Button>
+            <Button fx:id="winQuitButton2" disable="true" layoutX="431.0" layoutY="435.0" mnemonicParsing="false" onAction="#handleCloseAction" opacity="0.0" prefHeight="168.0" prefWidth="432.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="nextLevelButton" disable="true" layoutX="144.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleNextLevelAction" opacity="0.0" prefHeight="168.0" prefWidth="993.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
          </children></AnchorPane>
     </children>
 </AnchorPane>

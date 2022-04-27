@@ -35,7 +35,8 @@ enum Location{
     WAITING_1,
     WAITING_2,
     WAITING_3,
-    WAITING_4;
+    WAITING_4,
+    EMERGENCY_WAITING_LOC;
 
 }
 enum Character{
@@ -63,7 +64,9 @@ enum Attribute{
 }
 
 enum LevelName{
-    ONE
+    ONE,
+    TWO,
+    THREE
 }
 
 
@@ -218,7 +221,9 @@ public class Model {
             System.out.println("ID : " + id + " value: " + value);
             view.changeBaristaItem(id, (Requestable) value);
         }
-        human.get(id).replace(attribute, value);
+        if(human.get(id) != null){
+            human.get(id).replace(attribute, value);
+        }
         //TODO: Alert view that item with id has changed
     }
     public synchronized void removeData(int id){
