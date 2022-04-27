@@ -36,8 +36,8 @@ public abstract class Level implements Runnable{
 class DemoLevel extends Level{
     public DemoLevel(InGameInteractiveUser user, PlayableCharacter playableCharacter, GamePlay_Controller gameView){
         super(user, playableCharacter, gameView);
-        moneyGoal = 15.00;
-        gameFlow = new GameFlow(1, 12, 60, invoker, 0);
+        moneyGoal = 5.00;
+        gameFlow = new GameFlow(1, 8, 300, invoker, 0);
     }
 }
 class Level1 extends Level{
@@ -57,10 +57,9 @@ class Level2 extends Level{
 class Level3 extends Level{
     public Level3(InGameInteractiveUser user, PlayableCharacter playableCharacter, GamePlay_Controller gameView){
         super(user, playableCharacter, gameView);
-        moneyGoal = 35.00;
-        gameFlow = new GameFlow(1, 8, 120, invoker, 0);
+        moneyGoal = 40.00;
+        gameFlow = new GameFlow(1, 5, 120, invoker, 0);
     }
 }
 
-//TODO: add other levels
 
