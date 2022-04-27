@@ -16,7 +16,7 @@ class OrderUpCommand extends InGameCommand{
     void execute() {
         System.out.println(description);
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
-        PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
+        PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance()));
         Boolean orderBool = point.orderUp(receiver.getCarryingItem());
         if(orderBool == true){
             receiver.stopCarryingItem();
@@ -114,26 +114,9 @@ class ThrowAwayCommand extends InGameCommand{
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.TRASH);
-        PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
+        PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance()));
         point.subtractThrowAway(receiver.getCarryingItem());
         model.updateMoneyAmount();
         receiver.stopCarryingItem();
-    }
-}
-
-//TODO: Cat commands for next sprint
-class ServeCatCommand extends InGameCommand{
-    @Override
-    void execute() {
-    }
-}
-class GetCatWaterCommand extends InGameCommand{
-    @Override
-    void execute() {
-    }
-}
-class GetCatFoodCommand extends InGameCommand{
-    @Override
-    void execute() {
     }
 }
