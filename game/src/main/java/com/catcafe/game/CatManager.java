@@ -54,7 +54,7 @@ public class CatManager {
      * @param cat Cat which no longer has a request
      */
     public void removeRequest(Cat cat){
-        // This method is resposible for removing the request from the cat and removing this cat from the requestingCats arraylist
+        // This method is responsible for removing the request from the cat and removing this cat from the requestingCats arraylist
     }
 
     /**
