@@ -64,7 +64,9 @@ enum Attribute{
 }
 
 enum LevelName{
-    ONE
+    ONE,
+    TWO,
+    THREE
 }
 
 
@@ -219,7 +221,9 @@ public class Model {
             System.out.println("ID : " + id + " value: " + value);
             view.changeBaristaItem(id, (Requestable) value);
         }
-        human.get(id).replace(attribute, value);
+        if(human.get(id) != null){
+            human.get(id).replace(attribute, value);
+        }
         //TODO: Alert view that item with id has changed
     }
     public synchronized void removeData(int id){

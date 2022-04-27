@@ -363,6 +363,12 @@ class LevelScreenView extends View{
             case ONE -> {
                 return new LevelOneView(objectID, initialLocation);
             }
+            case TWO -> {
+                return new LevelTwoView(objectID, initialLocation);
+            }
+            case THREE -> {
+                return new LevelThreeView(objectID, initialLocation);
+            }
             default -> throw new IllegalArgumentException("Illegal level choice.");
         }
     }
@@ -371,9 +377,27 @@ class LevelScreenView extends View{
 class LevelOneView extends LevelScreenView{
     public LevelOneView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
         super(objectId,initialLocation);
-        startSceenImage = new Image(new FileInputStream("src/main/resources/assets/buttons/StartScreen.png" ));
+        startSceenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level1StartScreen.png" ));
         winScreenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level1WinScreen.png" ));
         loseScreenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level1FailScreen.png" ));
+    }
+}
+
+class LevelTwoView extends LevelScreenView{
+    public LevelTwoView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
+        startSceenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level2StartScreen.png" ));
+        winScreenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level2WinScreen.png" ));
+        loseScreenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level2FailScreen.png" ));
+    }
+}
+
+class LevelThreeView extends LevelScreenView{
+    public LevelThreeView(int objectId,Pair<Double, Double>initialLocation) throws IOException {
+        super(objectId,initialLocation);
+        startSceenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level3StartScreen.png" ));
+        winScreenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level3WinScreen.png" ));
+        loseScreenImage = new Image(new FileInputStream("src/main/resources/assets/screens/Level3FailScreen.png" ));
     }
 }
 
