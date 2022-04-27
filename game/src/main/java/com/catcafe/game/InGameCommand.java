@@ -114,6 +114,9 @@ class ThrowAwayCommand extends InGameCommand{
     @Override
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.TRASH);
+        PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance()));
+        point.subtractThrowAway(receiver.getCarryingItem());
+        model.updateMoneyAmount();
         receiver.stopCarryingItem();
     }
 }

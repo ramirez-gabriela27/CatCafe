@@ -36,6 +36,8 @@ public class PointOfSale {
                 account.addMoney(((Beverage) bev).getCost());
                 customerManager.remove(c);
                 System.out.println("Correct Order");
+                //TIPPING based on customer patience
+                tip(c.patienceLevel);
                 return true;
             }
             else{
@@ -45,5 +47,17 @@ public class PointOfSale {
         else{
             return false;
         }
+    }
+    public void subtractThrowAway(Item bev){
+        if(bev == null){
+            return;
+        }
+        else if(bev instanceof Beverage){
+            account.removeMoney(((Beverage) bev).getCost() * 0.5);
+        }
+    }
+    private void tip(Double patienceLevel){
+        account.addMoney(patienceLevel);
+        System.out.println("Customer Tipped $" + patienceLevel);
     }
 }

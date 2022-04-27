@@ -245,6 +245,7 @@ public class GamePlay_Controller {
         locations.put(Location.WAITING_2, new Pair<>(700.0, 250.0));
         locations.put(Location.WAITING_3, new Pair<>(900.0, 250.0));
         locations.put(Location.WAITING_4, new Pair<>(1100.0, 250.0));
+        locations.put(Location.EMERGENCY_WAITING_LOC, new Pair<>(800.0, 150.0));
     }
 
     protected void walk(Location destination, CharacterView character, ImageView characterImageView) {
@@ -459,10 +460,11 @@ public class GamePlay_Controller {
             ImageView imageView = goodbyeNPC.getKey();
             //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
             //imageView.setVisible(false);
-            Pair<Double, Double> waitingLoc = locations.get(getAvailableWaitingLocation());
+
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                    Pair<Double, Double> waitingLoc = locations.get(getAvailableWaitingLocation());
                     imageView.setLayoutX(waitingLoc.getKey());
                     imageView.setLayoutY(waitingLoc.getValue());
                 }
@@ -535,7 +537,7 @@ public class GamePlay_Controller {
         }
         System.out.println("ERROR: No available waiting location. " + waitingLocations);
         //TODO
-        return null;
+        return Location.EMERGENCY_WAITING_LOC;
     }
 
     private void leaveWaitingLocation(Location location) {

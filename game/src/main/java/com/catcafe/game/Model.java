@@ -35,7 +35,8 @@ enum Location{
     WAITING_1,
     WAITING_2,
     WAITING_3,
-    WAITING_4;
+    WAITING_4,
+    EMERGENCY_WAITING_LOC;
 
 }
 enum Character{
