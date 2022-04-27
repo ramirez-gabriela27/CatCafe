@@ -222,7 +222,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-             <Button fx:id="tryAgainButton" disable="true" layoutX="205.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleTryAgainAction" opacity="0.0" prefHeight="168.0" prefWidth="826.0">
+             <Button fx:id="tryAgainButton" disable="true" layoutX="205.0" layoutY="330.0" mnemonicParsing="false" onAction="#handleTryAgainAction" opacity="0.0" prefHeight="168.0" prefWidth="826.0">
                  <cursor>
                      <Cursor fx:constant="HAND" />
                  </cursor>

@@ -247,6 +247,7 @@ public class Model {
             put(Location.LINE_2, -1);
             put(Location.LINE_3, -1);
         }};
+        nextId = 0;
     }
     private synchronized void lineMoveUp(){
         System.out.println("line move up");

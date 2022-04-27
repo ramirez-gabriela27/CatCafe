@@ -45,6 +45,10 @@ public class GamePlay_Controller {
     private ImageView customer3;
     @FXML
     private ImageView customer4;
+
+    //@FXML private ImageView cup;
+    //private DrinkView drinkView;
+
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Location, Boolean> waitingLocations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
@@ -595,16 +599,36 @@ public class GamePlay_Controller {
     }
 
     @FXML void disableGame(){
-        Button[] listOfGameButtons = {coffee_button,syrup_button,milk_button,cash_button,trash_button};
+        Button[] listOfGameButtons = {coffee_button, syrup_button, milk_button, cash_button, trash_button};
         for (Button b : listOfGameButtons){
             b.setDisable(true);
         }
     }
 
     @FXML
-    protected void handleTryAgainAction(){
-//        Model.getInstance().clearModel();
-//        newGame();
+    protected void handleTryAgainAction() throws IOException {
+        //reset singelton classes
+        Model.getInstance().clearModel();
+        Account.getInstance().clearAccount();
+        //PointOfSale.getInstance(Account.getInstance(),CustomerManager.getInstance(Account.getInstance(),CatManager.getInstance()));
+        CustomerManager.getInstance(Account.getInstance(),CatManager.getInstance()).resetManager();
+        PlayableCharacter.getInstance().resetCharacter();
+        user = new InGameInteractiveUser(playableCharacter);
+        inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
+        //reset gameflow
+        //enable game buttons
+        Button[] listOfGameButtons = {coffee_button, syrup_button, milk_button, cash_button, trash_button};
+        for (Button b : listOfGameButtons){
+            b.setDisable(false);
+        }
+        //hide end screen, disable end screen buttons
+        levelScreenPicture.setOpacity(0.0);
+        tryAgainButton.setDisable(true);
+        loseQuitButton.setDisable(true);
+        LevelScreenView updateScreen = LevelScreenView.makeLevelView(LevelName.ONE,  102, new Pair<>(0.0, 1.0));
+        levelScreenPicture.setImage(updateScreen.startSceenImage);
+        levelScreenPicture.setOpacity(100.0);
+        startButton.setDisable(false);
     }
 
 
