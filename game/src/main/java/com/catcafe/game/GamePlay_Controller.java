@@ -52,6 +52,8 @@ public class GamePlay_Controller {
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Location, Boolean> waitingLocations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
+    LevelName[] gameLevelList = {LevelName.ONE, LevelName.TWO, LevelName.THREE};
+    private int levelNum = 0;
 
     public GamePlay_Controller() throws IOException {
         playableCharacter = PlayableCharacter.getInstance();
@@ -65,11 +67,27 @@ public class GamePlay_Controller {
         //interactive
     }
 
-    public void newGame(){
-        DemoLevel test = new DemoLevel(user, playableCharacter, this);
+    public void newGame(LevelName level){
+        Level test = getLevel(level);
         Thread t = new Thread(test);
         t.start();
     }
+
+    public Level getLevel(LevelName level){
+        switch (level) {
+            case ONE -> {
+                return new Level1(user, playableCharacter, this);
+            }
+            case TWO -> {
+                return new Level2(user, playableCharacter, this);
+            }
+            case THREE -> {
+                return new Level3(user, playableCharacter, this);
+            }
+            default -> throw new IllegalArgumentException("Illegal level choice.");
+        }
+    }
+
     public synchronized void initializeImageViews(ImageView barista) {
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
         //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
@@ -151,7 +169,7 @@ public class GamePlay_Controller {
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
         //interactive
-        newGame();
+        newGame(gameLevelList[levelNum]);
     }
 
 
@@ -571,16 +589,26 @@ public class GamePlay_Controller {
     @FXML
     private Button loseQuitButton;
     @FXML
-    private Button winQuitButton;
+    private Button winQuitButton1;
+    @FXML
+    private Button winQuitButton2;
+    @FXML
+    private Button nextLevelButton;
     @FXML
     public void endGame(boolean wonGame){
         disableGame();
         if (wonGame){
             System.out.println("Going to won game screen");
             try {
-                LevelScreenView updateScreen = LevelScreenView.makeLevelView(LevelName.ONE, 101, new Pair<>(0.0, 1.0));
+                LevelScreenView updateScreen = LevelScreenView.makeLevelView(gameLevelList[levelNum], 101, new Pair<>(0.0, 1.0));
                 levelScreenPicture.setImage(updateScreen.winScreenImage);
-                winQuitButton.setDisable(false);
+                if(levelNum == 2){
+                    winQuitButton2.setDisable(false);
+                }
+                else{
+                    winQuitButton1.setDisable(false);
+                    nextLevelButton.setDisable(false);
+                }
                 levelScreenPicture.setOpacity(100.0);
             } catch (IOException e) {
                 e.printStackTrace();
@@ -589,7 +617,7 @@ public class GamePlay_Controller {
         else{
             System.out.println("Going to lost game screen");
             try {
-                LevelScreenView updateScreen = LevelScreenView.makeLevelView(LevelName.ONE,  102, new Pair<>(0.0, 1.0));
+                LevelScreenView updateScreen = LevelScreenView.makeLevelView(gameLevelList[levelNum],  102, new Pair<>(0.0, 1.0));
                 levelScreenPicture.setImage(updateScreen.loseScreenImage);
                 tryAgainButton.setDisable(false);
                 loseQuitButton.setDisable(false);
@@ -607,29 +635,45 @@ public class GamePlay_Controller {
         }
     }
 
-    @FXML
-    protected void handleTryAgainAction() throws IOException {
-        //reset singelton classes
-        Model.getInstance().clearModel();
-        Account.getInstance().clearAccount();
-        //PointOfSale.getInstance(Account.getInstance(),CustomerManager.getInstance(Account.getInstance(),CatManager.getInstance()));
-        CustomerManager.getInstance(Account.getInstance(),CatManager.getInstance()).resetManager();
-        PlayableCharacter.getInstance().resetCharacter();
-        user = new InGameInteractiveUser(playableCharacter);
-        inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
-        //reset gameflow
-        //enable game buttons
+    @FXML void enableGame(){
         Button[] listOfGameButtons = {coffee_button, syrup_button, milk_button, cash_button, trash_button};
         for (Button b : listOfGameButtons){
             b.setDisable(false);
         }
-        //hide end screen, disable end screen buttons
-        levelScreenPicture.setOpacity(0.0);
+    }
+
+    @FXML
+    protected void handleTryAgainAction() throws IOException {
+        resetGame();
         tryAgainButton.setDisable(true);
         loseQuitButton.setDisable(true);
-        LevelScreenView updateScreen = LevelScreenView.makeLevelView(LevelName.ONE,  102, new Pair<>(0.0, 1.0));
+    }
+
+    @FXML
+    protected void handleNextLevelAction() throws IOException{
+        levelNum++;
+        resetGame();
+        nextLevelButton.setDisable(true);
+        winQuitButton1.setDisable(true);
+    }
+
+    protected void resetGame() throws IOException{
+        //reset singleton classes
+        Model.getInstance().clearModel();
+        Account.getInstance().clearAccount();
+        CustomerManager.getInstance(Account.getInstance(),CatManager.getInstance()).resetManager();
+        PlayableCharacter.getInstance().resetCharacter();
+        user = new InGameInteractiveUser(playableCharacter);
+        inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();
+        //enable game buttons
+        enableGame();
+        //hide end screen
+        levelScreenPicture.setOpacity(0.0);
+        //show start screen
+        LevelScreenView updateScreen = LevelScreenView.makeLevelView(gameLevelList[levelNum],  102, new Pair<>(0.0, 1.0));
         levelScreenPicture.setImage(updateScreen.startSceenImage);
         levelScreenPicture.setOpacity(100.0);
+        //enable start button
         startButton.setDisable(false);
     }
 

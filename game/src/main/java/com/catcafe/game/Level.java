@@ -100,6 +100,7 @@ class DemoLevel extends Level{
         gameFlow = new GameFlow(1, 8, 60, invoker, 0);
     }
 }
+//game lengths - 60,90,120
 class Level1 extends Level{
     public Level1(InGameInteractiveUser user, PlayableCharacter playableCharacter, GamePlay_Controller gameView){
         super(user, playableCharacter, gameView);
@@ -107,6 +108,7 @@ class Level1 extends Level{
         highScore = fetchHighScore(path);
         moneyGoal = 15.00;
         gameFlow = new GameFlow(1, 12, 60, invoker, 0);
+        System.out.println("LEVEL 1");
     }
 }
 class Level2 extends Level{
@@ -116,6 +118,7 @@ class Level2 extends Level{
         highScore = fetchHighScore(path);
         moneyGoal = 30.00;
         gameFlow = new GameFlow(1, 10, 90, invoker, 0);
+        System.out.println("LEVEL 2");
     }
 }
 class Level3 extends Level{
@@ -125,6 +128,7 @@ class Level3 extends Level{
         highScore = fetchHighScore(path);
         moneyGoal = 40.00;
         gameFlow = new GameFlow(1, 5, 120, invoker, 0);
+        System.out.println("LEVEL 3");
     }
 }
 
