@@ -459,10 +459,11 @@ public class GamePlay_Controller {
             ImageView imageView = goodbyeNPC.getKey();
             //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
             //imageView.setVisible(false);
-            Pair<Double, Double> waitingLoc = locations.get(getAvailableWaitingLocation());
+
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
+                    Pair<Double, Double> waitingLoc = locations.get(getAvailableWaitingLocation());
                     imageView.setLayoutX(waitingLoc.getKey());
                     imageView.setLayoutY(waitingLoc.getValue());
                 }

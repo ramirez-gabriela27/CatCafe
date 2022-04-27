@@ -36,6 +36,7 @@ public abstract class Level implements Runnable{
             System.out.println("You Lost :(");
             gameView.endGame(false);
         }
+        updateHighScore(endMoney);
     }
     public double getHighScore(){return highScore;}
     protected double fetchHighScore(String path){
