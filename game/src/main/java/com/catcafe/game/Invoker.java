@@ -20,5 +20,4 @@ public class Invoker {
         System.out.println("adding "+command.getDescription()+ " to command queue");
         commandQueue.add(command);
     }
-    void doNow(Command command){}
 }

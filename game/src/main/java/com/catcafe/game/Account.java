@@ -26,4 +26,7 @@ public class Account {
     public String getAmountString(){
         return String.format("%.2f", amount);
     }
+    public void clearAccount(){
+        amount = 0.0;
+    }
 }
