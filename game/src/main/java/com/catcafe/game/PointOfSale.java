@@ -46,4 +46,12 @@ public class PointOfSale {
             return false;
         }
     }
+    public void subtractThrowAway(Item bev){
+        if(bev == null){
+            return;
+        }
+        else if(bev instanceof Beverage){
+            account.removeMoney(((Beverage) bev).getCost() * 0.5);
+        }
+    }
 }
