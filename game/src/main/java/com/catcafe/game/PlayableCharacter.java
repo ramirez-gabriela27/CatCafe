@@ -17,7 +17,6 @@ public class PlayableCharacter {
         chosenCharacter = selectedCharacter;
        id = Model.getInstance().addData(selectedCharacter, Location.REGISTER, Requestable.NONE, false, -1);
        carryingItem = null;
-       //carryingItem.graphicName = Requestable.NONE;
     }
     public static PlayableCharacter getInstance(){
         if(theChar == null){
@@ -41,8 +40,6 @@ public class PlayableCharacter {
     public void setCarryingItem(Item item){
         carryingItem = item;
         Model.getInstance().modifyData(id, Attribute.DRINK,item.getGraphicName());
-        Model.getInstance().modifyData(id, Attribute.REQUEST,false);
-
     }
     public Character getCharacter(){return chosenCharacter;}
 

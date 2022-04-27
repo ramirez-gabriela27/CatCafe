@@ -27,12 +27,15 @@ enum Location{
     MILK_STEAMER,
     SYRUPS,
     TRASH,
-    THOUGHT_BUBBLE,
     CAT_1,
     CAT_2,
     CAT_FOOD_BAG,
     CAT_WATER_BOWL,
-    CAT_TOY_BIN;
+    CAT_TOY_BIN,
+    WAITING_1,
+    WAITING_2,
+    WAITING_3,
+    WAITING_4;
 
 }
 enum Character{
@@ -68,8 +71,6 @@ enum LevelName{
 public class Model {
     private HashMap<Integer, HashMap<Attribute,Object>> human;
     private HashMap<Integer, HashMap<Attribute,Object>> cat;
-    private HashMap<Integer, HashMap<Attribute,Object>> drinkRequest;
-    private HashMap<Integer, HashMap<Attribute,Object>> drinkCup;
     private String moneyAmount;
     private int nextId;
     private GamePlay_Controller view;
@@ -102,15 +103,30 @@ public class Model {
         return thisId;
     }
     public synchronized Location getNextCustomerLocation(){
-        for(Location location: lineLocations ){
-            if(occupiedLocations.get(location) == -1){
-                //System.out.println("Get next location = " + location);
-                //printModel();
-                return location;
+
+        Location location;
+        for(int i =lineLocations.length-2; i>=0; i--){
+            location = lineLocations[i];
+            if(occupiedLocations.get(location) != -1){
+                return lineLocations[i+1];
             }
+         }
+        if(occupiedLocations.get(lineLocations[0])==-1){
+            return lineLocations[0];
         }
+        else {
+            throw new RuntimeException("All customer locations are occupied.");
+        }
+    }
+    private synchronized Location getFirstAvailableLineSpot(){
+        for(Location location: lineLocations ){
+             if(occupiedLocations.get(location) == -1){
+                return location;
+             }
+         }
         throw new RuntimeException("All customer locations are occupied.");
     }
+
     private synchronized void updateLocationStatus(Location location, Integer id){
         occupiedLocations.replace(location, id);
     }
@@ -164,7 +180,6 @@ public class Model {
         updateLocationStatus(location, id);
         if(hasRequest){
             try {
-                System.out.println("HEREEEE");
                 view.addNPC(id, character, location);
                 updateRequestGraphic();
             } catch (IOException e) {
@@ -173,6 +188,7 @@ public class Model {
         }
         //TODO: Alert view that item with id has been created
         // view.alertChange(id)
+        lineMoveUp();
         printModel();
         return id;
     }
@@ -198,6 +214,10 @@ public class Model {
             }
 
         }
+        else if(attribute == Attribute.DRINK && id  == 0 ){
+            System.out.println("ID : " + id + " value: " + value);
+            view.changeBaristaItem(id, (Requestable) value);
+        }
         human.get(id).replace(attribute, value);
         //TODO: Alert view that item with id has changed
     }
@@ -206,7 +226,6 @@ public class Model {
         updateLocationStatus((Location) getData(id, Attribute.LOCATION), -1);
         human.remove(id);
         view.removeNPC(id);
-        updateRequestGraphic(); //hide thought bubble because drink request fulfilled
         lineMoveUp();
     }
 
@@ -231,29 +250,25 @@ public class Model {
     }
     private synchronized void lineMoveUp(){
         System.out.println("line move up");
-        printModel();
+        //printModel();
         if(occupiedLocations.get(Location.LINE_0)==-1){
             //move everyone up
-            System.out.println("First location empty, moving up the line");
             for(Location spot: lineLocations){
                 System.out.println(spot);
                 if(occupiedLocations.get(spot)!=-1){
                     //System.out.println("here3");
                     //found a person lets move them to the first empty spot
                     int id = occupiedLocations.get(spot);
-                    //System.out.println("here4");
-                    modifyData(id, Attribute.LOCATION, getNextCustomerLocation());
-                    printModel();
+                   //System.out.println("here4");
+                    modifyData(id, Attribute.LOCATION, getFirstAvailableLineSpot());
+                    //printModel();
                 }
             }
-            //when line moves, drink request of person in front is shown
-            System.out.println("Should show drink request");
-            System.out.println((Requestable) human.get(occupiedLocations.get(Location.LINE_0)).get(Attribute.DRINK));
-
         }
-        System.out.println("person in line 0");
-        System.out.println(human.get(occupiedLocations.get(Location.LINE_0)));
-        updateRequestGraphic();
+        if(view != null){
+            updateRequestGraphic();
+        }
+        printModel();
     }
     public void setView(GamePlay_Controller view){
         this.view = view;
@@ -267,8 +282,8 @@ public class Model {
         moneyAmount = Account.getInstance().getAmountString();
         view.updateMoneyDisplay(moneyAmount);
     }
-
     public void updateRequestGraphic(){
+        System.out.println("here");
         if(occupiedLocations.get(Location.LINE_0) != -1){
             view.updateCurrentRequestBubble((Requestable) human.get(occupiedLocations.get(Location.LINE_0)).get(Attribute.DRINK));
         }
