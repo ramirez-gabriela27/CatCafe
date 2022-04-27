@@ -33,8 +33,6 @@ public abstract class NPC implements Patience{
             throw new RuntimeException("Cannot add new request when NPC already has a request.");
         }
         this.request = request;
-        Model.getInstance().modifyData(objectID, Attribute.DRINK, request.getRequestedItem().getGraphicName());
-        Model.getInstance().modifyData(objectID, Attribute.REQUEST, true);
     }
     public Request getRequest(){
         return request;

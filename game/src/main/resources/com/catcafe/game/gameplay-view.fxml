@@ -13,11 +13,11 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.catcafe.game.GamePlay_Controller">
     <children>
-      <ImageView fitHeight="760.0" fitWidth="1280.0">
-         <image>
-            <Image url="@../../../assets/floor_and_wall_titlebar.png" />
-         </image>
-      </ImageView>
+        <ImageView fitHeight="760.0" fitWidth="1280.0">
+            <image>
+                <Image url="@../../../assets/floor_and_wall_titlebar.png" />
+            </image>
+        </ImageView>
         <BorderPane layoutX="7.0" layoutY="5.0" prefHeight="41.0" prefWidth="1270.0">
             <top>
                 <Pane fx:id="top_pane" onMouseDragged="#handleDragAction" onMousePressed="#handleClickAction" prefHeight="39.0" prefWidth="1270.0" BorderPane.alignment="CENTER_RIGHT">
@@ -143,24 +143,24 @@
                   <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="customer1" fitHeight="180.0" fitWidth="118.0" layoutX="1000.0" layoutY="494.0" preserveRatio="true">
-               <image>
-                  <Image url="@../../../assets/characters/empty.png" />
-               </image>
-            </ImageView>
-             <ImageView fx:id="customer2" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="494.0" preserveRatio="true">
+             <ImageView fx:id="customer1" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="250.0" preserveRatio="true">
                  <image>
-                     <Image url="@../../../assets/characters/empty.png" />
+                     <Image url="@../../../assets/characters/KatyChar/Katy.png" />
                  </image>
              </ImageView>
-             <ImageView fx:id="customer3" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="494.0" preserveRatio="true">
+             <ImageView fx:id="customer2" fitHeight="180.0" fitWidth="118.0" layoutX="700.0" layoutY="250.0" preserveRatio="true">
                  <image>
-                     <Image url="@../../../assets/characters/empty.png" />
+                     <Image url="@../../../assets/characters/KatyChar/Katy.png" />
                  </image>
              </ImageView>
-             <ImageView fx:id="customer4" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="494.0" preserveRatio="true">
+             <ImageView fx:id="customer3" fitHeight="180.0" fitWidth="118.0" layoutX="900.0" layoutY="250.0" preserveRatio="true">
                  <image>
-                     <Image url="@../../../assets/characters/empty.png" />
+                     <Image url="@../../../assets/characters/KatyChar/Katy.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="customer4" fitHeight="180.0" fitWidth="118.0" layoutX="1100.0" layoutY="250.0" preserveRatio="true">
+                 <image>
+                     <Image url="@../../../assets/characters/KatyChar/Katy.png" />
                  </image>
              </ImageView>
             <ImageView fitHeight="71.0" fitWidth="158.0" layoutX="1122.0" layoutY="5.0">
@@ -178,24 +178,24 @@
                   <Image url="@../../../assets/requests/requestCloud.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="leo" layoutX="910.0" layoutY="347.0">
+            <ImageView fx:id="luna" layoutX="636.0" layoutY="354.0">
                <image>
-                  <Image url="@../../../assets/Cats/cat2.png" />
+                  <Image url="@../../../assets/Cats/cat3Animation.gif" />
                </image>
             </ImageView>
-            <ImageView fx:id="spot" layoutX="1037.0" layoutY="318.0">
+            <ImageView fx:id="leo" layoutX="909.0" layoutY="378.0">
                <image>
-                  <Image url="@../../../assets/Cats/cat1.png" />
+                  <Image url="@../../../assets/Cats/cat2Animation.gif" />
                </image>
             </ImageView>
-            <ImageView fx:id="luna" layoutX="766.0" layoutY="318.0">
+            <ImageView fx:id="spot" layoutX="1048.0" layoutY="342.0">
                <image>
-                  <Image url="@../../../assets/Cats/cat3.png" />
+                  <Image url="@../../../assets/Cats/cat1Animation.gif" />
                </image>
             </ImageView>
-            <ImageView fx:id="ramona" layoutX="646.0" layoutY="347.0">
+            <ImageView fx:id="ramona" layoutX="772.0" layoutY="318.0">
                <image>
-                  <Image url="@../../../assets/Cats/cat4.png" />
+                  <Image url="@../../../assets/Cats/cat4Animation.gif" />
                </image>
             </ImageView>
             <AnchorPane layoutX="310.0" layoutY="334.0">
@@ -212,7 +212,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <ImageView fx:id="levelScreenPicture" fitHeight="715.0" fitWidth="1281.0" layoutY="1.0">
+            <ImageView fx:id="levelScreenPicture" fitHeight="715.0" fitWidth="1281.0" layoutX="-1.0" layoutY="3.0">
                <image>
                   <Image url="@../../../assets/buttons/StartScreen.png" />
                </image>
@@ -222,7 +222,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-             <Button fx:id="tryAgainButton" disable="true" layoutX="235.0" layoutY="324.0" mnemonicParsing="false" onAction="#handleTryAgainAction" opacity="0.0" prefHeight="168.0" prefWidth="826.0">
+             <Button fx:id="tryAgainButton" disable="true" layoutX="205.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleTryAgainAction" opacity="0.0" prefHeight="168.0" prefWidth="826.0">
                  <cursor>
                      <Cursor fx:constant="HAND" />
                  </cursor>
