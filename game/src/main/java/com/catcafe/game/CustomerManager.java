@@ -5,19 +5,17 @@ import java.util.ArrayList;
 
 public class CustomerManager {
     private ArrayList<Customer> customers;
-    private CatCustomerInteraction catInteraction;
     private int customerPatienceThreshold = 10;
     private final int MAX_CUSTOMERS = 4;
     private static CustomerManager customerManager;
 
-    private CustomerManager(Account account, CatManager catManager){
+    private CustomerManager(Account account){
         customers = new ArrayList<Customer>();
-        catInteraction = new CatCustomerInteraction(catManager, account);
     }
 
-    public static synchronized CustomerManager getInstance(Account account, CatManager catManager){
+    public static synchronized CustomerManager getInstance(Account account){
         if (customerManager == null){
-            customerManager = new CustomerManager(account, catManager);
+            customerManager = new CustomerManager(account);
         }
         return customerManager;
     }

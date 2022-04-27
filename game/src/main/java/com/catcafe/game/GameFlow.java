@@ -14,7 +14,6 @@ public class GameFlow {
     private long nextCatRequestTime; //Time at which a new cat request will spawn
     private long nextCustomerTime; //Time at which a new customer will spawn
     private CustomerManager customerManager;
-    private CatManager catManager;
     private Invoker invoker;
     private ExponentialDistribution catRequestTimeDist;
     private ExponentialDistribution customerSpawnTimeDist;
@@ -27,10 +26,9 @@ public class GameFlow {
      * @param gameLength This is how long the game should last in seconds
      * **/
     public GameFlow(double avgCatRequestRate, double avgCustomerSpawnRate, long gameLength, Invoker invoker, int nCats){
-        this.catManager = CatManager.getInstance();
         this.gameLength = gameLength;
         account = Account.getInstance();
-        this.customerManager = CustomerManager.getInstance(Account.getInstance(), CatManager.getInstance());
+        this.customerManager = CustomerManager.getInstance(Account.getInstance());
         this.invoker = invoker;
         //catRequestTimeDist = new ExponentialDistribution(avgCatRequestRate);
         customerSpawnTimeDist = new ExponentialDistribution(avgCustomerSpawnRate);
@@ -69,13 +67,6 @@ public class GameFlow {
         if(Instant.now().getEpochSecond() >= nextCustomerTime){
             customerManager.spawn();
             calcNextCustomerTime();
-        }
-    }
-    //Helper method which checks if its time for a new cat request. If so, tells cat manager to add a new request(if possible)
-    private void catCheck(){
-        if(Instant.now().getEpochSecond() >= nextCatRequestTime){
-            catManager.spawnRequest();
-            calcNextCatTime();
         }
     }
     private void calcNextCustomerTime(){

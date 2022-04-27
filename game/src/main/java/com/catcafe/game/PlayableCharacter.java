@@ -49,5 +49,6 @@ public class PlayableCharacter {
     public void resetCharacter(){
         id = Model.getInstance().addData(chosenCharacter, Location.REGISTER, Requestable.NONE, false, -1);
         stopCarryingItem();
+        Model.getInstance().modifyData(id, Attribute.LOCATION, Location.REGISTER);
     }
 }
