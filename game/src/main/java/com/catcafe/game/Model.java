@@ -291,5 +291,4 @@ public class Model {
             view.hideDrinkRequest();
         }
     }
-
 }

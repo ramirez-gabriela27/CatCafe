@@ -75,4 +75,8 @@ public class CustomerManager {
         }
 
     }
+
+    public void resetManager(){
+        customers = new ArrayList<Customer>();
+    }
 }

@@ -138,8 +138,5 @@ class Customer extends NPC{
     public void destroy() {
         System.out.println("Customer " + objectID + " is now gone.");
         Model.getInstance().removeData(objectID);
-
     }
-
-
 }
