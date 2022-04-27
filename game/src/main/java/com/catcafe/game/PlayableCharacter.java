@@ -40,8 +40,6 @@ public class PlayableCharacter {
     public void setCarryingItem(Item item){
         carryingItem = item;
         Model.getInstance().modifyData(id, Attribute.DRINK,item.getGraphicName());
-        Model.getInstance().modifyData(id, Attribute.REQUEST,false);
-
     }
     public Character getCharacter(){return chosenCharacter;}
 

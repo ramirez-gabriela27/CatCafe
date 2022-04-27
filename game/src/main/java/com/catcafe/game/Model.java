@@ -210,6 +210,10 @@ public class Model {
             }
 
         }
+        else if(attribute == Attribute.DRINK && id  == 0 ){
+            System.out.println("ID : " + id + " value: " + value);
+            view.changeBaristaItem(id, (Requestable) value);
+        }
         human.get(id).replace(attribute, value);
         //TODO: Alert view that item with id has changed
     }
