@@ -92,34 +92,6 @@ public abstract class NPC implements Patience{
         Model.getInstance().modifyData(objectID, Attribute.PATIENCE, patienceLevel);
     }
 }
-/**
- * CAT NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
- */
-class Cat extends NPC{
-
-    public Cat(long patienceThreshold){
-        super(patienceThreshold);
-        //Cats start off with no request
-        request = null;
-    }
-
-    @Override
-    public void destroy() {
-
-    }
-
-    /**
-     *
-     * @param item Item that is being presented to the cat to attempt to fulfill the request (It doesn't have to be a cat
-     *             item however, giving a cat a beverage will not ever fulfill their request)
-     * @return a boolean of whether or not the request was fulfilled.
-     */
-
-    public Boolean attemptFulfillRequest(Item item){
-        return false;
-    }
-
-}
 
 class Customer extends NPC{
     public Customer(long patienceThreshold){

@@ -36,18 +36,3 @@ class CustomerRequest extends Request{
         return(possibleRequests.get(new Random().nextInt(possibleRequests.size())));
     }
 }
-
-/**
- * NOT CURRENTLY BEING USED SO NOT INCLUDED IN CURRENT CLASS DIAGRAM
- */
-class CatRequest extends Request{
-    public CatRequest(){
-        super();
-       setRandomRequest();
-    }
-    private CatItem[] availableCatRequests = {new Food(), new Toy(), new Water()};
-    private void setRandomRequest(){
-        Random r = new Random();
-        requestedItem = availableCatRequests[r.nextInt(3)];
-    }
-}

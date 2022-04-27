@@ -661,7 +661,7 @@ public class GamePlay_Controller {
         //reset singleton classes
         Model.getInstance().clearModel();
         Account.getInstance().clearAccount();
-        CustomerManager.getInstance(Account.getInstance(),CatManager.getInstance()).resetManager();
+        CustomerManager.getInstance(Account.getInstance()).resetManager();
         PlayableCharacter.getInstance().resetCharacter();
         user = new InGameInteractiveUser(playableCharacter);
         inGameCharacters = new HashMap<Integer, Pair<ImageView, CharacterView>>();

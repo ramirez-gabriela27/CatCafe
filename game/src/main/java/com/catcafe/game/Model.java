@@ -11,9 +11,6 @@ enum Requestable{
     LATTE,
     SYRUP_COFFEE,
     SYRUP_LATTE,
-    CAT_FOOD,
-    CAT_TOY,
-    CAT_WATER,
     NONE
 }
 enum Location{
@@ -27,11 +24,6 @@ enum Location{
     MILK_STEAMER,
     SYRUPS,
     TRASH,
-    CAT_1,
-    CAT_2,
-    CAT_FOOD_BAG,
-    CAT_WATER_BOWL,
-    CAT_TOY_BIN,
     WAITING_1,
     WAITING_2,
     WAITING_3,
