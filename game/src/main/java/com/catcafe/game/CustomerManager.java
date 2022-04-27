@@ -26,7 +26,7 @@ public class CustomerManager {
      * A new customer spawns
      */
     public void spawn(){
-        //If there are already MAX CUSTOMERS dont spawn
+        //If there are already MAX CUSTOMERS don't spawn
         if(customers.size() >= MAX_CUSTOMERS){
             return;
         }
