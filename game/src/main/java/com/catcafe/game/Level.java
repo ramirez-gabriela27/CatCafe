@@ -36,6 +36,7 @@ public abstract class Level implements Runnable{
             System.out.println("You Lost :(");
             gameView.endGame(false);
         }
+        updateHighScore(endMoney);
     }
     public double getHighScore(){return highScore;}
     protected double fetchHighScore(String path){
@@ -95,8 +96,8 @@ class DemoLevel extends Level{
         super(user, playableCharacter, gameView);
         path = "src/main/resources/assets/HighScores/DemoLevel.txt";
         highScore = fetchHighScore(path);
-        moneyGoal = 5.00;
-        gameFlow = new GameFlow(1, 8, 300, invoker, 0);
+        moneyGoal = 18.00;
+        gameFlow = new GameFlow(1, 8, 60, invoker, 0);
     }
 }
 class Level1 extends Level{

@@ -35,7 +35,6 @@ public class PlayableCharacter {
     public void stopCarryingItem(){
         carryingItem =  null;
         Model.getInstance().modifyData(id, Attribute.DRINK, Requestable.NONE);
-
     }
     public void setCarryingItem(Item item){
         carryingItem = item;
