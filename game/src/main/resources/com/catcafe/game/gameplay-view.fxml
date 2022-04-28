@@ -145,17 +145,17 @@
             </ImageView>
              <ImageView fx:id="customer1" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="250.0" preserveRatio="true">
                  <image>
-                     <Image url="@../../../assets/characters/KatyChar/Katy.png" />
+                     <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
                  </image>
              </ImageView>
              <ImageView fx:id="customer2" fitHeight="180.0" fitWidth="118.0" layoutX="700.0" layoutY="250.0" preserveRatio="true">
                  <image>
-                     <Image url="@../../../assets/characters/KatyChar/Katy.png" />
+                     <Image url="@../../../assets/characters/EmmaChar/Emma.png" />
                  </image>
              </ImageView>
              <ImageView fx:id="customer3" fitHeight="180.0" fitWidth="118.0" layoutX="900.0" layoutY="250.0" preserveRatio="true">
                  <image>
-                     <Image url="@../../../assets/characters/KatyChar/Katy.png" />
+                     <Image url="@../../../assets/characters/GabyChar/Gaby.png" />
                  </image>
              </ImageView>
              <ImageView fx:id="customer4" fitHeight="180.0" fitWidth="118.0" layoutX="1100.0" layoutY="250.0" preserveRatio="true">
@@ -247,6 +247,11 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Text fx:id="highScoreText" fill="#b86f50" layoutX="428.0" layoutY="700.0" strokeType="OUTSIDE" strokeWidth="0.0" text="High Score: $0.00" textAlignment="CENTER" wrappingWidth="400.0" opacity="0.0">
+               <font>
+                  <Font name="Bauhaus 93" size="30.0" />
+               </font>
+            </Text>
          </children></AnchorPane>
     </children>
 </AnchorPane>

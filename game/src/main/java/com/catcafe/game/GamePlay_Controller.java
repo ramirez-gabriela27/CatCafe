@@ -45,10 +45,12 @@ public class GamePlay_Controller {
     private ImageView customer3;
     @FXML
     private ImageView customer4;
+    @FXML
+    private Text highScoreText;
 
     //@FXML private ImageView cup;
     //private DrinkView drinkView;
-
+    Level currentLevel;
     HashMap<Location, Pair<Double, Double>> locations;
     HashMap<Location, Boolean> waitingLocations;
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
@@ -68,8 +70,8 @@ public class GamePlay_Controller {
     }
 
     public void newGame(LevelName level){
-        Level test = getLevel(level);
-        Thread t = new Thread(test);
+        currentLevel = getLevel(level);
+        Thread t = new Thread(currentLevel);
         t.start();
     }
 
@@ -166,6 +168,7 @@ public class GamePlay_Controller {
         levelScreenPicture.setOpacity(0);
         levelScreenPicture.setDisable(true);
         startButton.setDisable(true);
+        highScoreText.setOpacity(0);
         //start game logic
         //https://stackoverflow.com/questions/3489543/how-to-call-a-method-with-a-separate-thread-in-java
         //interactive
@@ -598,6 +601,8 @@ public class GamePlay_Controller {
     public void endGame(boolean wonGame){
         disableGame();
         if (wonGame){
+            highScoreText.setText("High Score: $" + currentLevel.getHighScore());
+            highScoreText.setOpacity(100.0);
             System.out.println("Going to won game screen");
             try {
                 LevelScreenView updateScreen = LevelScreenView.makeLevelView(gameLevelList[levelNum], 101, new Pair<>(0.0, 1.0));
@@ -653,6 +658,7 @@ public class GamePlay_Controller {
     protected void handleNextLevelAction() throws IOException{
         levelNum++;
         resetGame();
+        highScoreText.setOpacity(0.0);
         nextLevelButton.setDisable(true);
         winQuitButton1.setDisable(true);
     }
@@ -673,6 +679,7 @@ public class GamePlay_Controller {
         LevelScreenView updateScreen = LevelScreenView.makeLevelView(gameLevelList[levelNum],  102, new Pair<>(0.0, 1.0));
         levelScreenPicture.setImage(updateScreen.startSceenImage);
         levelScreenPicture.setOpacity(100.0);
+        highScoreText.setOpacity(0.0);
         //enable start button
         startButton.setDisable(false);
     }
