@@ -1,5 +1,5 @@
 package com.catcafe.game;
-
+//Singleton Pattern, Lazy Instantiation
 import javafx.scene.effect.Light;
 
 public class PointOfSale {

@@ -2,7 +2,7 @@ package com.catcafe.game;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.util.SplittableRandom;
-
+//Command Pattern
 public class InGameCommand extends Command{
     protected PlayableCharacter receiver;
     protected Model model = Model.getInstance();

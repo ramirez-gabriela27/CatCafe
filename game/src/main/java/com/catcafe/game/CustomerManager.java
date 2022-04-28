@@ -1,5 +1,5 @@
 package com.catcafe.game;
-
+//Singleton Pattern, Lazy Instantiation
 import java.time.Instant;
 import java.util.ArrayList;
 

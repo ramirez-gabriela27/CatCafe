@@ -1,5 +1,5 @@
 package com.catcafe.game;
-
+//Singleton Pattern, Eager Instantiation
 
 public class PlayableCharacter {
     private Item carryingItem;

@@ -1,5 +1,5 @@
 package com.catcafe.game;
-
+/*Decorator Pattern*/
 public class Beverage extends Item{
     protected Double cost;
     public Double getCost(){

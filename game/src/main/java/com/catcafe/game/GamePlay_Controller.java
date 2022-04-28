@@ -1,5 +1,5 @@
 package com.catcafe.game;
-
+//MVC Pattern
 import javafx.animation.PathTransition;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
