@@ -1,4 +1,5 @@
 package com.catcafe.game;
+//MVC Pattern
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

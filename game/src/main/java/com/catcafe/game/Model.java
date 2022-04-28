@@ -2,10 +2,6 @@ package com.catcafe.game;
 import java.io.IOException;
 import java.util.*;
 
-
-//Make all of these enums public and put in different files??
-
-
 enum Requestable{
     COFFEE,
     LATTE,
@@ -61,7 +57,7 @@ enum LevelName{
     THREE
 }
 
-
+//MVC Pattern
 
 public class Model {
     private HashMap<Integer, HashMap<Attribute,Object>> human;
