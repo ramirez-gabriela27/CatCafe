@@ -128,8 +128,6 @@ class Level3 extends Level{
         highScore = fetchHighScore(path);
         moneyGoal = 40.00;
         gameFlow = new GameFlow(1, 5, 120, invoker, 0);
-        moneyGoal = 10.00;
-        gameFlow = new GameFlow(1, 12, 5, invoker, 0);
         System.out.println("LEVEL 3");
     }
 }
