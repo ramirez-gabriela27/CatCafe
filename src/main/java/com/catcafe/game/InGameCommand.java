@@ -17,13 +17,16 @@ class OrderUpCommand extends InGameCommand{
         System.out.println(description);
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
         PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance()));
-        Boolean orderBool = point.orderUp(receiver.getCarryingItem());
-        if(orderBool == true){
+        Double orderAmount = point.orderUp(receiver.getCarryingItem());
+        if(orderAmount > 0){
             receiver.stopCarryingItem();
         }else{
             System.out.println("Incorrect order, throw away and try again.");
         }
         model.updateMoneyAmount();
+        if(orderAmount > 0) {
+            model.moneyChange(orderAmount);
+        }
     }
 }
 
@@ -115,8 +118,12 @@ class ThrowAwayCommand extends InGameCommand{
     void execute() {
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.TRASH);
         PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance()));
-        point.subtractThrowAway(receiver.getCarryingItem());
+        double amount = point.subtractThrowAway(receiver.getCarryingItem());
         model.updateMoneyAmount();
+        if(amount > 0 ) {
+            model.moneyChange(amount * -1);
+        }
         receiver.stopCarryingItem();
+
     }
 }

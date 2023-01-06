@@ -2,6 +2,8 @@ package com.catcafe.game;
 import java.io.IOException;
 import java.util.*;
 
+import static java.lang.Math.abs;
+
 enum Requestable{
     COFFEE,
     LATTE,
@@ -275,6 +277,14 @@ public class Model {
     public void updateMoneyAmount(){
         moneyAmount = Account.getInstance().getAmountString();
         view.updateMoneyDisplay(moneyAmount);
+    }
+    public void moneyChange(double amount){
+        if(amount < 0) {
+            view.moneyMinusAnimation(abs(amount));
+        }
+        else{
+            view.moneyPlusAnimation(abs(amount));
+        }
     }
     public void updateRequestGraphic(){
         System.out.println("here");

@@ -1,11 +1,12 @@
 package com.catcafe.game;
 //MVC Pattern
-import javafx.animation.PathTransition;
+import javafx.animation.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -16,9 +17,11 @@ import javafx.util.Pair;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Set;
 
 public class GamePlay_Controller {
@@ -47,6 +50,10 @@ public class GamePlay_Controller {
     private ImageView customer4;
     @FXML
     private Text highScoreText;
+    @FXML
+    private Text moneyMinus;
+    @FXML
+    private Text moneyPlus;
 
     //@FXML private ImageView cup;
     //private DrinkView drinkView;
@@ -90,13 +97,15 @@ public class GamePlay_Controller {
         }
     }
 
-    public synchronized void initializeImageViews(ImageView barista) {
+    public synchronized void initializeImageViews() {
         inGameCharacters.put(mybarista.getObjectID(), new Pair(barista, mybarista));
         //https://www.tabnine.com/code/java/methods/javafx.scene.image.ImageView/setVisible
         customer1.setVisible(false);
         customer2.setVisible(false);
         customer3.setVisible(false);
         customer4.setVisible(false);
+        moneyMinus.setVisible(false);
+        moneyPlus.setVisible(false);
         inGameCharacters.put(-1, new Pair<>(customer1, null));
         inGameCharacters.put(-2, new Pair<>(customer2, null));
         inGameCharacters.put(-3, new Pair<>(customer3, null));
@@ -161,9 +170,9 @@ public class GamePlay_Controller {
     @FXML
     private void handleStartAction(ActionEvent event) {
         if (inGameCharacters.size() == 0) {
-            initializeImageViews(barista);
+            initializeImageViews();
         }
-        barista.setImage(mybarista.frontImage);
+        //barista.setImage(mybarista.frontImage);
         amountDisplay.setText("$0.00");
         levelScreenPicture.setOpacity(0);
         levelScreenPicture.setDisable(true);
@@ -282,7 +291,7 @@ public class GamePlay_Controller {
 
         //update the new location in character data structure
         character.setLocation(newLoc);
-        if (newX == currentX && newY == currentY) {
+        if (Objects.equals(newX, currentX) && Objects.equals(newY, currentY)) {
             //Do nothing if new location is same as current
             return;
         } else if (newX - currentX < 0) {
@@ -701,5 +710,52 @@ public class GamePlay_Controller {
                 default -> characterImageView.setImage(character.getFrontImage());
             }
         }
+    }
+
+    @FXML
+    public void moneyMinusAnimation(double amount){
+        moneyMinus.setVisible(true);
+        moneyMinus.setOpacity(1);
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedValue = df.format(amount);
+        moneyMinus.setText("- $" + formattedValue);
+        moneyMinus.setTranslateY(50);
+        moneyMinus.setLayoutX(10);
+        moneyMinus.setLayoutY(-50);
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(moneyMinus.translateYProperty(), -50, Interpolator.EASE_IN);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+
+        // Add a key frame to the timeline to fade the label out
+        keyValue = new KeyValue(moneyMinus.opacityProperty(), 0);
+        keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setOnFinished(event -> moneyMinus.setVisible(false));
+        // Play the timeline
+        timeline.play();
+    }
+    @FXML
+    public void moneyPlusAnimation(double amount){
+        moneyPlus.setVisible(true);
+        moneyPlus.setOpacity(1);
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedValue = df.format(amount);
+        moneyPlus.setText("+ $" + formattedValue);
+        moneyPlus.setTranslateY(50);
+        moneyPlus.setLayoutX(10);
+        moneyPlus.setLayoutY(-50);
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(moneyPlus.translateYProperty(), -50, Interpolator.EASE_IN);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+
+        // Add a key frame to the timeline to fade the label out
+        keyValue = new KeyValue(moneyPlus.opacityProperty(), 0);
+        keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setOnFinished(event -> moneyPlus.setVisible(false));
+        // Play the timeline
+        timeline.play();
     }
 }
