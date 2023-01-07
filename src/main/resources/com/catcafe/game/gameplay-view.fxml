@@ -149,9 +149,19 @@
                   <Image url="@../../../assets/KitchenToolPNGs/front_counter.png" />
                </image>
             </ImageView>
+             <ImageView fx:id="line0Heart" fitHeight="30.0" layoutX="345.0" layoutY="440.0" preserveRatio="true">
+                 <image>
+                     <Image url="@../../../assets/Hearts/100Heart.png" />
+                 </image>
+             </ImageView>
              <ImageView fx:id="customer1" fitHeight="180.0" fitWidth="118.0" layoutX="500.0" layoutY="250.0" preserveRatio="true">
                  <image>
                      <Image url="@../../../assets/characters/AnjalaChar/Anjala.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="line1Heart" fitHeight="30.0" layoutX="540.0" layoutY="440.0" preserveRatio="true">
+                 <image>
+                     <Image url="@../../../assets/Hearts/100Heart.png" />
                  </image>
              </ImageView>
              <ImageView fx:id="customer2" fitHeight="180.0" fitWidth="118.0" layoutX="700.0" layoutY="250.0" preserveRatio="true">
@@ -159,9 +169,19 @@
                      <Image url="@../../../assets/characters/EmmaChar/Emma.png" />
                  </image>
              </ImageView>
+             <ImageView fx:id="line2Heart" fitHeight="30.0" layoutX="740.0" layoutY="440.0" preserveRatio="true">
+                 <image>
+                     <Image url="@../../../assets/Hearts/100Heart.png" />
+                 </image>
+             </ImageView>
              <ImageView fx:id="customer3" fitHeight="180.0" fitWidth="118.0" layoutX="900.0" layoutY="250.0" preserveRatio="true">
                  <image>
                      <Image url="@../../../assets/characters/GabyChar/Gaby.png" />
+                 </image>
+             </ImageView>
+             <ImageView fx:id="line3Heart" fitHeight="30.0" layoutX="940.0" layoutY="440.0" preserveRatio="true">
+                 <image>
+                     <Image url="@../../../assets/Hearts/100Heart.png" />
                  </image>
              </ImageView>
              <ImageView fx:id="customer4" fitHeight="180.0" fitWidth="118.0" layoutX="1100.0" layoutY="250.0" preserveRatio="true">

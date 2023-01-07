@@ -32,6 +32,35 @@ public abstract class View{
     }
 }
 
+class HeartView {
+    Image heart100;
+    Image heart75;
+    Image heart50;
+    Image heart25;
+    Image heart0;
+    public HeartView() throws FileNotFoundException {
+        heart100 = new Image(new FileInputStream("src/main/resources/assets/Hearts/100Heart.png" ));
+        heart75 = new Image(new FileInputStream("src/main/resources/assets/Hearts/75Heart.png" ));
+        heart50 = new Image(new FileInputStream("src/main/resources/assets/Hearts/50Heart.png" ));
+        heart25 = new Image(new FileInputStream("src/main/resources/assets/Hearts/25Heart.png" ));
+        heart0 = new Image(new FileInputStream("src/main/resources/assets/Hearts/0Heart.png" ));
+    }
+    public Image getHeartFromPatience(double patience){
+        if(patience >= 0.99){
+            return heart100;
+        } else if(patience >= 0.74){
+            return heart75;
+        }else if(patience >= 0.49){
+            return heart50;
+        }else if (patience >= 0.24){
+            return heart25;
+        }else {
+            return heart0;
+        }
+    }
+
+}
+
 abstract class CharacterView extends View {
     Image frontImage;
     Image walkingCarryRight;

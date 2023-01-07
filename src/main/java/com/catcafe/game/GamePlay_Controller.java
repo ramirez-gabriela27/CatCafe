@@ -50,6 +50,14 @@ public class GamePlay_Controller {
     @FXML
     private ImageView customer4;
     @FXML
+    private ImageView line0Heart;
+    @FXML
+    private ImageView line1Heart;
+    @FXML
+    private ImageView line2Heart;
+    @FXML
+    private ImageView line3Heart;
+    @FXML
     private Text highScoreText;
     @FXML
     private Text moneyMinus;
@@ -66,6 +74,7 @@ public class GamePlay_Controller {
     HashMap<Integer, Pair<ImageView, CharacterView>> inGameCharacters;
     LevelName[] gameLevelList = {LevelName.ONE, LevelName.TWO, LevelName.THREE};
     private int levelNum = 0;
+    HeartView heartView = new HeartView();
 
     public GamePlay_Controller() throws IOException {
         playableCharacter = PlayableCharacter.getInstance();
@@ -119,6 +128,14 @@ public class GamePlay_Controller {
         waitingLocations.put(Location.WAITING_2, true);
         waitingLocations.put(Location.WAITING_3, true);
         waitingLocations.put(Location.WAITING_4, true);
+        line0Heart.toFront();
+        line1Heart.toFront();
+        line2Heart.toFront();
+        line3Heart.toFront();
+        line0Heart.setVisible(false);
+        line1Heart.setVisible(false);
+        line2Heart.setVisible(false);
+        line3Heart.setVisible(false);
         barista.setImage(mybarista.frontImage);
     }
 
@@ -652,6 +669,10 @@ public class GamePlay_Controller {
         for (Button b : listOfGameButtons){
             b.setDisable(true);
         }
+        line0Heart.setVisible(false);
+        line1Heart.setVisible(false);
+        line2Heart.setVisible(false);
+        line3Heart.setVisible(false);
     }
 
     @FXML void enableGame(){
@@ -793,5 +814,41 @@ public class GamePlay_Controller {
         timeline.setDelay(Duration.millis(500));
         timeline1.setOnFinished(event -> timeline.play());
         timeline1.play();
+    }
+
+    public void changePatienceHeart(Location location, double patienceLevel){
+        if (location == Location.LINE_0){
+            line0Heart.setImage(heartView.getHeartFromPatience(patienceLevel));
+        } else if (location == Location.LINE_1){
+            line1Heart.setImage(heartView.getHeartFromPatience(patienceLevel));
+        } else if (location == Location.LINE_2){
+            line2Heart.setImage(heartView.getHeartFromPatience(patienceLevel));
+        } else if (location == Location.LINE_3){
+            line3Heart.setImage(heartView.getHeartFromPatience(patienceLevel));
+        }
+    }
+
+    public void showPatienceHeart(Location location){
+        if (location == Location.LINE_0){
+            line0Heart.setVisible(true);
+        } else if (location == Location.LINE_1){
+            line1Heart.setVisible(true);
+        } else if (location == Location.LINE_2){
+            line2Heart.setVisible(true);
+        } else if (location == Location.LINE_3){
+            line3Heart.setVisible(true);
+        }
+    }
+
+    public void hidePateinceHeart(Location location){
+        if (location == Location.LINE_0){
+            line0Heart.setVisible(false);
+        } else if (location == Location.LINE_1){
+            line1Heart.setVisible(false);
+        } else if (location == Location.LINE_2){
+            line2Heart.setVisible(false);
+        } else if (location == Location.LINE_3){
+            line3Heart.setVisible(false);
+        }
     }
 }
