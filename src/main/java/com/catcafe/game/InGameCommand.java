@@ -1,6 +1,8 @@
 package com.catcafe.game;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.util.Pair;
+
 import java.util.SplittableRandom;
 //Command Pattern
 public class InGameCommand extends Command{
@@ -17,7 +19,9 @@ class OrderUpCommand extends InGameCommand{
         System.out.println(description);
         model.modifyData(receiver.getId(), Attribute.LOCATION, Location.REGISTER);
         PointOfSale point = PointOfSale.getInstance(Account.getInstance(), CustomerManager.getInstance(Account.getInstance()));
-        Double orderAmount = point.orderUp(receiver.getCarryingItem());
+        Pair<Double, Double> orderAmountAndTip = point.orderUp(receiver.getCarryingItem());
+        Double orderAmount = orderAmountAndTip.getKey();
+        Double tip = orderAmountAndTip.getValue();
         if(orderAmount > 0){
             receiver.stopCarryingItem();
         }else{
@@ -26,6 +30,9 @@ class OrderUpCommand extends InGameCommand{
         model.updateMoneyAmount();
         if(orderAmount > 0) {
             model.moneyChange(orderAmount);
+        }
+        if(tip > 0){
+            model.moneyChangeTip(tip);
         }
     }
 }

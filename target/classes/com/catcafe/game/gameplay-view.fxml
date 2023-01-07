@@ -132,9 +132,9 @@
                            <Cursor fx:constant="OPEN_HAND" />
                        </cursor>
                   </Button>
-                   <Text fx:id="moneyMinus" layoutX="5.0"  layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-\$0.00" textAlignment="CENTER" wrappingWidth="143.817626953125" fill="darkred">
+                   <Text fx:id="moneyMinus" layoutX="5.0"  layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-\$0.00" textAlignment="CENTER" wrappingWidth="143.817626953125" fill="darkred" style="-fx-font-weight: bold;">
                        <font>
-                           <Font name="Courier" size="15.0"  />
+                           <Font name="Courier" size="20.0"  />
                        </font>
                    </Text>
                </children>
@@ -216,9 +216,14 @@
                         <Cursor fx:constant="OPEN_HAND" />
                      </cursor>
                   </Button>
-                   <Text fx:id="moneyPlus"  strokeType="OUTSIDE" strokeWidth="0.0" text="-\$0.00" textAlignment="CENTER" wrappingWidth="143.817626953125" fill="greenyellow">
+                   <Text fx:id="moneyPlus"  strokeType="OUTSIDE" strokeWidth="0.0" text="-\$0.00" textAlignment="CENTER" wrappingWidth="143.817626953125" fill="green" style="-fx-font-weight: bold;">
                        <font>
-                           <Font name="Courier" size="15.0"  />
+                           <Font name="Courier" size="20.0"  />
+                       </font>
+                   </Text>
+                   <Text fx:id="tip"  strokeType="OUTSIDE" strokeWidth="0.0" text="-\$0.00" textAlignment="CENTER" wrappingWidth="143.817626953125" fill="green" style="-fx-font-weight: bold;">
+                       <font>
+                           <Font name="Courier" size="20.0"  />
                        </font>
                    </Text>
                </children>

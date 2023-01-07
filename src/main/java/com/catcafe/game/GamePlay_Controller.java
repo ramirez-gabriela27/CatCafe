@@ -2,6 +2,7 @@ package com.catcafe.game;
 //MVC Pattern
 import javafx.animation.*;
 import javafx.application.Platform;
+import javafx.beans.property.DoubleProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -54,6 +55,8 @@ public class GamePlay_Controller {
     private Text moneyMinus;
     @FXML
     private Text moneyPlus;
+    @FXML
+    private Text tip;
 
     //@FXML private ImageView cup;
     //private DrinkView drinkView;
@@ -106,6 +109,8 @@ public class GamePlay_Controller {
         customer4.setVisible(false);
         moneyMinus.setVisible(false);
         moneyPlus.setVisible(false);
+        tip.setOpacity(0.0);
+        tip.setVisible(true);
         inGameCharacters.put(-1, new Pair<>(customer1, null));
         inGameCharacters.put(-2, new Pair<>(customer2, null));
         inGameCharacters.put(-3, new Pair<>(customer3, null));
@@ -757,5 +762,36 @@ public class GamePlay_Controller {
         timeline.setOnFinished(event -> moneyPlus.setVisible(false));
         // Play the timeline
         timeline.play();
+    }
+
+    @FXML
+    public void tipAnimation(double amount){
+        tip.setVisible(true);
+
+        Timeline timeline1 = new Timeline(new KeyFrame(Duration.millis(500.0), event -> {
+            // Set the opacity to 1 to make the text fully visible
+            tip.setOpacity(1);
+        }));
+
+        DecimalFormat df = new DecimalFormat("#.00");
+        String formattedValue = df.format(amount);
+        tip.setText("+ $" + formattedValue);
+        tip.setTranslateY(50);
+        tip.setLayoutX(25);
+        tip.setLayoutY(-50);
+        Timeline timeline = new Timeline();
+        KeyValue keyValue = new KeyValue(tip.translateYProperty(), -50, Interpolator.EASE_IN);
+        KeyFrame keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+
+        // Add a key frame to the timeline to fade the label out
+        keyValue = new KeyValue(tip.opacityProperty(), 0);
+        keyFrame = new KeyFrame(Duration.seconds(1), keyValue);
+        timeline.getKeyFrames().add(keyFrame);
+        //timeline.setOnFinished(event -> tip.setVisible(false));
+        // Play the timeline
+        timeline.setDelay(Duration.millis(500));
+        timeline1.setOnFinished(event -> timeline.play());
+        timeline1.play();
     }
 }

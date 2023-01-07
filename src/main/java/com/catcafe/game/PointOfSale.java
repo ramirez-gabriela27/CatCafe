@@ -1,6 +1,7 @@
 package com.catcafe.game;
 //Singleton Pattern, Lazy Instantiation
 import javafx.scene.effect.Light;
+import javafx.util.Pair;
 
 public class PointOfSale {
     private Account account;
@@ -22,10 +23,10 @@ public class PointOfSale {
     /*
      Compare the customer request and created beverage and see if they are the same. Returns true if success.
      */
-    public Double orderUp(Item bev){
+    public Pair<Double, Double> orderUp(Item bev){
         Customer c = customerManager.nextCustomer();
         if(c == null){
-            return -1.0;
+            return new Pair(-1.0, 0.0);
         }
         if(bev instanceof Beverage){
             System.out.println("Serving Customer " + c.objectID);
@@ -38,15 +39,15 @@ public class PointOfSale {
                 customerManager.remove(c);
                 System.out.println("Correct Order");
                 //TIPPING based on customer patience
-                tip(c.patienceLevel);
-                return amount;
+                double tip = tip(c.patienceLevel);
+                return new Pair(amount, tip);
             }
             else{
-                return -1.0;
+                return new Pair(-1.0, 0.0);
             }
         }
         else{
-            return -1.0;
+            return new Pair(-1.0, 0.0);
         }
     }
     public double subtractThrowAway(Item bev){
@@ -62,8 +63,9 @@ public class PointOfSale {
             return -1;
         }
     }
-    private void tip(Double patienceLevel){
+    private Double tip(Double patienceLevel){
         account.addMoney(patienceLevel);
         System.out.println("Customer Tipped $" + patienceLevel);
+        return patienceLevel;
     }
 }

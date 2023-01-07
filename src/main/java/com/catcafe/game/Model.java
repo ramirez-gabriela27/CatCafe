@@ -286,6 +286,9 @@ public class Model {
             view.moneyPlusAnimation(abs(amount));
         }
     }
+    public void moneyChangeTip(double amount){
+        view.tipAnimation(amount);
+    }
     public void updateRequestGraphic(){
         System.out.println("here");
         if(occupiedLocations.get(Location.LINE_0) != -1){
